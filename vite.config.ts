@@ -92,7 +92,48 @@ type SceneSong = {
   playable?: boolean
 }
 
+type AlbumDetailResponse = {
+  data?: {
+    id?: string
+    genre?: string | null
+    description?: string | null
+    briefDesc?: string | null
+    language?: string | null
+    company?: string | null
+    publishTime?: number | null
+  }
+}
+
+type SongLyricResponse = {
+  data?: {
+    lyric?: string | null
+    transLyric?: string | null
+    noLyric?: boolean | null
+    pureMusic?: boolean | null
+  }
+}
+
 const FAVORITE_CACHE_TTL_MS = 5 * 60 * 1000
+const STYLE_TERMS = [
+  'psychedelic',
+  'folk',
+  'prog-rock',
+  'progressive rock',
+  'ambient',
+  'shoegaze',
+  'dream pop',
+  'post-rock',
+  'krautrock',
+  'jazz',
+  'fusion',
+  'electronic',
+  'synth-pop',
+  'indie rock',
+  'garage rock',
+  'acid folk',
+  'experimental',
+  'neo-psychedelia',
+]
 
 let favoriteSongsCache:
   | {
@@ -100,6 +141,19 @@ let favoriteSongsCache:
       songs: SceneSong[]
     }
   | undefined
+
+const albumMetaCache = new Map<
+  string,
+  {
+    expiresAt: number
+    payload: {
+      tags: string[]
+      language: string | null
+      company: string | null
+      year: number | null
+    }
+  }
+>()
 
 function asJsonResponse(res: import('node:http').ServerResponse, payload: unknown, statusCode = 200) {
   res.statusCode = statusCode
@@ -117,6 +171,57 @@ function shuffle<T>(items: T[]) {
     ;[next[i], next[j]] = [next[j], next[i]]
   }
   return next
+}
+
+function extractStyleTags(text: string) {
+  const lowered = text.toLowerCase()
+  return STYLE_TERMS.filter((term) => lowered.includes(term)).slice(0, 6)
+}
+
+async function loadAlbumMeta(albumId: string) {
+  const cached = albumMetaCache.get(albumId)
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.payload
+  }
+
+  const result = parseJson<AlbumDetailResponse>(
+    await execFileAsync(
+      'ncm-cli',
+      ['album', 'get', '--albumId', albumId, '--descFlag', 'true', '--output', 'json'],
+      { timeout: 15000, maxBuffer: 2 * 1024 * 1024 },
+    ).then(({ stdout }) => JSON.parse(stdout)),
+  )
+
+  const description = `${result.data?.genre ?? ''} ${result.data?.briefDesc ?? ''} ${result.data?.description ?? ''}`.trim()
+  const payload = {
+    tags: extractStyleTags(description),
+    language: result.data?.language ?? null,
+    company: result.data?.company ?? null,
+    year: result.data?.publishTime ? new Date(result.data.publishTime).getFullYear() : null,
+  }
+
+  albumMetaCache.set(albumId, {
+    expiresAt: Date.now() + FAVORITE_CACHE_TTL_MS,
+    payload,
+  })
+
+  return payload
+}
+
+async function loadSongLyrics(songId: string) {
+  const result = parseJson<SongLyricResponse>(
+    await execFileAsync('ncm-cli', ['song', 'lyric', '--songId', songId, '--output', 'json'], {
+      timeout: 15000,
+      maxBuffer: 2 * 1024 * 1024,
+    }).then(({ stdout }) => JSON.parse(stdout)),
+  )
+
+  return {
+    lyric: result.data?.lyric ?? null,
+    transLyric: result.data?.transLyric ?? null,
+    noLyric: Boolean(result.data?.noLyric),
+    pureMusic: Boolean(result.data?.pureMusic),
+  }
 }
 
 async function loadFavoritePlayableSongs() {
@@ -291,6 +396,30 @@ export default defineConfig({
                 totalPlayableFavorites: songs.length,
                 songs: sample,
               })
+              return
+            }
+
+            if (action === 'album-meta') {
+              const albumId = url.searchParams.get('albumId')
+              if (!albumId) {
+                asJsonResponse(res, { success: false, message: 'Missing albumId' }, 400)
+                return
+              }
+
+              const meta = await loadAlbumMeta(albumId)
+              asJsonResponse(res, { success: true, ...meta })
+              return
+            }
+
+            if (action === 'lyrics') {
+              const songId = url.searchParams.get('songId')
+              if (!songId) {
+                asJsonResponse(res, { success: false, message: 'Missing songId' }, 400)
+                return
+              }
+
+              const lyrics = await loadSongLyrics(songId)
+              asJsonResponse(res, { success: true, ...lyrics })
               return
             }
 

@@ -45,6 +45,15 @@ export interface Agent {
   favoriteArtistIds: string[]
   color: string
   activityPattern?: string | null
+  selectionBrief?: string
+  preferenceNotes?: string[]
+}
+
+export interface AgentSelection {
+  agentId: string
+  songId: string
+  score: number
+  reason: string
 }
 
 export interface PlaybackState {
