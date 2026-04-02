@@ -21,6 +21,12 @@ export function NowPlayingScreen() {
   const selectedSongId = useMuseumSceneStore((state) => state.selectedSongId)
   const playback = useMuseumSceneStore((state) => state.playback)
   const playerHint = useMuseumSceneStore((state) => state.playerHint)
+  const playerBusy = useMuseumSceneStore((state) => state.playerBusy)
+  const libraryBusy = useMuseumSceneStore((state) => state.libraryBusy)
+  const selectNextSong = useMuseumSceneStore((state) => state.selectNextSong)
+  const loadRandomPlayableFavorites = useMuseumSceneStore(
+    (state) => state.loadRandomPlayableFavorites,
+  )
 
   const selectedSong = useMemo(() => songs.find((song) => song.id === selectedSongId) ?? songs[0], [songs, selectedSongId])
 
@@ -47,6 +53,42 @@ export function NowPlayingScreen() {
         </div>
         <div style={{ marginTop: 10, display: 'inline-flex', borderRadius: 999, padding: '5px 10px', background: 'rgba(245,158,11,0.16)', color: '#fbbf24', fontSize: 11, fontWeight: 700 }}>
           {statusLabel[playback.status] ?? playback.status}
+        </div>
+        <div style={{ marginTop: 12, display: 'flex', gap: 8 }}>
+          <button
+            type="button"
+            onClick={() => void selectNextSong()}
+            disabled={playerBusy || songs.length <= 1}
+            style={{
+              border: '1px solid rgba(255,255,255,0.12)',
+              borderRadius: 999,
+              padding: '8px 12px',
+              background: playerBusy || songs.length <= 1 ? 'rgba(255,255,255,0.06)' : '#f59e0b',
+              color: playerBusy || songs.length <= 1 ? 'rgba(255,255,255,0.42)' : '#111827',
+              fontSize: 12,
+              fontWeight: 800,
+              cursor: playerBusy || songs.length <= 1 ? 'default' : 'pointer',
+            }}
+          >
+            切换歌曲
+          </button>
+          <button
+            type="button"
+            onClick={() => void loadRandomPlayableFavorites(12)}
+            disabled={libraryBusy}
+            style={{
+              border: '1px solid rgba(255,255,255,0.12)',
+              borderRadius: 999,
+              padding: '8px 12px',
+              background: libraryBusy ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.12)',
+              color: libraryBusy ? 'rgba(255,255,255,0.42)' : '#f9fafb',
+              fontSize: 12,
+              fontWeight: 800,
+              cursor: libraryBusy ? 'default' : 'pointer',
+            }}
+          >
+            刷新列表
+          </button>
         </div>
         <div style={{ marginTop: 10, fontSize: 11, lineHeight: 1.5, color: 'rgba(255,255,255,0.62)' }}>{playerHint}</div>
       </div>

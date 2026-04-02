@@ -21,8 +21,8 @@ const DJ_DESK = { x: 411, y: 349 }
  * tl/br are the top-left / bottom-right corners of the whole shelf area.
  */
 const UPPER_SHELF = {
-  tl: { x: 269, y: 202 },
-  br: { x: 363, y: 311 },
+  tl: { x: 250, y: 188 },
+  br: { x: 396, y: 338 },
   rows: 3,
   cols: 4,
 }
@@ -47,7 +47,7 @@ function buildGrid(
 const SHELF_POSITIONS = buildGrid(UPPER_SHELF.tl, UPPER_SHELF.br, UPPER_SHELF.rows, UPPER_SHELF.cols)
 
 // Derived thumbnail size (fits inside one cell with 2px margin)
-const THUMB = Math.floor((UPPER_SHELF.br.x - UPPER_SHELF.tl.x) / UPPER_SHELF.cols) - 4  // ≈ 19px
+const THUMB = Math.floor((UPPER_SHELF.br.x - UPPER_SHELF.tl.x) / UPPER_SHELF.cols) - 6
 
 // ─────────────────────────────────────────────────────────────
 
@@ -64,6 +64,7 @@ export function SceneOverlay() {
 
   const visibleSongs = songs.filter((s) => s.visible).slice(0, SHELF_POSITIONS.length)
   const isPlaying = playback.status === 'playing'
+  const openSong = songs.find((song) => song.id === openCardId) ?? null
 
   const handleDeskClick = async () => {
     if (playerBusy) return
@@ -114,7 +115,6 @@ export function SceneOverlay() {
         const pos = SHELF_POSITIONS[i]
         if (!pos) return null
         const isSelected = song.id === selectedSongId
-        const isOpen = openCardId === song.id
 
         return (
           <div
@@ -136,11 +136,11 @@ export function SceneOverlay() {
                 width: THUMB,
                 height: THUMB,
                 padding: 0,
-                borderRadius: 2,
-                border: `1.5px solid ${isSelected ? '#a78bfa' : 'rgba(255,255,255,0.15)'}`,
+                borderRadius: 4,
+                border: `2px solid ${isSelected ? '#a78bfa' : 'rgba(255,255,255,0.15)'}`,
                 boxShadow: isSelected
-                  ? '0 0 8px 2px rgba(139,92,246,0.6)'
-                  : '0 1px 3px rgba(0,0,0,0.5)',
+                  ? '0 0 12px 3px rgba(139,92,246,0.6)'
+                  : '0 2px 6px rgba(0,0,0,0.55)',
                 overflow: 'hidden',
                 cursor: 'pointer',
                 background: '#111',
@@ -161,30 +161,29 @@ export function SceneOverlay() {
               <span
                 style={{
                   position: 'absolute',
-                  bottom: 1,
-                  right: 1,
-                  width: 4,
-                  height: 4,
+                  bottom: 2,
+                  right: 2,
+                  width: 8,
+                  height: 8,
                   borderRadius: '50%',
                   background: isSelected ? '#a78bfa' : '#4ade80',
-                  boxShadow: `0 0 3px 1px ${isSelected ? '#7c3aed' : '#16a34a'}`,
+                  boxShadow: `0 0 5px 1px ${isSelected ? '#7c3aed' : '#16a34a'}`,
                   display: 'block',
                 }}
               />
             </button>
-
-            {/* Album card popup */}
-            {isOpen && (
-              <AlbumCard
-                song={song}
-                onClose={() => setOpenCardId(null)}
-                onPlay={() => void playSelectedSong()}
-                isPlaying={isPlaying && song.id === playback.currentSongId}
-              />
-            )}
           </div>
         )
       })}
+
+      {openSong && (
+        <AlbumCard
+          song={openSong}
+          onClose={() => setOpenCardId(null)}
+          onPlay={() => void playSelectedSong()}
+          isPlaying={isPlaying && openSong.id === playback.currentSongId}
+        />
+      )}
     </div>
   )
 }

@@ -39,6 +39,161 @@ async function runNcm(command: PlayerCommand, payload?: PlayPayload) {
   }
 }
 
+type FavoritePlaylistResponse = {
+  data?: {
+    id?: string
+    trackCount?: number
+  }
+}
+
+type FavoriteTrack = {
+  originalId: number
+  id: string
+  name: string
+  duration: number
+  fullArtists?: Array<{
+    originalId: number
+    id: string
+    name: string
+    coverImgUrl?: string | null
+  }>
+  album?: {
+    originalId?: number
+    id?: string
+    name?: string
+  } | null
+  playFlag?: boolean
+  liked?: boolean
+  coverImgUrl?: string | null
+  maxBrLevel?: string | null
+  plLevel?: string | null
+  dlLevel?: string | null
+  visible?: boolean
+}
+
+type PlaylistTracksResponse = {
+  data?: FavoriteTrack[]
+}
+
+type SceneSong = {
+  id: string
+  originalId: number
+  name: string
+  duration: number
+  artistIds: string[]
+  artistNames?: string[]
+  albumId: string | null
+  coverImgUrl: string | null
+  liked: boolean
+  visible: boolean
+  maxBrLevel: string | null
+  plLevel: string | null
+  dlLevel: string | null
+  playable?: boolean
+}
+
+const FAVORITE_CACHE_TTL_MS = 5 * 60 * 1000
+
+let favoriteSongsCache:
+  | {
+      expiresAt: number
+      songs: SceneSong[]
+    }
+  | undefined
+
+function asJsonResponse(res: import('node:http').ServerResponse, payload: unknown, statusCode = 200) {
+  res.statusCode = statusCode
+  res.end(JSON.stringify(payload))
+}
+
+function parseJson<T>(value: unknown): T {
+  return value as T
+}
+
+function shuffle<T>(items: T[]) {
+  const next = [...items]
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[next[i], next[j]] = [next[j], next[i]]
+  }
+  return next
+}
+
+async function loadFavoritePlayableSongs() {
+  if (favoriteSongsCache && favoriteSongsCache.expiresAt > Date.now()) {
+    return favoriteSongsCache.songs
+  }
+
+  const favorite = parseJson<FavoritePlaylistResponse>(await execFileAsync('ncm-cli', ['user', 'favorite', '--output', 'json'], {
+    timeout: 15000,
+    maxBuffer: 1024 * 1024,
+  }).then(({ stdout }) => JSON.parse(stdout)))
+
+  const playlistId = favorite.data?.id
+  const trackCount = favorite.data?.trackCount ?? 0
+
+  if (!playlistId) {
+    throw new Error('Favorite playlist id missing from ncm-cli response')
+  }
+
+  const pageSize = 500
+  const pages = Math.max(1, Math.ceil(trackCount / pageSize))
+  const allTracks: FavoriteTrack[] = []
+
+  for (let page = 0; page < pages; page += 1) {
+    const offset = page * pageSize
+    const tracks = parseJson<PlaylistTracksResponse>(
+      await execFileAsync(
+        'ncm-cli',
+        [
+          'playlist',
+          'tracks',
+          '--playlistId',
+          playlistId,
+          '--limit',
+          String(pageSize),
+          '--offset',
+          String(offset),
+          '--output',
+          'json',
+        ],
+        {
+          timeout: 30000,
+          maxBuffer: 8 * 1024 * 1024,
+        },
+      ).then(({ stdout }) => JSON.parse(stdout)),
+    )
+
+    allTracks.push(...(tracks.data ?? []))
+  }
+
+  const favoriteSongs = allTracks
+    .filter((track) => track.liked && track.playFlag && track.id && track.originalId)
+    .map<SceneSong>((track) => ({
+      id: track.id,
+      originalId: track.originalId,
+      name: track.name,
+      duration: track.duration,
+      artistIds: (track.fullArtists ?? []).map((artist) => artist.id),
+      artistNames: (track.fullArtists ?? []).map((artist) => artist.name),
+      albumId: track.album?.id ?? null,
+      coverImgUrl: track.coverImgUrl ?? null,
+      liked: true,
+      visible: true,
+      maxBrLevel: track.maxBrLevel ?? null,
+      plLevel: track.plLevel ?? null,
+      dlLevel: track.dlLevel ?? null,
+      playable: true,
+    }))
+
+  favoriteSongsCache = {
+    expiresAt: Date.now() + FAVORITE_CACHE_TTL_MS,
+    songs: favoriteSongs,
+  }
+
+  return favoriteSongs
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -105,6 +260,49 @@ export default defineConfig({
                 success: false,
                 message: error instanceof Error ? error.message : 'Unknown bridge error',
               }),
+            )
+          }
+        })
+        server.middlewares.use('/api/library', async (req, res) => {
+          res.setHeader('Content-Type', 'application/json; charset=utf-8')
+
+          if (!req.url) {
+            asJsonResponse(res, { success: false, message: 'Missing URL' }, 400)
+            return
+          }
+
+          const method = req.method ?? 'GET'
+          const url = new URL(req.url, 'http://localhost')
+          const action = url.pathname.replace(/^\//, '')
+
+          if (method !== 'GET') {
+            asJsonResponse(res, { success: false, message: 'Method not allowed' }, 405)
+            return
+          }
+
+          try {
+            if (action === 'random-liked-playable') {
+              const count = Math.max(1, Math.min(24, Number(url.searchParams.get('count') ?? '12')))
+              const songs = await loadFavoritePlayableSongs()
+              const sample = shuffle(songs).slice(0, Math.min(count, songs.length))
+
+              asJsonResponse(res, {
+                success: true,
+                totalPlayableFavorites: songs.length,
+                songs: sample,
+              })
+              return
+            }
+
+            asJsonResponse(res, { success: false, message: `Unknown action: ${action}` }, 404)
+          } catch (error) {
+            asJsonResponse(
+              res,
+              {
+                success: false,
+                message: error instanceof Error ? error.message : 'Unknown library bridge error',
+              },
+              500,
             )
           }
         })

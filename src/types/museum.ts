@@ -23,6 +23,7 @@ export interface Song {
   name: string
   duration: number
   artistIds: string[]
+  artistNames?: string[]
   albumId: string | null
   coverImgUrl: string | null
   liked: boolean

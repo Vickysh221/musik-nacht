@@ -14,18 +14,16 @@ export function AlbumCard({ song, onClose, onPlay, isPlaying }: AlbumCardProps) 
   return (
     <div
       style={{
-        position: 'absolute',
-        // Pop upward-right of the thumbnail so it doesn't go off left edge
-        bottom: '100%',
-        left: 0,
-        marginBottom: 4,
-        zIndex: 100,
-        width: 200,
-        borderRadius: 14,
+        position: 'fixed',
+        left: 24,
+        bottom: 24,
+        zIndex: 120,
+        width: 280,
+        borderRadius: 18,
         overflow: 'hidden',
         background: 'rgba(14, 10, 22, 0.96)',
         border: '1px solid rgba(139,92,246,0.35)',
-        boxShadow: '0 12px 40px rgba(0,0,0,0.6), 0 0 20px rgba(139,92,246,0.2)',
+        boxShadow: '0 18px 48px rgba(0,0,0,0.6), 0 0 24px rgba(139,92,246,0.2)',
         fontFamily: 'Inter, ui-sans-serif, sans-serif',
         backdropFilter: 'blur(12px)',
         pointerEvents: 'auto',
@@ -60,15 +58,15 @@ export function AlbumCard({ song, onClose, onPlay, isPlaying }: AlbumCardProps) 
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: 8,
-            right: 8,
-            width: 24,
-            height: 24,
+            top: 10,
+            right: 10,
+            width: 28,
+            height: 28,
             borderRadius: '50%',
             background: 'rgba(0,0,0,0.6)',
             border: '1px solid rgba(255,255,255,0.15)',
             color: 'rgba(255,255,255,0.7)',
-            fontSize: 12,
+            fontSize: 13,
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
@@ -81,13 +79,13 @@ export function AlbumCard({ song, onClose, onPlay, isPlaying }: AlbumCardProps) 
       </div>
 
       {/* Info */}
-      <div style={{ padding: '10px 12px 12px' }}>
+      <div style={{ padding: '14px 16px 16px' }}>
         <div style={{
-          fontSize: 13,
+          fontSize: 17,
           fontWeight: 700,
           color: '#f0eeff',
           lineHeight: 1.3,
-          marginBottom: 4,
+          marginBottom: 6,
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
@@ -95,9 +93,9 @@ export function AlbumCard({ song, onClose, onPlay, isPlaying }: AlbumCardProps) 
           {song.name}
         </div>
         <div style={{
-          fontSize: 11,
+          fontSize: 13,
           color: 'rgba(167,139,250,0.7)',
-          marginBottom: 10,
+          marginBottom: 14,
         }}>
           {minutes}:{seconds}
           {song.maxBrLevel && <span style={{ marginLeft: 8, color: 'rgba(255,255,255,0.3)' }}>{song.maxBrLevel}</span>}
@@ -109,14 +107,14 @@ export function AlbumCard({ song, onClose, onPlay, isPlaying }: AlbumCardProps) 
           onClick={onPlay}
           style={{
             width: '100%',
-            padding: '7px 0',
-            borderRadius: 8,
+            padding: '10px 0',
+            borderRadius: 10,
             background: isPlaying
               ? 'rgba(139,92,246,0.2)'
               : 'rgba(139,92,246,0.85)',
             border: `1px solid ${isPlaying ? 'rgba(139,92,246,0.5)' : 'transparent'}`,
             color: '#fff',
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: 600,
             cursor: 'pointer',
             letterSpacing: '0.04em',

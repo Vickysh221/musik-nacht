@@ -12,11 +12,11 @@ function App() {
         alt="studio"
         style={{
           position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'contain',
-          objectPosition: 'center',
+          top: '50%',
+          left: '50%',
+          width: '100vw',
+          height: 'auto',
+          transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
         }}
       />

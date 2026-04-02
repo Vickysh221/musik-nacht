@@ -13,6 +13,8 @@ type MuseumSceneStore = {
   activeAgentId: string | null
   playerHint: string
   playerBusy: boolean
+  libraryHint: string
+  libraryBusy: boolean
   setSongs: (nextSongs: Song[]) => void
   setAgents: (nextAgents: Agent[]) => void
   setEdges: (nextEdges: RelationEdge[]) => void
@@ -21,7 +23,9 @@ type MuseumSceneStore = {
   setFocusZone: (zone: FocusZone) => void
   setHoveredRecord: (recordId: string | null) => void
   setActiveAgent: (agentId: string | null) => void
+  selectNextSong: () => Promise<void>
   refreshPlayerState: () => Promise<void>
+  loadRandomPlayableFavorites: (count?: number) => Promise<void>
   playSelectedSong: () => Promise<void>
   pausePlayback: () => Promise<void>
   stopPlayback: () => Promise<void>
@@ -47,6 +51,8 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
   activeAgentId: null,
   playerHint: '本地播放器待命中',
   playerBusy: false,
+  libraryHint: '当前展示静态样本，可切换到网易云红心随机 12 首',
+  libraryBusy: false,
   setSongs: (nextSongs) => set({ songs: nextSongs }),
   setAgents: (nextAgents) => set({ agents: nextAgents }),
   setEdges: (nextEdges) => set({ edges: nextEdges }),
@@ -66,6 +72,29 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
   setFocusZone: (zone) => set({ focusZone: zone }),
   setHoveredRecord: (recordId) => set({ hoveredRecordId: recordId }),
   setActiveAgent: (agentId) => set({ activeAgentId: agentId }),
+  selectNextSong: async () => {
+    const state = get()
+    const totalSongs = state.songs.length
+
+    if (totalSongs === 0) return
+
+    const currentIndex = state.songs.findIndex((song) => song.id === state.selectedSongId)
+    const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % totalSongs : 0
+    const nextSong = state.songs[nextIndex]
+
+    if (!nextSong) return
+
+    state.selectSong(nextSong.id)
+
+    if (state.playback.status === 'playing') {
+      await get().playSelectedSong()
+      return
+    }
+
+    set({
+      playerHint: `已切换到：${nextSong.name}`,
+    })
+  },
   refreshPlayerState: async () => {
     try {
       const response = await fetch('/api/player/state')
@@ -84,6 +113,37 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
       }
     } catch {
       set({ playerHint: '未连上本地 player bridge' })
+    }
+  },
+  loadRandomPlayableFavorites: async (count = 12) => {
+    set({ libraryBusy: true, libraryHint: '正在从网易云红心歌单随机取样…' })
+    try {
+      const response = await fetch(`/api/library/random-liked-playable?count=${count}`)
+      const result = await response.json()
+
+      if (!response.ok || !Array.isArray(result?.songs)) {
+        throw new Error(result?.message ?? '加载网易云红心歌曲失败')
+      }
+
+      const nextSongs = result.songs as Song[]
+      const firstSong = nextSongs[0] ?? null
+
+      set((state) => ({
+        songs: nextSongs,
+        selectedSongId: firstSong?.id ?? state.selectedSongId,
+        playback: {
+          ...state.playback,
+          currentSongId: firstSong?.id ?? state.playback.currentSongId,
+          duration: firstSong?.duration ? firstSong.duration / 1000 : state.playback.duration,
+        },
+        libraryHint: `已载入网易云红心可播歌曲 ${nextSongs.length} 首，可播总数 ${result.totalPlayableFavorites ?? nextSongs.length}`,
+      }))
+    } catch (error) {
+      set({
+        libraryHint: error instanceof Error ? error.message : '加载网易云红心歌曲失败',
+      })
+    } finally {
+      set({ libraryBusy: false })
     }
   },
   playSelectedSong: async () => {
