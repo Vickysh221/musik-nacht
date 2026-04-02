@@ -1,6 +1,8 @@
 import { create } from 'zustand'
+import { agentProfiles } from '../data/agentProfiles'
 import { agents, edges, songs } from '../data/neteaseData'
-import type { Agent, FocusZone, PlaybackState, RelationEdge, Song } from '../types/museum'
+import type { Agent, AgentPickDecision, FocusZone, PlaybackState, RelationEdge, Song } from '../types/museum'
+import { buildNightlySelections, enrichSong } from './agentSelection'
 
 type MuseumSceneStore = {
   songs: Song[]
@@ -15,6 +17,10 @@ type MuseumSceneStore = {
   playerBusy: boolean
   libraryHint: string
   libraryBusy: boolean
+  nightlyPool: Song[]
+  agentDecisions: AgentPickDecision[]
+  activeVisitorIds: string[]
+  visitorRefreshCount: number
   setSongs: (nextSongs: Song[]) => void
   setAgents: (nextAgents: Agent[]) => void
   setEdges: (nextEdges: RelationEdge[]) => void
@@ -26,41 +32,61 @@ type MuseumSceneStore = {
   selectNextSong: () => Promise<void>
   refreshPlayerState: () => Promise<void>
   loadRandomPlayableFavorites: (count?: number) => Promise<void>
+  runNightVisitorSelection: () => void
   playSelectedSong: () => Promise<void>
   pausePlayback: () => Promise<void>
   stopPlayback: () => Promise<void>
 }
 
+const hydrateAgents = (sourceAgents: Agent[]) =>
+  sourceAgents.map((agent) => ({
+    ...agent,
+    preferenceProfile: agent.preferenceProfile ?? agentProfiles[agent.id],
+  }))
+
+const hydrateSongs = (sourceSongs: Song[]) => sourceSongs.map((song) => enrichSong(song))
+
+const hydratedAgents = hydrateAgents(agents)
+const hydratedSongs = hydrateSongs(songs)
+
+const initialSelection = buildNightlySelections(hydratedSongs, hydratedAgents)
+
 const initialPlayback: PlaybackState = {
   status: 'stopped',
-  currentSongId: songs[0]?.id ?? null,
+  currentSongId: initialSelection.recommendedSongId ?? hydratedSongs[0]?.id ?? null,
   progress: 0,
-  duration: songs[0]?.duration ? songs[0].duration / 1000 : 0,
+  duration: hydratedSongs[0]?.duration ? hydratedSongs[0].duration / 1000 : 0,
   volume: null,
   source: 'mock',
 }
 
 export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
-  songs,
-  agents,
+  songs: hydratedSongs,
+  agents: hydratedAgents,
   edges,
-  selectedSongId: songs[0]?.id ?? null,
+  selectedSongId: initialSelection.recommendedSongId ?? hydratedSongs[0]?.id ?? null,
   playback: initialPlayback,
   focusZone: 'turntable',
   hoveredRecordId: null,
-  activeAgentId: null,
+  activeAgentId: initialSelection.agentDecisions[0]?.agentId ?? null,
   playerHint: '本地播放器待命中',
   playerBusy: false,
   libraryHint: '当前展示静态样本，可切换到网易云红心随机 12 首',
   libraryBusy: false,
-  setSongs: (nextSongs) => set({ songs: nextSongs }),
-  setAgents: (nextAgents) => set({ agents: nextAgents }),
+  nightlyPool: initialSelection.nightlyPool,
+  agentDecisions: initialSelection.agentDecisions,
+  activeVisitorIds: initialSelection.activeVisitorIds,
+  visitorRefreshCount: 0,
+  setSongs: (nextSongs) => set({ songs: hydrateSongs(nextSongs) }),
+  setAgents: (nextAgents) => set({ agents: hydrateAgents(nextAgents) }),
   setEdges: (nextEdges) => set({ edges: nextEdges }),
   selectSong: (songId) =>
     set((state) => {
       const nextSong = state.songs.find((song) => song.id === songId) ?? null
+      const matchingDecision = state.agentDecisions.find((decision) => decision.songId === songId) ?? null
       return {
         selectedSongId: songId,
+        activeAgentId: matchingDecision?.agentId ?? state.activeAgentId,
         playback: {
           ...state.playback,
           currentSongId: songId,
@@ -125,18 +151,27 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
         throw new Error(result?.message ?? '加载网易云红心歌曲失败')
       }
 
-      const nextSongs = result.songs as Song[]
+      const nextSongs = hydrateSongs(result.songs as Song[])
+      const nightlySelection = buildNightlySelections(nextSongs, get().agents)
       const firstSong = nextSongs[0] ?? null
 
       set((state) => ({
         songs: nextSongs,
-        selectedSongId: firstSong?.id ?? state.selectedSongId,
+        nightlyPool: nightlySelection.nightlyPool,
+        agentDecisions: nightlySelection.agentDecisions,
+        activeVisitorIds: nightlySelection.activeVisitorIds,
+        visitorRefreshCount: 0,
+        activeAgentId: nightlySelection.agentDecisions[0]?.agentId ?? state.activeAgentId,
+        selectedSongId: nightlySelection.recommendedSongId ?? firstSong?.id ?? state.selectedSongId,
         playback: {
           ...state.playback,
-          currentSongId: firstSong?.id ?? state.playback.currentSongId,
-          duration: firstSong?.duration ? firstSong.duration / 1000 : state.playback.duration,
+          currentSongId: nightlySelection.recommendedSongId ?? firstSong?.id ?? state.playback.currentSongId,
+          duration:
+            (nextSongs.find((song) => song.id === nightlySelection.recommendedSongId) ?? firstSong)?.duration
+              ? ((nextSongs.find((song) => song.id === nightlySelection.recommendedSongId) ?? firstSong)?.duration ?? 0) / 1000
+              : state.playback.duration,
         },
-        libraryHint: `已载入网易云红心可播歌曲 ${nextSongs.length} 首，可播总数 ${result.totalPlayableFavorites ?? nextSongs.length}`,
+        libraryHint: `已载入网易云红心可播歌曲 ${nextSongs.length} 首，可播总数 ${result.totalPlayableFavorites ?? nextSongs.length}；今晚来访 ${nightlySelection.activeVisitorIds.length} 位`,
       }))
     } catch (error) {
       set({
@@ -145,6 +180,24 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
     } finally {
       set({ libraryBusy: false })
     }
+  },
+  runNightVisitorSelection: () => {
+    const state = get()
+    const nextRefreshCount = state.visitorRefreshCount + 1
+    const nightlySelection = buildNightlySelections(state.songs, state.agents, nextRefreshCount)
+    set((current) => ({
+      nightlyPool: nightlySelection.nightlyPool,
+      agentDecisions: nightlySelection.agentDecisions,
+      activeVisitorIds: nightlySelection.activeVisitorIds,
+      visitorRefreshCount: nextRefreshCount,
+      activeAgentId: nightlySelection.agentDecisions[0]?.agentId ?? current.activeAgentId,
+      selectedSongId: nightlySelection.recommendedSongId ?? current.selectedSongId,
+      playback: {
+        ...current.playback,
+        currentSongId: nightlySelection.recommendedSongId ?? current.playback.currentSongId,
+      },
+      libraryHint: `访客偏好已刷新第 ${nextRefreshCount} 轮，今晚来访 ${nightlySelection.activeVisitorIds.length} 位`,
+    }))
   },
   playSelectedSong: async () => {
     const state = get()

@@ -1,4 +1,4 @@
-import type { Agent, RelationEdge, Song } from './museum'
+import type { Agent, AgentPickDecision, AgentPreferenceProfile, RelationEdge, Song, SongFeatures } from './museum'
 
 export type Artist = {
   id: string
@@ -26,5 +26,5 @@ export type Event = {
   themeTags?: string[]
 }
 
-export type { Song, Agent }
+export type { Song, Agent, SongFeatures, AgentPreferenceProfile, AgentPickDecision }
 export type Edge = RelationEdge

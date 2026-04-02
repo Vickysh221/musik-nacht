@@ -17,6 +17,27 @@ export type RelationEdgeType =
   | 'featured'
   | 'attended'
 
+export type SongEraTag = 'classic' | '1990s' | '2000s' | '2010s' | '2020s'
+
+export interface SongFeatures {
+  moodTags: string[]
+  genreTags: string[]
+  eraTag: SongEraTag
+  language: string | null
+  lyricMoodTags: string[]
+  lyricThemeTags: string[]
+  nightScore: number
+}
+
+export interface AgentPreferenceProfile {
+  moods: string[]
+  lyricMoods: string[]
+  genres: string[]
+  eras: SongEraTag[]
+  nightAffinity: number
+  energyRange?: [number, number]
+}
+
 export interface Song {
   id: string
   originalId: number
@@ -34,6 +55,12 @@ export interface Song {
   genreTags?: string[]
   moodTags?: string[]
   playable?: boolean
+  eraTag?: SongEraTag
+  language?: string | null
+  lyricMoodTags?: string[]
+  lyricThemeTags?: string[]
+  nightScore?: number
+  features?: SongFeatures
 }
 
 export interface Agent {
@@ -47,6 +74,7 @@ export interface Agent {
   activityPattern?: string | null
   selectionBrief?: string
   preferenceNotes?: string[]
+  preferenceProfile?: AgentPreferenceProfile
 }
 
 export interface AgentSelection {
@@ -54,6 +82,13 @@ export interface AgentSelection {
   songId: string
   score: number
   reason: string
+}
+
+export interface AgentPickDecision {
+  agentId: string
+  songId: string
+  score: number
+  reasons: string[]
 }
 
 export interface PlaybackState {
