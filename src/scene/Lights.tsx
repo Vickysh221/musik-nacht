@@ -1,13 +1,10 @@
+// Minimal lighting — the background image provides the visual atmosphere.
+// These lights just make the 3D hotspot materials readable.
 export function Lights() {
   return (
     <>
-      <ambientLight intensity={0.8} />
-      <directionalLight
-        castShadow={false}
-        intensity={1.3}
-        position={[4, 8, 6]}
-      />
-      <pointLight intensity={0.4} position={[-5, 3, 4]} />
+      <ambientLight intensity={1.2} />
+      <directionalLight intensity={0.6} position={[0, 10, 8]} />
     </>
   )
 }

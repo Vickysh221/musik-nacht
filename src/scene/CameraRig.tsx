@@ -7,6 +7,7 @@ export function CameraRig() {
       enableRotate={false}
       enableZoom={false}
       makeDefault
+      target={[0, 0, -1.0]}
     />
   )
 }

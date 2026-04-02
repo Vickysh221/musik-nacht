@@ -1,31 +1,4 @@
-export interface Song {
-  id: string
-  title: string
-  artist: string
-  year: number
-  zone: FocusZone
-  coverArt?: string
-}
-
-export interface Agent {
-  id: string
-  name: string
-  role: string
-  focusSongId?: string
-}
-
-export interface PlaybackState {
-  currentSongId: string | null
-  isPlaying: boolean
-  progress: number
-}
-
-export interface RelationEdge {
-  id: string
-  sourceId: string
-  targetId: string
-  label: string
-}
+export type PlaybackStatus = 'playing' | 'paused' | 'stopped'
 
 export type FocusZone =
   | 'overview'
@@ -33,3 +6,58 @@ export type FocusZone =
   | 'shelf'
   | 'context-wall'
   | 'agent-corner'
+
+export type RelationEdgeType =
+  | 'performed_by'
+  | 'belongs_to_album'
+  | 'album_by_artist'
+  | 'same_artist'
+  | 'same_album'
+  | 'requested'
+  | 'featured'
+  | 'attended'
+
+export interface Song {
+  id: string
+  originalId: number
+  name: string
+  duration: number
+  artistIds: string[]
+  albumId: string | null
+  coverImgUrl: string | null
+  liked: boolean
+  visible: boolean
+  maxBrLevel: string | null
+  plLevel: string | null
+  dlLevel: string | null
+  genreTags?: string[]
+  moodTags?: string[]
+  playable?: boolean
+}
+
+export interface Agent {
+  id: string
+  name: string
+  persona: string
+  tasteTags: string[]
+  favoriteSongIds: string[]
+  favoriteArtistIds: string[]
+  color: string
+  activityPattern?: string | null
+}
+
+export interface PlaybackState {
+  status: PlaybackStatus
+  currentSongId: string | null
+  progress?: number
+  duration?: number
+  volume?: number | null
+  source?: 'local-bridge' | 'mock'
+}
+
+export interface RelationEdge {
+  source: string
+  target: string
+  type: RelationEdgeType
+  weight: number
+}

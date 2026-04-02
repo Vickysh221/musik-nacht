@@ -1,0 +1,2288 @@
+[
+  {
+    "source": "song:C0D5F20FC7EB1BC18ED1E29A04BF2AF9",
+    "target": "artist:476C7CA3941EC37CB74A3ED1447040A0",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:C0D5F20FC7EB1BC18ED1E29A04BF2AF9",
+    "target": "album:565A54CAAB848CDE6D45D52C5AD63D97",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:F3F6870EE68E4377F1AF7E2462E9AF5E",
+    "target": "artist:75634B1E914D3FB82284DA3DEE882B1C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:F3F6870EE68E4377F1AF7E2462E9AF5E",
+    "target": "album:FFF663950D41071FD7C8CE539E6CE0AA",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:DB522C94970B47316BB6DA8219433118",
+    "target": "artist:B03A4F8039D354913ABFCA42F69C3431",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:DB522C94970B47316BB6DA8219433118",
+    "target": "album:2B7BD17466E50122AD2A1F37EA0F2515",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:837C25C761DCD0C0651157EDE309F9E6",
+    "target": "artist:4A03902362E52E53E66749130E788572",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:837C25C761DCD0C0651157EDE309F9E6",
+    "target": "artist:4BD61B29991D208C536165A8800EEF61",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:837C25C761DCD0C0651157EDE309F9E6",
+    "target": "album:2DBE695F7E4A33A2902CC0B69474074C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:15F84DA2D949770B14608B1D092EE054",
+    "target": "artist:31D7541FD246EFC89AF03B62BECE434B",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:15F84DA2D949770B14608B1D092EE054",
+    "target": "album:721984BCCDBB67175F46700E87391F36",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:C56343DFEE4C3D347ABCAF4A8C7D58AF",
+    "target": "artist:7E58EE8977FDF725BF6531A64D9597F3",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:C56343DFEE4C3D347ABCAF4A8C7D58AF",
+    "target": "album:67AD4FF93E1B3D28F53E34D6112EE1FE",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:44F52FF14E83C1AA19D61C339DD49717",
+    "target": "artist:2232301FAA819CCEC9F244DEEAF67285",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:44F52FF14E83C1AA19D61C339DD49717",
+    "target": "album:DED691EEB5DAC6DEA753061ABCC1FE38",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:B9AFBCC445ACD90277ADAC912F2102DE",
+    "target": "artist:4522700FD5A6CA539F1A0EC78EF45E15",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:B9AFBCC445ACD90277ADAC912F2102DE",
+    "target": "album:A43F89A3A931B716D32366BAC3F9F10B",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:F1C1CE3C9D105C2739A7F0819916956A",
+    "target": "artist:4A8C7776CF1397FC8E19B387505E2A4C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:F1C1CE3C9D105C2739A7F0819916956A",
+    "target": "album:B01A890B0E3C28CA454712A8E4E2FB8B",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:35734D3D4959FDCDB37392E623B8C0EB",
+    "target": "artist:E9EC2EC40634A2019BFE165ACB6FA4E6",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:35734D3D4959FDCDB37392E623B8C0EB",
+    "target": "album:9AF03FBCE0E7BB95B8F208E16DD35C8D",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:559B9B87C0201D5EA61616BC3A2A8013",
+    "target": "artist:CAB7C7190E9E8FEF9A16C2D7A3936790",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:559B9B87C0201D5EA61616BC3A2A8013",
+    "target": "album:A73A445BDAA398AC4311E396DE98F40C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:7E83D8AB3EE670979717DFF3C451DD04",
+    "target": "artist:6C66306B1ED0458BF6F787E183458212",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:7E83D8AB3EE670979717DFF3C451DD04",
+    "target": "album:40A2CD8498842767F582AEE049BA99D1",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:597604291A5A6AE961936B38D15C64C5",
+    "target": "artist:50B24F41F6724B3857D61EF880EF3B68",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:597604291A5A6AE961936B38D15C64C5",
+    "target": "album:7FD56A579429777E66A2F39E63922D6E",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:E2BE4906EA3B1288EB0CCFBBE8842ABC",
+    "target": "artist:6F0A5F94B554318048D0D22B17C68412",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:E2BE4906EA3B1288EB0CCFBBE8842ABC",
+    "target": "album:FD248D7CA2EC58D518D0F3FD1CF16925",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:567C8219D087EAFDF4EA67CD67CB300A",
+    "target": "artist:DB203FD54E27BAEE142997A7A1088622",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:567C8219D087EAFDF4EA67CD67CB300A",
+    "target": "album:8B1141BADD287A41C804E606A1476EE9",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:9D4038938EBB622681A4286472E45F0C",
+    "target": "artist:BF98202478EF96970191A1EAFB8F7441",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:9D4038938EBB622681A4286472E45F0C",
+    "target": "album:E9EDABA8DE1D407C356B5814E29FE879",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:83171002C8E1C93F2200E7AE16A12B57",
+    "target": "artist:5008FFF55315C9DAFA222726C448FBC4",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:83171002C8E1C93F2200E7AE16A12B57",
+    "target": "album:773776C6BC480DB9056CD1F8A75B0E67",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:AE103556AB432EA8094A034A60969F44",
+    "target": "artist:06FA33C2DE0A501AEFA419DFACD48DD2",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:AE103556AB432EA8094A034A60969F44",
+    "target": "album:C296A381E1B6CABA6DEC203A3F15B040",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:56D682F2DBB4995D3125BBDC6C32EB14",
+    "target": "artist:5A879EE76DD913A56C68D8B65F41458E",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:56D682F2DBB4995D3125BBDC6C32EB14",
+    "target": "album:DC0EF211D00C82CC2373205CE667181B",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:9E01D56A4D1A45CE61312C8143F66653",
+    "target": "artist:32CDEAE17C37236B84B7E291418C2E84",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:9E01D56A4D1A45CE61312C8143F66653",
+    "target": "album:42BB84FAACF4D7F16CAE293B015E81E2",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:C92FD5B2052BD3D8EA95DB75ABACAC0F",
+    "target": "artist:485BF6D425E72ACBDC2A9AA1DF9BB00C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:C92FD5B2052BD3D8EA95DB75ABACAC0F",
+    "target": "album:F1597517A751E85F49DE75F92BD117F5",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:AE313AD173FA15678B15A1D39B115648",
+    "target": "artist:CD5D8923BABE9EB549D48132ED0B4430",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:AE313AD173FA15678B15A1D39B115648",
+    "target": "album:C3D9EFCD409BBDE0191230BEE9C0E5EC",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:70285381112DE17BCA3AC27960C28D36",
+    "target": "artist:8F905919AEF7E44644B3592BFB308DD4",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:70285381112DE17BCA3AC27960C28D36",
+    "target": "album:3A87868970C5C6CFD2E1E452CAE4B42C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:C0F1D72A93033062F31FF751253986CB",
+    "target": "artist:8FF9D707E2A38C383FB00C483D369DDA",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:C0F1D72A93033062F31FF751253986CB",
+    "target": "album:2FC23FD6E6A8AE4A71D2CAF73D4FEDCB",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:4E19A7BA1293A9EE0D17F4D54B3CCA34",
+    "target": "artist:6B55FA085988D4B5DD605B10844A0366",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:4E19A7BA1293A9EE0D17F4D54B3CCA34",
+    "target": "album:998D9926EB41954462A04C077C9D21C6",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:2AA58BCBD557DA7C93CAC0F746DD3963",
+    "target": "artist:A87B34299A9AAF715AD915C10ED2A6D4",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:2AA58BCBD557DA7C93CAC0F746DD3963",
+    "target": "album:2B3FAA6B147BD29D933676881E743F08",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:3715D7D1F130B2AAEF9674F65B13714D",
+    "target": "artist:D198B76A78F7D090839A81344C163BFF",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:3715D7D1F130B2AAEF9674F65B13714D",
+    "target": "album:B9D67C954562F4B4237C5E564A7C7A8D",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:4F6786C048732AC0353AC2272299F6E0",
+    "target": "artist:F1F37CED49A120FCDA29CF7FB86F92D5",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:4F6786C048732AC0353AC2272299F6E0",
+    "target": "artist:58802D1DF5F73C4B757F5336B3F8DDEF",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:4F6786C048732AC0353AC2272299F6E0",
+    "target": "album:61B7EA3A5F888BEC98B7248522150A0C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:73A3BDA8D3892094FFE9BEE972EA0435",
+    "target": "artist:D9BCF777009FFAE48E86E876C607B855",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:73A3BDA8D3892094FFE9BEE972EA0435",
+    "target": "artist:518C46FE4EA3DAE3EE64C429D8181A13",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:73A3BDA8D3892094FFE9BEE972EA0435",
+    "target": "album:3C20098D88F08B8C79F5708DB1A2A6DC",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:41AF2D3E572375CC7871C5C88D9721E8",
+    "target": "artist:1B2F187E42FD21137D3025FAB080173F",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:41AF2D3E572375CC7871C5C88D9721E8",
+    "target": "artist:0D8DF2CE4FE1183DD7C0D476603A1BAC",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:41AF2D3E572375CC7871C5C88D9721E8",
+    "target": "album:CFF328CE4764502AEF126CD8D5F29AE8",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:582B0E95D48979AB3FFD05BFB2EB7534",
+    "target": "artist:18DF89D86B10F5FCED00DF3D7B1E1FFF",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:582B0E95D48979AB3FFD05BFB2EB7534",
+    "target": "album:0FD637785DFB551D90F2C3858CF0023C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:F5D3664B825DF68F96D9401893551A7A",
+    "target": "artist:81449AEE18AEC5C07C56C696B0F4B1FE",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:F5D3664B825DF68F96D9401893551A7A",
+    "target": "album:D47EF43614CBF8F257C8E0C8D9487846",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:0B1C50B572C805BDE866BE30297D657D",
+    "target": "artist:FEC920E6ED1E3589E9AC374782AE8298",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:0B1C50B572C805BDE866BE30297D657D",
+    "target": "album:5780B9CC0B3669D95093F65AF1487009",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:6548ACA9DE67C387502922D854322876",
+    "target": "artist:1E544995561FAA3011DF2FD388CD65F8",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:6548ACA9DE67C387502922D854322876",
+    "target": "artist:3E50A2D4B3A0A5F770CED826A7A86A15",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:6548ACA9DE67C387502922D854322876",
+    "target": "album:751375B46514D683A9168CEBA5A56F33",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:552E0772B2B418B472090671D5108092",
+    "target": "artist:6A9F3186934605B3103EEB6B2250C263",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:552E0772B2B418B472090671D5108092",
+    "target": "album:5DE6D18B9678A1F5E0523D8C7BE016B9",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:2C1D8EA07269D60D2BFA90D31CC7069B",
+    "target": "artist:959E012617FC02BC14E6F463E167FCC6",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:2C1D8EA07269D60D2BFA90D31CC7069B",
+    "target": "album:2DD292A7F0CD176451BF216574DD594E",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:72FB5717134C6B763E93C9EFE2B0BD76",
+    "target": "artist:277A5547A48B157280C1E6E1A68AF475",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:72FB5717134C6B763E93C9EFE2B0BD76",
+    "target": "album:CA3D542E280F92B3689D47757791951C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:1004CF630D30968F4DBEE138F21F29C9",
+    "target": "artist:B2ED453ED27C26B0328BBAFC4321712F",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:1004CF630D30968F4DBEE138F21F29C9",
+    "target": "album:F68C5B21E2C9842C307733215AFB7512",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:7A3DB7DF6B7F9BF067BA852950C41C3E",
+    "target": "artist:6463651E78731801AD7FA0184849582C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:7A3DB7DF6B7F9BF067BA852950C41C3E",
+    "target": "album:43593CE42482679A290E2810FD764EA9",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:0F4412228112417D3F4171C97F107A8D",
+    "target": "artist:EA609E0954C2BEF349F7229771D13C83",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:0F4412228112417D3F4171C97F107A8D",
+    "target": "album:4EC7A725509087055B3E3EC40E03E95B",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:40ED1A81B86AD5E2B35860A436B684ED",
+    "target": "artist:75634B1E914D3FB82284DA3DEE882B1C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:40ED1A81B86AD5E2B35860A436B684ED",
+    "target": "album:10E21DB8600C1332A73D77521CEEB29A",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:272C1E95CD465CEC3225D8EFADDDFF76",
+    "target": "artist:0171536B188C9C686BF657A7180FE682",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:272C1E95CD465CEC3225D8EFADDDFF76",
+    "target": "album:C052EB73F1389420218B91624BEA8011",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:215E8EECC1E7A781C2333F4C2B261A69",
+    "target": "artist:CD996270B2EB3AE491134083DA0340F7",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:215E8EECC1E7A781C2333F4C2B261A69",
+    "target": "album:DDCAC5A0AAC1B7AE099E42C0680C4CE9",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:D07513AAD48972ADB25EA1268436F124",
+    "target": "artist:F9933F16C34F158EA8D3517F00C27E25",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:D07513AAD48972ADB25EA1268436F124",
+    "target": "album:6F81F608FA978ADEE0686F7675CC5A8B",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:D0142E1075F5C75CC381C34C5D501600",
+    "target": "artist:959E012617FC02BC14E6F463E167FCC6",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:D0142E1075F5C75CC381C34C5D501600",
+    "target": "album:2DD292A7F0CD176451BF216574DD594E",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:78B67830734583847387B9D9C1461FDF",
+    "target": "artist:3C8FA144ED5F17613B72DA877F33172D",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:78B67830734583847387B9D9C1461FDF",
+    "target": "album:282BE6725A6B4C788FCD25519F5DCD7F",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:6F91F9A7C6E8A958A52F73CF0DA51EA1",
+    "target": "artist:95BCD786924B7E76F286F49B35F86B90",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:6F91F9A7C6E8A958A52F73CF0DA51EA1",
+    "target": "album:3147D5CC7CCC372D30DEBCAE84C55C53",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:94EF3D51783E8738B744C9811114DF08",
+    "target": "artist:232995A45A198787C1DEDA2D61DA718D",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:94EF3D51783E8738B744C9811114DF08",
+    "target": "album:D89FB5633B2BD84DBA0021B29376749A",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:7B32E2FC27B341D277485DC22DDF7DFF",
+    "target": "artist:A87F9B74D94FF608707056E29452E5BD",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:7B32E2FC27B341D277485DC22DDF7DFF",
+    "target": "album:5C2FBF7851FAEFCA5E8FA312247FC7DE",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:5DCED1F03605F04BFA3BD730CE3C27EC",
+    "target": "artist:71F277675E70797073C8787D46D38885",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:5DCED1F03605F04BFA3BD730CE3C27EC",
+    "target": "album:D6A1B7B727AB3C862E9566D44776209C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:BF15FBC9DEA7332AC7D4129186984BCE",
+    "target": "artist:DE8EDF94232F98EA04CABDFE650F2DAC",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:BF15FBC9DEA7332AC7D4129186984BCE",
+    "target": "album:D8264D721F3F223EA8769F41D746D627",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:4B188483728B1A661F2E6B47A650BB4D",
+    "target": "artist:3EC901243C0434036BDD8A31FD1AEB16",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:4B188483728B1A661F2E6B47A650BB4D",
+    "target": "artist:FC49B6B7C833678DE8CA03CB1B2C9BF4",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:4B188483728B1A661F2E6B47A650BB4D",
+    "target": "album:386089B29636F11C2E2F233EECCBFDF5",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "album:21FB6432905268A8175B781434A9B40C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:06EDD568F7F8498109FD6D9BCDE6ABDE",
+    "target": "artist:7B6D8DD8365192BF802683560B551DD3",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:06EDD568F7F8498109FD6D9BCDE6ABDE",
+    "target": "album:0F1BB0DB099B81CE39D330543D02139C",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:C8EF6BF086799EA122F5DE95935553D6",
+    "target": "artist:D7EA268E9190485EBB9526B33FB80038",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:C8EF6BF086799EA122F5DE95935553D6",
+    "target": "album:04D9B1295564B6C90AB088BC20B9DE11",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:5922728255B019E9F85E1D584BD4222B",
+    "target": "artist:8BF336E4DF675C890AA7A8918A2E7FB5",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:5922728255B019E9F85E1D584BD4222B",
+    "target": "album:6D7D2976B08C64C4A6C43FC8D48FCEFE",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:CCB5A225EF6A6E9EC2BF3C6D73CBFC6E",
+    "target": "artist:133FDAE93F1EDC1E83F8D22A0E3A6C74",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:CCB5A225EF6A6E9EC2BF3C6D73CBFC6E",
+    "target": "album:28E257463CFFE9A571BA3F4A2D6DD417",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:4E22DDD637A23243BB099F1B46BF9537",
+    "target": "artist:4EFDA37DCE379DCAE6DBFD67A48E7BE1",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:4E22DDD637A23243BB099F1B46BF9537",
+    "target": "album:EF0E13A1A9C180C931439A38AE6DF5A6",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:022743DEAD8628108C90A28B2E17EE30",
+    "target": "artist:6929615AD93542C917469244132759CE",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:022743DEAD8628108C90A28B2E17EE30",
+    "target": "album:FE54C975179F95B9DFC803B82A7F086F",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "album:3035360C89007AC3523F04A93D3593B8",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "album:B048A1254C1DD1BFD636BFD078C2AFCF",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "album:17DDE1031C476D87D026B4E38B298FBA",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:18DF279558DF3120CEDE71FCC8846B4E",
+    "target": "artist:572EE28A256B3778ACB26A1D4C0050DF",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:18DF279558DF3120CEDE71FCC8846B4E",
+    "target": "album:C9AB974A3D0E0520803D6F37429B2176",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:350EC82B97F2BA4DD32EE8ECBE7DEADC",
+    "target": "artist:4F5BC9D1DC06B0F47B7D19BE232DD7D1",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:350EC82B97F2BA4DD32EE8ECBE7DEADC",
+    "target": "album:CC8495EF5D335CC1289C183EDBB4584F",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:EA0F6F21CC46B8A9A1979F1B5452F683",
+    "target": "artist:485BF6D425E72ACBDC2A9AA1DF9BB00C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:EA0F6F21CC46B8A9A1979F1B5452F683",
+    "target": "artist:8A63FCE4F803A8E5A0D59CD0EF1FE6CC",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:EA0F6F21CC46B8A9A1979F1B5452F683",
+    "target": "album:CAF2BD0F54D0C8DD8B7D804D0479E4A2",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:7640F80E71F01B6223D0A3351C4271D1",
+    "target": "artist:DF59636F08D03C526EB026AD35E4300C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:7640F80E71F01B6223D0A3351C4271D1",
+    "target": "album:6C4E68BEB70F903C04FAA756AA73AA87",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:03CCA8620177F18D7908EDE596170501",
+    "target": "artist:3C5A1D8F7E7DFB903DE9669636632AB6",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:03CCA8620177F18D7908EDE596170501",
+    "target": "album:0A5511C827A0157775C612B13BEA9F41",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:AD6DB99F612AAF6F1366AB12D5499B93",
+    "target": "artist:D01D5E82DE27541F38A5496D41F3535E",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:AD6DB99F612AAF6F1366AB12D5499B93",
+    "target": "album:F0A417198159B42F5BBD00A5BF4B252A",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:FD46E6F0A0B7C2396D0A574EECE8EB69",
+    "target": "artist:73CB0DDEBD0C8AAB1D8EBE03565ED91D",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:FD46E6F0A0B7C2396D0A574EECE8EB69",
+    "target": "album:7B725F26A5FECD254321ED28A57CD87B",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:F6048AA68844B32089DAAAA6F0AB5646",
+    "target": "artist:51318F8CBBEC1F7F03DE50196A593988",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:F6048AA68844B32089DAAAA6F0AB5646",
+    "target": "album:C156601B84A394672B0BED1A5A0598B1",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:5647D762EEAE177B973A31E14537AC01",
+    "target": "artist:3BF2A02EE7924AFFC848D6CB9D92DA5E",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:5647D762EEAE177B973A31E14537AC01",
+    "target": "album:2574157D78A7BDF5B534332C80A3BA19",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:889EC928B3D61D5AC37007FEFF153F9C",
+    "target": "artist:485BF6D425E72ACBDC2A9AA1DF9BB00C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:889EC928B3D61D5AC37007FEFF153F9C",
+    "target": "album:F1597517A751E85F49DE75F92BD117F5",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:57D911E311DF3DCDD4E64ADD66981952",
+    "target": "artist:D60A6F9885ADA234C5819C8D2311B5C1",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:57D911E311DF3DCDD4E64ADD66981952",
+    "target": "album:70319B7EABE9592BC96238BE4394BD70",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:DB96C5D76F315550B51E6E3886055C2B",
+    "target": "artist:DE8EDF94232F98EA04CABDFE650F2DAC",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:DB96C5D76F315550B51E6E3886055C2B",
+    "target": "album:ADFDD4F409077EBD3E98397D14008A91",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:9882CDF08F196D493DD211E55B1152AA",
+    "target": "artist:5008FFF55315C9DAFA222726C448FBC4",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:9882CDF08F196D493DD211E55B1152AA",
+    "target": "album:A85F134653D7326B3730FF9A70F29263",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:48C510F1F1BF95FD69DC5A24F00B3333",
+    "target": "artist:2F69A4F98FC17F41B222D457B99C543E",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:48C510F1F1BF95FD69DC5A24F00B3333",
+    "target": "album:AE631185A00258F155F7F3506CF84881",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:2B3D59580010BD36223F6718C53B0AC7",
+    "target": "artist:AA97E83266518A6C0353A95FFED5B998",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:2B3D59580010BD36223F6718C53B0AC7",
+    "target": "album:C6A58EEEDF7284ED387B4F20750E2AE2",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "album:4BA98D500C67F366DD40A408911BFD60",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "target": "album:0FE74F40E92A01949CFF4BD63A4159ED",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "target": "album:73EAD5894EC5E0C85453C598392E86E5",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:E38244761F012D2C4B847A11D892EA8D",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:E38244761F012D2C4B847A11D892EA8D",
+    "target": "album:3035360C89007AC3523F04A93D3593B8",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:A714F81841474E459BA970322F088998",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:A714F81841474E459BA970322F088998",
+    "target": "album:67C511675B8D3FC69CED87BAA55D464A",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "target": "album:B048A1254C1DD1BFD636BFD078C2AFCF",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:78F427757490765995C7D54B7A839183",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:78F427757490765995C7D54B7A839183",
+    "target": "album:0279C0C6CC8A4FECC5CABD653CE69EB4",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:D91106813FE23351601935D9C4FF4B28",
+    "target": "artist:68D91AB0C4E314D299BE30C36FD3D311",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:D91106813FE23351601935D9C4FF4B28",
+    "target": "album:DF5F29F841B713685AD95CCFA22E40BC",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:931E7FB59A5C52AC447E356D4EA4EA97",
+    "target": "artist:A54501A928EC86494F95D1C47A39B312",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:931E7FB59A5C52AC447E356D4EA4EA97",
+    "target": "artist:7AE10D5FD5B46139ADEB692CCF63DB98",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:931E7FB59A5C52AC447E356D4EA4EA97",
+    "target": "album:D2AB54AE0D973BB9A8925BE865F97364",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:D76F91476583F8A6CD67A388E3FD358F",
+    "target": "artist:F08B62841D4FB5C03A7B592E867F13EB",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:D76F91476583F8A6CD67A388E3FD358F",
+    "target": "album:0E5C1DBC91EF3FEA992872B233DB0B6E",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:424910EF4C60CC6A02E803140DABEFB8",
+    "target": "artist:58859EC205D988B94863DE42D04A83AC",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:424910EF4C60CC6A02E803140DABEFB8",
+    "target": "album:EEF6CC18BB8512D137E4783F19C7482A",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:DC7C3A6D546C90623E18175B4A54C667",
+    "target": "artist:EC86ECC50EBC2F3138CF2F6EAFDA2D94",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:DC7C3A6D546C90623E18175B4A54C667",
+    "target": "album:4A811F6E20819473536663F39E40CE9B",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:A93128412402EECC2152A1D6D17B0E8B",
+    "target": "artist:60ED328943DB9A17EEC9E145C8C2DD0E",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:A93128412402EECC2152A1D6D17B0E8B",
+    "target": "album:66F2E418B52CB24C6A7B8D4D7026604A",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:E2CEBA799FF15004591C0D1BBB258B52",
+    "target": "artist:931549890BF21A26D9CEBDAF6B3DDD08",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:E2CEBA799FF15004591C0D1BBB258B52",
+    "target": "album:103FEFF516BDB8D38F2D12AAF7A32073",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:D16A0EA00F0E6ED9C1F255C8287684C5",
+    "target": "artist:95BCD786924B7E76F286F49B35F86B90",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:D16A0EA00F0E6ED9C1F255C8287684C5",
+    "target": "album:28BF40400A94BB57CAF00E387D2C9689",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:3D29135592030582827A40A6B1FEEE89",
+    "target": "artist:EA46756F5C10F79C4921AEF6258FAEE2",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:3D29135592030582827A40A6B1FEEE89",
+    "target": "album:9603E371B959E6DCFDC65A214BC139BE",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:B736689B11A72FB796EC9D7824173463",
+    "target": "artist:49E9CE303BA76F9176A262D599B63412",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:B736689B11A72FB796EC9D7824173463",
+    "target": "album:CAC83C428F2C4394C6A7E4CBE25E0A95",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:23DAF13FE3087FBF805B2F6684A52ECD",
+    "target": "artist:8ED6C2734EF3235606109E83E052222D",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:23DAF13FE3087FBF805B2F6684A52ECD",
+    "target": "album:5D49C268AE52B594B2339E6B2F4D90F2",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:F1303DEBC977A5D646F68D5A9D4735D4",
+    "target": "artist:9656CEE84D8D16888A23E27FE1CAA187",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:F1303DEBC977A5D646F68D5A9D4735D4",
+    "target": "album:42E432C02281FF7845D1C74A416B0B67",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:71371F223BC97A2464F69F5CCAF1D6B2",
+    "target": "artist:6D1597F106AEA3B76E68273F4537398C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:71371F223BC97A2464F69F5CCAF1D6B2",
+    "target": "artist:8DC82964614FACFFE4D180D82C25ECB5",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:71371F223BC97A2464F69F5CCAF1D6B2",
+    "target": "album:14AB5E132495FC11B7020A071D24CCAE",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:64A63633B44777E2A384ADCB3DAD5A3F",
+    "target": "artist:979A08472357FAECD90625C9608D8F54",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:64A63633B44777E2A384ADCB3DAD5A3F",
+    "target": "album:27AA7A06337878750AB0F6458A9D2814",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:D1A0BA4982E9E6D754A48304F3172726",
+    "target": "artist:A2014B9983450FE8B83586CD5605F32C",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:D1A0BA4982E9E6D754A48304F3172726",
+    "target": "album:8C454DF4B99D9838FB6AA1134381FDCF",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "song:4326F57715E9EEB3E3E67D5CE4DC90F7",
+    "target": "artist:A43B4BE41AC6538B7237E1427AF0CD0F",
+    "type": "performed_by",
+    "weight": 1
+  },
+  {
+    "source": "song:4326F57715E9EEB3E3E67D5CE4DC90F7",
+    "target": "album:0529FBBD46CA16BF59555F8F5C0C97BB",
+    "type": "belongs_to_album",
+    "weight": 1
+  },
+  {
+    "source": "album:565A54CAAB848CDE6D45D52C5AD63D97",
+    "target": "artist:476C7CA3941EC37CB74A3ED1447040A0",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:FFF663950D41071FD7C8CE539E6CE0AA",
+    "target": "artist:75634B1E914D3FB82284DA3DEE882B1C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:2B7BD17466E50122AD2A1F37EA0F2515",
+    "target": "artist:B03A4F8039D354913ABFCA42F69C3431",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:2DBE695F7E4A33A2902CC0B69474074C",
+    "target": "artist:4A03902362E52E53E66749130E788572",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:2DBE695F7E4A33A2902CC0B69474074C",
+    "target": "artist:4BD61B29991D208C536165A8800EEF61",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:721984BCCDBB67175F46700E87391F36",
+    "target": "artist:31D7541FD246EFC89AF03B62BECE434B",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:67AD4FF93E1B3D28F53E34D6112EE1FE",
+    "target": "artist:7E58EE8977FDF725BF6531A64D9597F3",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:DED691EEB5DAC6DEA753061ABCC1FE38",
+    "target": "artist:2232301FAA819CCEC9F244DEEAF67285",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:A43F89A3A931B716D32366BAC3F9F10B",
+    "target": "artist:4522700FD5A6CA539F1A0EC78EF45E15",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:B01A890B0E3C28CA454712A8E4E2FB8B",
+    "target": "artist:4A8C7776CF1397FC8E19B387505E2A4C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:9AF03FBCE0E7BB95B8F208E16DD35C8D",
+    "target": "artist:E9EC2EC40634A2019BFE165ACB6FA4E6",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:A73A445BDAA398AC4311E396DE98F40C",
+    "target": "artist:CAB7C7190E9E8FEF9A16C2D7A3936790",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:40A2CD8498842767F582AEE049BA99D1",
+    "target": "artist:6C66306B1ED0458BF6F787E183458212",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:7FD56A579429777E66A2F39E63922D6E",
+    "target": "artist:50B24F41F6724B3857D61EF880EF3B68",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:FD248D7CA2EC58D518D0F3FD1CF16925",
+    "target": "artist:6F0A5F94B554318048D0D22B17C68412",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:8B1141BADD287A41C804E606A1476EE9",
+    "target": "artist:DB203FD54E27BAEE142997A7A1088622",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:E9EDABA8DE1D407C356B5814E29FE879",
+    "target": "artist:BF98202478EF96970191A1EAFB8F7441",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:773776C6BC480DB9056CD1F8A75B0E67",
+    "target": "artist:5008FFF55315C9DAFA222726C448FBC4",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:C296A381E1B6CABA6DEC203A3F15B040",
+    "target": "artist:06FA33C2DE0A501AEFA419DFACD48DD2",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:DC0EF211D00C82CC2373205CE667181B",
+    "target": "artist:5A879EE76DD913A56C68D8B65F41458E",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:42BB84FAACF4D7F16CAE293B015E81E2",
+    "target": "artist:32CDEAE17C37236B84B7E291418C2E84",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:F1597517A751E85F49DE75F92BD117F5",
+    "target": "artist:485BF6D425E72ACBDC2A9AA1DF9BB00C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:C3D9EFCD409BBDE0191230BEE9C0E5EC",
+    "target": "artist:CD5D8923BABE9EB549D48132ED0B4430",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:3A87868970C5C6CFD2E1E452CAE4B42C",
+    "target": "artist:8F905919AEF7E44644B3592BFB308DD4",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:2FC23FD6E6A8AE4A71D2CAF73D4FEDCB",
+    "target": "artist:8FF9D707E2A38C383FB00C483D369DDA",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:998D9926EB41954462A04C077C9D21C6",
+    "target": "artist:6B55FA085988D4B5DD605B10844A0366",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:2B3FAA6B147BD29D933676881E743F08",
+    "target": "artist:A87B34299A9AAF715AD915C10ED2A6D4",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:B9D67C954562F4B4237C5E564A7C7A8D",
+    "target": "artist:D198B76A78F7D090839A81344C163BFF",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:61B7EA3A5F888BEC98B7248522150A0C",
+    "target": "artist:F1F37CED49A120FCDA29CF7FB86F92D5",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:61B7EA3A5F888BEC98B7248522150A0C",
+    "target": "artist:58802D1DF5F73C4B757F5336B3F8DDEF",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:3C20098D88F08B8C79F5708DB1A2A6DC",
+    "target": "artist:D9BCF777009FFAE48E86E876C607B855",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:3C20098D88F08B8C79F5708DB1A2A6DC",
+    "target": "artist:518C46FE4EA3DAE3EE64C429D8181A13",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:CFF328CE4764502AEF126CD8D5F29AE8",
+    "target": "artist:1B2F187E42FD21137D3025FAB080173F",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:CFF328CE4764502AEF126CD8D5F29AE8",
+    "target": "artist:0D8DF2CE4FE1183DD7C0D476603A1BAC",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:0FD637785DFB551D90F2C3858CF0023C",
+    "target": "artist:18DF89D86B10F5FCED00DF3D7B1E1FFF",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:D47EF43614CBF8F257C8E0C8D9487846",
+    "target": "artist:81449AEE18AEC5C07C56C696B0F4B1FE",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:5780B9CC0B3669D95093F65AF1487009",
+    "target": "artist:FEC920E6ED1E3589E9AC374782AE8298",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:751375B46514D683A9168CEBA5A56F33",
+    "target": "artist:1E544995561FAA3011DF2FD388CD65F8",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:751375B46514D683A9168CEBA5A56F33",
+    "target": "artist:3E50A2D4B3A0A5F770CED826A7A86A15",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:5DE6D18B9678A1F5E0523D8C7BE016B9",
+    "target": "artist:6A9F3186934605B3103EEB6B2250C263",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:2DD292A7F0CD176451BF216574DD594E",
+    "target": "artist:959E012617FC02BC14E6F463E167FCC6",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:CA3D542E280F92B3689D47757791951C",
+    "target": "artist:277A5547A48B157280C1E6E1A68AF475",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:F68C5B21E2C9842C307733215AFB7512",
+    "target": "artist:B2ED453ED27C26B0328BBAFC4321712F",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:43593CE42482679A290E2810FD764EA9",
+    "target": "artist:6463651E78731801AD7FA0184849582C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:4EC7A725509087055B3E3EC40E03E95B",
+    "target": "artist:EA609E0954C2BEF349F7229771D13C83",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:10E21DB8600C1332A73D77521CEEB29A",
+    "target": "artist:75634B1E914D3FB82284DA3DEE882B1C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:C052EB73F1389420218B91624BEA8011",
+    "target": "artist:0171536B188C9C686BF657A7180FE682",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:DDCAC5A0AAC1B7AE099E42C0680C4CE9",
+    "target": "artist:CD996270B2EB3AE491134083DA0340F7",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:6F81F608FA978ADEE0686F7675CC5A8B",
+    "target": "artist:F9933F16C34F158EA8D3517F00C27E25",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:282BE6725A6B4C788FCD25519F5DCD7F",
+    "target": "artist:3C8FA144ED5F17613B72DA877F33172D",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:3147D5CC7CCC372D30DEBCAE84C55C53",
+    "target": "artist:95BCD786924B7E76F286F49B35F86B90",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:D89FB5633B2BD84DBA0021B29376749A",
+    "target": "artist:232995A45A198787C1DEDA2D61DA718D",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:5C2FBF7851FAEFCA5E8FA312247FC7DE",
+    "target": "artist:A87F9B74D94FF608707056E29452E5BD",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:D6A1B7B727AB3C862E9566D44776209C",
+    "target": "artist:71F277675E70797073C8787D46D38885",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:D8264D721F3F223EA8769F41D746D627",
+    "target": "artist:DE8EDF94232F98EA04CABDFE650F2DAC",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:386089B29636F11C2E2F233EECCBFDF5",
+    "target": "artist:3EC901243C0434036BDD8A31FD1AEB16",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:386089B29636F11C2E2F233EECCBFDF5",
+    "target": "artist:FC49B6B7C833678DE8CA03CB1B2C9BF4",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:21FB6432905268A8175B781434A9B40C",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:0F1BB0DB099B81CE39D330543D02139C",
+    "target": "artist:7B6D8DD8365192BF802683560B551DD3",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:04D9B1295564B6C90AB088BC20B9DE11",
+    "target": "artist:D7EA268E9190485EBB9526B33FB80038",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:6D7D2976B08C64C4A6C43FC8D48FCEFE",
+    "target": "artist:8BF336E4DF675C890AA7A8918A2E7FB5",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:28E257463CFFE9A571BA3F4A2D6DD417",
+    "target": "artist:133FDAE93F1EDC1E83F8D22A0E3A6C74",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:EF0E13A1A9C180C931439A38AE6DF5A6",
+    "target": "artist:4EFDA37DCE379DCAE6DBFD67A48E7BE1",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:FE54C975179F95B9DFC803B82A7F086F",
+    "target": "artist:6929615AD93542C917469244132759CE",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:3035360C89007AC3523F04A93D3593B8",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:B048A1254C1DD1BFD636BFD078C2AFCF",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:17DDE1031C476D87D026B4E38B298FBA",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:C9AB974A3D0E0520803D6F37429B2176",
+    "target": "artist:572EE28A256B3778ACB26A1D4C0050DF",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:CC8495EF5D335CC1289C183EDBB4584F",
+    "target": "artist:4F5BC9D1DC06B0F47B7D19BE232DD7D1",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:CAF2BD0F54D0C8DD8B7D804D0479E4A2",
+    "target": "artist:485BF6D425E72ACBDC2A9AA1DF9BB00C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:CAF2BD0F54D0C8DD8B7D804D0479E4A2",
+    "target": "artist:8A63FCE4F803A8E5A0D59CD0EF1FE6CC",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:6C4E68BEB70F903C04FAA756AA73AA87",
+    "target": "artist:DF59636F08D03C526EB026AD35E4300C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:0A5511C827A0157775C612B13BEA9F41",
+    "target": "artist:3C5A1D8F7E7DFB903DE9669636632AB6",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:F0A417198159B42F5BBD00A5BF4B252A",
+    "target": "artist:D01D5E82DE27541F38A5496D41F3535E",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:7B725F26A5FECD254321ED28A57CD87B",
+    "target": "artist:73CB0DDEBD0C8AAB1D8EBE03565ED91D",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:C156601B84A394672B0BED1A5A0598B1",
+    "target": "artist:51318F8CBBEC1F7F03DE50196A593988",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:2574157D78A7BDF5B534332C80A3BA19",
+    "target": "artist:3BF2A02EE7924AFFC848D6CB9D92DA5E",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:70319B7EABE9592BC96238BE4394BD70",
+    "target": "artist:D60A6F9885ADA234C5819C8D2311B5C1",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:ADFDD4F409077EBD3E98397D14008A91",
+    "target": "artist:DE8EDF94232F98EA04CABDFE650F2DAC",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:A85F134653D7326B3730FF9A70F29263",
+    "target": "artist:5008FFF55315C9DAFA222726C448FBC4",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:AE631185A00258F155F7F3506CF84881",
+    "target": "artist:2F69A4F98FC17F41B222D457B99C543E",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:C6A58EEEDF7284ED387B4F20750E2AE2",
+    "target": "artist:AA97E83266518A6C0353A95FFED5B998",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:4BA98D500C67F366DD40A408911BFD60",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:0FE74F40E92A01949CFF4BD63A4159ED",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:73EAD5894EC5E0C85453C598392E86E5",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:67C511675B8D3FC69CED87BAA55D464A",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:0279C0C6CC8A4FECC5CABD653CE69EB4",
+    "target": "artist:92A930546CB70B5FD11D6E293E969A19",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:DF5F29F841B713685AD95CCFA22E40BC",
+    "target": "artist:68D91AB0C4E314D299BE30C36FD3D311",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:D2AB54AE0D973BB9A8925BE865F97364",
+    "target": "artist:A54501A928EC86494F95D1C47A39B312",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:D2AB54AE0D973BB9A8925BE865F97364",
+    "target": "artist:7AE10D5FD5B46139ADEB692CCF63DB98",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:0E5C1DBC91EF3FEA992872B233DB0B6E",
+    "target": "artist:F08B62841D4FB5C03A7B592E867F13EB",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:EEF6CC18BB8512D137E4783F19C7482A",
+    "target": "artist:58859EC205D988B94863DE42D04A83AC",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:4A811F6E20819473536663F39E40CE9B",
+    "target": "artist:EC86ECC50EBC2F3138CF2F6EAFDA2D94",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:66F2E418B52CB24C6A7B8D4D7026604A",
+    "target": "artist:60ED328943DB9A17EEC9E145C8C2DD0E",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:103FEFF516BDB8D38F2D12AAF7A32073",
+    "target": "artist:931549890BF21A26D9CEBDAF6B3DDD08",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:28BF40400A94BB57CAF00E387D2C9689",
+    "target": "artist:95BCD786924B7E76F286F49B35F86B90",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:9603E371B959E6DCFDC65A214BC139BE",
+    "target": "artist:EA46756F5C10F79C4921AEF6258FAEE2",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:CAC83C428F2C4394C6A7E4CBE25E0A95",
+    "target": "artist:49E9CE303BA76F9176A262D599B63412",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:5D49C268AE52B594B2339E6B2F4D90F2",
+    "target": "artist:8ED6C2734EF3235606109E83E052222D",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:42E432C02281FF7845D1C74A416B0B67",
+    "target": "artist:9656CEE84D8D16888A23E27FE1CAA187",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:14AB5E132495FC11B7020A071D24CCAE",
+    "target": "artist:6D1597F106AEA3B76E68273F4537398C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:14AB5E132495FC11B7020A071D24CCAE",
+    "target": "artist:8DC82964614FACFFE4D180D82C25ECB5",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:27AA7A06337878750AB0F6458A9D2814",
+    "target": "artist:979A08472357FAECD90625C9608D8F54",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:8C454DF4B99D9838FB6AA1134381FDCF",
+    "target": "artist:A2014B9983450FE8B83586CD5605F32C",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "album:0529FBBD46CA16BF59555F8F5C0C97BB",
+    "target": "artist:A43B4BE41AC6538B7237E1427AF0CD0F",
+    "type": "album_by_artist",
+    "weight": 1
+  },
+  {
+    "source": "song:F3F6870EE68E4377F1AF7E2462E9AF5E",
+    "target": "song:40ED1A81B86AD5E2B35860A436B684ED",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:83171002C8E1C93F2200E7AE16A12B57",
+    "target": "song:9882CDF08F196D493DD211E55B1152AA",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:C92FD5B2052BD3D8EA95DB75ABACAC0F",
+    "target": "song:EA0F6F21CC46B8A9A1979F1B5452F683",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:C92FD5B2052BD3D8EA95DB75ABACAC0F",
+    "target": "song:889EC928B3D61D5AC37007FEFF153F9C",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:EA0F6F21CC46B8A9A1979F1B5452F683",
+    "target": "song:889EC928B3D61D5AC37007FEFF153F9C",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:2C1D8EA07269D60D2BFA90D31CC7069B",
+    "target": "song:D0142E1075F5C75CC381C34C5D501600",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:6F91F9A7C6E8A958A52F73CF0DA51EA1",
+    "target": "song:D16A0EA00F0E6ED9C1F255C8287684C5",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:BF15FBC9DEA7332AC7D4129186984BCE",
+    "target": "song:DB96C5D76F315550B51E6E3886055C2B",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:773A919375676BEC6E6B381668B69BC7",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:7AE534424937841A40E42619CF3B364B",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7DA79E9D2F402A2B4DA6C64A249471AF",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:773A919375676BEC6E6B381668B69BC7",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:7AE534424937841A40E42619CF3B364B",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:773A919375676BEC6E6B381668B69BC7",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:7AE534424937841A40E42619CF3B364B",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "song:7AE534424937841A40E42619CF3B364B",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:773A919375676BEC6E6B381668B69BC7",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:7AE534424937841A40E42619CF3B364B",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "target": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:AAF9E487C4AA30B5B42A318AF457E1DC",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:80F6D3174B4FAF83C5E2F90A345DC612",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E38244761F012D2C4B847A11D892EA8D",
+    "target": "song:A714F81841474E459BA970322F088998",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E38244761F012D2C4B847A11D892EA8D",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:E38244761F012D2C4B847A11D892EA8D",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:A714F81841474E459BA970322F088998",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:A714F81841474E459BA970322F088998",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "target": "song:78F427757490765995C7D54B7A839183",
+    "type": "same_artist",
+    "weight": 0.92
+  },
+  {
+    "source": "song:C92FD5B2052BD3D8EA95DB75ABACAC0F",
+    "target": "song:889EC928B3D61D5AC37007FEFF153F9C",
+    "type": "same_album",
+    "weight": 0.88
+  },
+  {
+    "source": "song:2C1D8EA07269D60D2BFA90D31CC7069B",
+    "target": "song:D0142E1075F5C75CC381C34C5D501600",
+    "type": "same_album",
+    "weight": 0.88
+  },
+  {
+    "source": "song:E4B1389CFBE713B284BCF334EDC9E8F5",
+    "target": "song:E38244761F012D2C4B847A11D892EA8D",
+    "type": "same_album",
+    "weight": 0.88
+  },
+  {
+    "source": "song:691B29FE774D9BD3C8991B774D6316BC",
+    "target": "song:24750AD55B9A8E84B59B7D0A862CD3E2",
+    "type": "same_album",
+    "weight": 0.88
+  }
+]

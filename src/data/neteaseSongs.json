@@ -1,0 +1,1811 @@
+[
+  {
+    "id": "C0D5F20FC7EB1BC18ED1E29A04BF2AF9",
+    "originalId": 29005947,
+    "name": "Something French",
+    "duration": 177946,
+    "artistIds": [
+      "476C7CA3941EC37CB74A3ED1447040A0"
+    ],
+    "albumId": "565A54CAAB848CDE6D45D52C5AD63D97",
+    "coverImgUrl": "http://p1.music.126.net/e6vxSuO5Oqk3Q-QxH2txMQ==/109951164117994174.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "F3F6870EE68E4377F1AF7E2462E9AF5E",
+    "originalId": 2042206455,
+    "name": "Devil's Pool",
+    "duration": 240120,
+    "artistIds": [
+      "75634B1E914D3FB82284DA3DEE882B1C"
+    ],
+    "albumId": "FFF663950D41071FD7C8CE539E6CE0AA",
+    "coverImgUrl": "http://p1.music.126.net/4tysnz8jgV3UBkItVs6e9A==/109951168568879109.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "DB522C94970B47316BB6DA8219433118",
+    "originalId": 28291062,
+    "name": "Extra Curricular",
+    "duration": 327560,
+    "artistIds": [
+      "B03A4F8039D354913ABFCA42F69C3431"
+    ],
+    "albumId": "2B7BD17466E50122AD2A1F37EA0F2515",
+    "coverImgUrl": "http://p1.music.126.net/QNgHdyigVhteXO-S7JAcoA==/109951172947314887.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "837C25C761DCD0C0651157EDE309F9E6",
+    "originalId": 442898772,
+    "name": "Paisley Park",
+    "duration": 284026,
+    "artistIds": [
+      "4A03902362E52E53E66749130E788572",
+      "4BD61B29991D208C536165A8800EEF61"
+    ],
+    "albumId": "2DBE695F7E4A33A2902CC0B69474074C",
+    "coverImgUrl": "http://p1.music.126.net/sl7AblmN9uzAZtdxxLRPew==/109951166224625225.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "15F84DA2D949770B14608B1D092EE054",
+    "originalId": 22781103,
+    "name": "小さな恋のうた",
+    "duration": 222000,
+    "artistIds": [
+      "31D7541FD246EFC89AF03B62BECE434B"
+    ],
+    "albumId": "721984BCCDBB67175F46700E87391F36",
+    "coverImgUrl": "http://p1.music.126.net/Zlw2O19qC6C4pwI_mEacog==/676199651104985.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "C56343DFEE4C3D347ABCAF4A8C7D58AF",
+    "originalId": 17786172,
+    "name": "The Chain (2004 Remaster)",
+    "duration": 268200,
+    "artistIds": [
+      "7E58EE8977FDF725BF6531A64D9597F3"
+    ],
+    "albumId": "67AD4FF93E1B3D28F53E34D6112EE1FE",
+    "coverImgUrl": "http://p1.music.126.net/svXnPDSxzzslKUUQMN9LEg==/109951166142676546.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "44F52FF14E83C1AA19D61C339DD49717",
+    "originalId": 2140437924,
+    "name": "Hello Mary Lou (2024 Lacquer Master Sound)",
+    "duration": 141702,
+    "artistIds": [
+      "2232301FAA819CCEC9F244DEEAF67285"
+    ],
+    "albumId": "DED691EEB5DAC6DEA753061ABCC1FE38",
+    "coverImgUrl": "http://p1.music.126.net/H0BVmBJfAw00P0NBqaCIEw==/109951169451449061.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "hires",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "B9AFBCC445ACD90277ADAC912F2102DE",
+    "originalId": 28582203,
+    "name": "White Moon",
+    "duration": 504000,
+    "artistIds": [
+      "4522700FD5A6CA539F1A0EC78EF45E15"
+    ],
+    "albumId": "A43F89A3A931B716D32366BAC3F9F10B",
+    "coverImgUrl": "http://p1.music.126.net/xgS6yV2zbhdFMfUMRBEMlQ==/109951168621750772.jpg",
+    "liked": true,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "F1C1CE3C9D105C2739A7F0819916956A",
+    "originalId": 1914772860,
+    "name": "Distorted Youth",
+    "duration": 284718,
+    "artistIds": [
+      "4A8C7776CF1397FC8E19B387505E2A4C"
+    ],
+    "albumId": "B01A890B0E3C28CA454712A8E4E2FB8B",
+    "coverImgUrl": "http://p1.music.126.net/l823mMNrb8qaBLE0I6e8Wg==/109951169059345572.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "35734D3D4959FDCDB37392E623B8C0EB",
+    "originalId": 678088,
+    "name": "真夜中のオーケストラ",
+    "duration": 353413,
+    "artistIds": [
+      "E9EC2EC40634A2019BFE165ACB6FA4E6"
+    ],
+    "albumId": "9AF03FBCE0E7BB95B8F208E16DD35C8D",
+    "coverImgUrl": "http://p1.music.126.net/L6qSRHJMixuBQaAwKN7oWw==/109951167932122331.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "559B9B87C0201D5EA61616BC3A2A8013",
+    "originalId": 28442044,
+    "name": "愛の天使",
+    "duration": 261000,
+    "artistIds": [
+      "CAB7C7190E9E8FEF9A16C2D7A3936790"
+    ],
+    "albumId": "A73A445BDAA398AC4311E396DE98F40C",
+    "coverImgUrl": "http://p1.music.126.net/vF9sPLm68XF6JR36rO_hEA==/6026423232117658.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "exhigh",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "7E83D8AB3EE670979717DFF3C451DD04",
+    "originalId": 229072,
+    "name": "我在那一角落患过伤风",
+    "duration": 114747,
+    "artistIds": [
+      "6C66306B1ED0458BF6F787E183458212"
+    ],
+    "albumId": "40A2CD8498842767F582AEE049BA99D1",
+    "coverImgUrl": "http://p1.music.126.net/qrnzjC5PF-umv5LwTPMyDg==/109951165958443417.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "597604291A5A6AE961936B38D15C64C5",
+    "originalId": 29156479,
+    "name": "Bleak, Uncertain, Beautiful...",
+    "duration": 1140000,
+    "artistIds": [
+      "50B24F41F6724B3857D61EF880EF3B68"
+    ],
+    "albumId": "7FD56A579429777E66A2F39E63922D6E",
+    "coverImgUrl": "http://p1.music.126.net/ETuuik6UMK9oY5mqrRcoVA==/109951172894873346.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "hires",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "E2BE4906EA3B1288EB0CCFBBE8842ABC",
+    "originalId": 17427882,
+    "name": "Lose Your Soul",
+    "duration": 275240,
+    "artistIds": [
+      "6F0A5F94B554318048D0D22B17C68412"
+    ],
+    "albumId": "FD248D7CA2EC58D518D0F3FD1CF16925",
+    "coverImgUrl": "http://p1.music.126.net/GeJrQYgsYdeju62UydgwyA==/109951170171315533.jpg",
+    "liked": true,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "567C8219D087EAFDF4EA67CD67CB300A",
+    "originalId": 3326276640,
+    "name": "龙虾",
+    "duration": 225704,
+    "artistIds": [
+      "DB203FD54E27BAEE142997A7A1088622"
+    ],
+    "albumId": "8B1141BADD287A41C804E606A1476EE9",
+    "coverImgUrl": "http://p1.music.126.net/IN-pT-xU9PrclplmnzW0aQ==/109951172401764595.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "hires",
+    "plLevel": "hires",
+    "dlLevel": "hires",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "9D4038938EBB622681A4286472E45F0C",
+    "originalId": 2644542,
+    "name": "Body Jazz: Head/Shoulders/Elbows/Hands/Hips/Knees/Feet",
+    "duration": 930466,
+    "artistIds": [
+      "BF98202478EF96970191A1EAFB8F7441"
+    ],
+    "albumId": "E9EDABA8DE1D407C356B5814E29FE879",
+    "coverImgUrl": "http://p1.music.126.net/g-zMTTunu9uiufMNzy6uPQ==/1748223488169481.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "83171002C8E1C93F2200E7AE16A12B57",
+    "originalId": 299599,
+    "name": "你喜欢不如我喜欢",
+    "duration": 242533,
+    "artistIds": [
+      "5008FFF55315C9DAFA222726C448FBC4"
+    ],
+    "albumId": "773776C6BC480DB9056CD1F8A75B0E67",
+    "coverImgUrl": "http://p1.music.126.net/E0ynLFbtqou5cu1iJrvUEQ==/109951163081327547.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "AE103556AB432EA8094A034A60969F44",
+    "originalId": 5107094,
+    "name": "Pan Ron",
+    "duration": 178000,
+    "artistIds": [
+      "06FA33C2DE0A501AEFA419DFACD48DD2"
+    ],
+    "albumId": "C296A381E1B6CABA6DEC203A3F15B040",
+    "coverImgUrl": "http://p1.music.126.net/LfWYLGCGLZvUzW1SFATh_Q==/591537255787832.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "exhigh",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "56D682F2DBB4995D3125BBDC6C32EB14",
+    "originalId": 3344785501,
+    "name": "妈妈一起飞吧，妈妈一起摇滚吧",
+    "duration": 508000,
+    "artistIds": [
+      "5A879EE76DD913A56C68D8B65F41458E"
+    ],
+    "albumId": "DC0EF211D00C82CC2373205CE667181B",
+    "coverImgUrl": "http://p1.music.126.net/mezvdg_qJbEg8QnWkNu_Bw==/109951172667219078.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "hires",
+    "plLevel": "hires",
+    "dlLevel": "hires",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "9E01D56A4D1A45CE61312C8143F66653",
+    "originalId": 3796148,
+    "name": "Just Another Diamond Day",
+    "duration": 107106,
+    "artistIds": [
+      "32CDEAE17C37236B84B7E291418C2E84"
+    ],
+    "albumId": "42BB84FAACF4D7F16CAE293B015E81E2",
+    "coverImgUrl": "http://p1.music.126.net/Xo0vdYLmlO9qwYG7dH6_Zg==/6656443394788418.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "C92FD5B2052BD3D8EA95DB75ABACAC0F",
+    "originalId": 77335,
+    "name": "山河水",
+    "duration": 225342,
+    "artistIds": [
+      "485BF6D425E72ACBDC2A9AA1DF9BB00C"
+    ],
+    "albumId": "F1597517A751E85F49DE75F92BD117F5",
+    "coverImgUrl": "http://p1.music.126.net/WNXmhB71uZw-VN4UAuBfBA==/109951163903721825.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "dolby",
+    "plLevel": "dolby",
+    "dlLevel": "dolby",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "AE313AD173FA15678B15A1D39B115648",
+    "originalId": 28064267,
+    "name": "Red Rock Riviera",
+    "duration": 413476,
+    "artistIds": [
+      "CD5D8923BABE9EB549D48132ED0B4430"
+    ],
+    "albumId": "C3D9EFCD409BBDE0191230BEE9C0E5EC",
+    "coverImgUrl": "http://p1.music.126.net/MhW4MGBsLC407wx-SXHlPQ==/18235400346829205.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "70285381112DE17BCA3AC27960C28D36",
+    "originalId": 5185625,
+    "name": "Un Bacio A Mezzanotte",
+    "duration": 134000,
+    "artistIds": [
+      "8F905919AEF7E44644B3592BFB308DD4"
+    ],
+    "albumId": "3A87868970C5C6CFD2E1E452CAE4B42C",
+    "coverImgUrl": "http://p1.music.126.net/PAXPYzPkcAOcaDrXa-f-VA==/2502488464843584.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "C0F1D72A93033062F31FF751253986CB",
+    "originalId": 1356028670,
+    "name": "Pliocene",
+    "duration": 227960,
+    "artistIds": [
+      "8FF9D707E2A38C383FB00C483D369DDA"
+    ],
+    "albumId": "2FC23FD6E6A8AE4A71D2CAF73D4FEDCB",
+    "coverImgUrl": "http://p1.music.126.net/G2sC5b3shosfQeLP_ppHUw==/109951163969113945.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "4E19A7BA1293A9EE0D17F4D54B3CCA34",
+    "originalId": 504264048,
+    "name": "Que No Quede Huella",
+    "duration": 219426,
+    "artistIds": [
+      "6B55FA085988D4B5DD605B10844A0366"
+    ],
+    "albumId": "998D9926EB41954462A04C077C9D21C6",
+    "coverImgUrl": "http://p1.music.126.net/PbMutIZYZTEbDdVkcjQThg==/109951168843052442.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "2AA58BCBD557DA7C93CAC0F746DD3963",
+    "originalId": 1905686699,
+    "name": "My Song 9",
+    "duration": 252013,
+    "artistIds": [
+      "A87B34299A9AAF715AD915C10ED2A6D4"
+    ],
+    "albumId": "2B3FAA6B147BD29D933676881E743F08",
+    "coverImgUrl": "http://p1.music.126.net/Wjmflw7q9fQVrC_nrFtiPg==/109951166779471759.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "3715D7D1F130B2AAEF9674F65B13714D",
+    "originalId": 504264372,
+    "name": "Pretty Girl",
+    "duration": 179848,
+    "artistIds": [
+      "D198B76A78F7D090839A81344C163BFF"
+    ],
+    "albumId": "B9D67C954562F4B4237C5E564A7C7A8D",
+    "coverImgUrl": "http://p1.music.126.net/KA5VxnLUSKHylF7ylDsXiw==/109951171851403729.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "4F6786C048732AC0353AC2272299F6E0",
+    "originalId": 1842276737,
+    "name": "Narrator",
+    "duration": 508733,
+    "artistIds": [
+      "F1F37CED49A120FCDA29CF7FB86F92D5",
+      "58802D1DF5F73C4B757F5336B3F8DDEF"
+    ],
+    "albumId": "61B7EA3A5F888BEC98B7248522150A0C",
+    "coverImgUrl": "http://p1.music.126.net/a_cy-zKX-C7LkrFgRr4MMA==/109951165947861413.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "73A3BDA8D3892094FFE9BEE972EA0435",
+    "originalId": 20782282,
+    "name": "Revelations",
+    "duration": 232106,
+    "artistIds": [
+      "D9BCF777009FFAE48E86E876C607B855",
+      "518C46FE4EA3DAE3EE64C429D8181A13"
+    ],
+    "albumId": "3C20098D88F08B8C79F5708DB1A2A6DC",
+    "coverImgUrl": "http://p1.music.126.net/pxXA77cZkpaOYX8unqR2dQ==/109951168086446767.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "41AF2D3E572375CC7871C5C88D9721E8",
+    "originalId": 3359643220,
+    "name": "恋のフライトタイム～12pm～",
+    "duration": 326974,
+    "artistIds": [
+      "1B2F187E42FD21137D3025FAB080173F",
+      "0D8DF2CE4FE1183DD7C0D476603A1BAC"
+    ],
+    "albumId": "CFF328CE4764502AEF126CD8D5F29AE8",
+    "coverImgUrl": "http://p1.music.126.net/dAKdOz7HygceWe_18n2Hhg==/109951172894469415.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "exhigh",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "582B0E95D48979AB3FFD05BFB2EB7534",
+    "originalId": 3993781,
+    "name": "Cang Ding",
+    "duration": 290506,
+    "artistIds": [
+      "18DF89D86B10F5FCED00DF3D7B1E1FFF"
+    ],
+    "albumId": "0FD637785DFB551D90F2C3858CF0023C",
+    "coverImgUrl": "http://p1.music.126.net/tEWD3MzXd0002Ly5Jb1VXQ==/942281465061454.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "F5D3664B825DF68F96D9401893551A7A",
+    "originalId": 26795718,
+    "name": "Diana",
+    "duration": 274333,
+    "artistIds": [
+      "81449AEE18AEC5C07C56C696B0F4B1FE"
+    ],
+    "albumId": "D47EF43614CBF8F257C8E0C8D9487846",
+    "coverImgUrl": "http://p1.music.126.net/dIk6hK2lD4wWlHvZCNandQ==/109951172313549284.jpg",
+    "liked": true,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "0B1C50B572C805BDE866BE30297D657D",
+    "originalId": 27492183,
+    "name": "Sines of Life",
+    "duration": 632008,
+    "artistIds": [
+      "FEC920E6ED1E3589E9AC374782AE8298"
+    ],
+    "albumId": "5780B9CC0B3669D95093F65AF1487009",
+    "coverImgUrl": "http://p1.music.126.net/UXgpuhwSHqgvhgPZ31e1Pw==/109951169898046875.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "6548ACA9DE67C387502922D854322876",
+    "originalId": 1987381634,
+    "name": "宗教に犯されているのではないか。",
+    "duration": 321149,
+    "artistIds": [
+      "1E544995561FAA3011DF2FD388CD65F8",
+      "3E50A2D4B3A0A5F770CED826A7A86A15"
+    ],
+    "albumId": "751375B46514D683A9168CEBA5A56F33",
+    "coverImgUrl": "http://p1.music.126.net/DZc5iRqqFA9AaPj7pdii5g==/109951167943470244.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "552E0772B2B418B472090671D5108092",
+    "originalId": 2061330,
+    "name": "Lillies of the valley",
+    "duration": 328432,
+    "artistIds": [
+      "6A9F3186934605B3103EEB6B2250C263"
+    ],
+    "albumId": "5DE6D18B9678A1F5E0523D8C7BE016B9",
+    "coverImgUrl": "http://p1.music.126.net/fqnMIO3wP4-Hn2HpEKeZwg==/898300999947120.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "2C1D8EA07269D60D2BFA90D31CC7069B",
+    "originalId": 29360796,
+    "name": "Owl",
+    "duration": 214073,
+    "artistIds": [
+      "959E012617FC02BC14E6F463E167FCC6"
+    ],
+    "albumId": "2DD292A7F0CD176451BF216574DD594E",
+    "coverImgUrl": "http://p1.music.126.net/MbPjyV7l0pS6TEQPeQJm1Q==/109951165628123989.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "72FB5717134C6B763E93C9EFE2B0BD76",
+    "originalId": 16590446,
+    "name": "Happy Dreamer",
+    "duration": 266040,
+    "artistIds": [
+      "277A5547A48B157280C1E6E1A68AF475"
+    ],
+    "albumId": "CA3D542E280F92B3689D47757791951C",
+    "coverImgUrl": "http://p1.music.126.net/kyTokmossFcTlM2XcKRVaw==/109951164850630369.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "1004CF630D30968F4DBEE138F21F29C9",
+    "originalId": 1430420707,
+    "name": "Slam (Angel Miners)",
+    "duration": 288080,
+    "artistIds": [
+      "B2ED453ED27C26B0328BBAFC4321712F"
+    ],
+    "albumId": "F68C5B21E2C9842C307733215AFB7512",
+    "coverImgUrl": "http://p1.music.126.net/v6EU3Tk7OrvTNqjMVFKBzA==/109951168709009450.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "7A3DB7DF6B7F9BF067BA852950C41C3E",
+    "originalId": 68230,
+    "name": "神交",
+    "duration": 225558,
+    "artistIds": [
+      "6463651E78731801AD7FA0184849582C"
+    ],
+    "albumId": "43593CE42482679A290E2810FD764EA9",
+    "coverImgUrl": "http://p1.music.126.net/t8jj-QUxn3QZstvECbb64g==/42880953495299.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "0F4412228112417D3F4171C97F107A8D",
+    "originalId": 460043935,
+    "name": "Something For Your M.I.N.D.",
+    "duration": 165391,
+    "artistIds": [
+      "EA609E0954C2BEF349F7229771D13C83"
+    ],
+    "albumId": "4EC7A725509087055B3E3EC40E03E95B",
+    "coverImgUrl": "http://p1.music.126.net/gipaBAhKOvlgpv7YYAimlg==/109951163351778866.jpg",
+    "liked": true,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "40ED1A81B86AD5E2B35860A436B684ED",
+    "originalId": 16649839,
+    "name": "Myth",
+    "duration": 258653,
+    "artistIds": [
+      "75634B1E914D3FB82284DA3DEE882B1C"
+    ],
+    "albumId": "10E21DB8600C1332A73D77521CEEB29A",
+    "coverImgUrl": "http://p1.music.126.net/brnUjGG4ZJDeY2w3TT-sqg==/722379139456356.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "272C1E95CD465CEC3225D8EFADDDFF76",
+    "originalId": 1353394410,
+    "name": "Bloodless",
+    "duration": 389453,
+    "artistIds": [
+      "0171536B188C9C686BF657A7180FE682"
+    ],
+    "albumId": "C052EB73F1389420218B91624BEA8011",
+    "coverImgUrl": "http://p1.music.126.net/MZWAS3iUGP67x37ZVvYD_A==/109951165053927468.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "hires",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "215E8EECC1E7A781C2333F4C2B261A69",
+    "originalId": 29814547,
+    "name": "If I Ruled the World",
+    "duration": 221402,
+    "artistIds": [
+      "CD996270B2EB3AE491134083DA0340F7"
+    ],
+    "albumId": "DDCAC5A0AAC1B7AE099E42C0680C4CE9",
+    "coverImgUrl": "http://p1.music.126.net/P4N_RwBlXPI2CljNLV97lg==/109951169582755208.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "D07513AAD48972ADB25EA1268436F124",
+    "originalId": 17171418,
+    "name": "She brings the Rain",
+    "duration": 244533,
+    "artistIds": [
+      "F9933F16C34F158EA8D3517F00C27E25"
+    ],
+    "albumId": "6F81F608FA978ADEE0686F7675CC5A8B",
+    "coverImgUrl": "http://p1.music.126.net/G-AbCim2pdBJrOPH9cCBNg==/109951163409461839.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "D0142E1075F5C75CC381C34C5D501600",
+    "originalId": 29360795,
+    "name": "Breezy",
+    "duration": 192303,
+    "artistIds": [
+      "959E012617FC02BC14E6F463E167FCC6"
+    ],
+    "albumId": "2DD292A7F0CD176451BF216574DD594E",
+    "coverImgUrl": "http://p1.music.126.net/MbPjyV7l0pS6TEQPeQJm1Q==/109951165628123989.jpg",
+    "liked": true,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "78B67830734583847387B9D9C1461FDF",
+    "originalId": 4143389,
+    "name": "Computer World",
+    "duration": 307000,
+    "artistIds": [
+      "3C8FA144ED5F17613B72DA877F33172D"
+    ],
+    "albumId": "282BE6725A6B4C788FCD25519F5DCD7F",
+    "coverImgUrl": "http://p1.music.126.net/o_lTZejCtbq-QhBSq8OplA==/6634453162684339.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "exhigh",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "6F91F9A7C6E8A958A52F73CF0DA51EA1",
+    "originalId": 31421493,
+    "name": "Future People",
+    "duration": 201612,
+    "artistIds": [
+      "95BCD786924B7E76F286F49B35F86B90"
+    ],
+    "albumId": "3147D5CC7CCC372D30DEBCAE84C55C53",
+    "coverImgUrl": "http://p1.music.126.net/dsvCEXGmEZCi-NgUSUchOA==/109951163510152241.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "94EF3D51783E8738B744C9811114DF08",
+    "originalId": 1874494,
+    "name": "What'd I Say, Pt. 1 & 2",
+    "duration": 307053,
+    "artistIds": [
+      "232995A45A198787C1DEDA2D61DA718D"
+    ],
+    "albumId": "D89FB5633B2BD84DBA0021B29376749A",
+    "coverImgUrl": "http://p1.music.126.net/_gisUUYhV2ki67l4aEdhHg==/109951172949915018.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "7B32E2FC27B341D277485DC22DDF7DFF",
+    "originalId": 568677091,
+    "name": "You Make Me Feel Like Dancing",
+    "duration": 217893,
+    "artistIds": [
+      "A87F9B74D94FF608707056E29452E5BD"
+    ],
+    "albumId": "5C2FBF7851FAEFCA5E8FA312247FC7DE",
+    "coverImgUrl": "http://p1.music.126.net/ExudkfFHTmxQ8E6cnQrJ7g==/109951163320049263.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "5DCED1F03605F04BFA3BD730CE3C27EC",
+    "originalId": 4459576,
+    "name": "Karangailyg Kara Hovaa",
+    "duration": 189231,
+    "artistIds": [
+      "71F277675E70797073C8787D46D38885"
+    ],
+    "albumId": "D6A1B7B727AB3C862E9566D44776209C",
+    "coverImgUrl": "http://p1.music.126.net/yTRKqXiKrEoCICLVBsV9GQ==/18251893021643021.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "BF15FBC9DEA7332AC7D4129186984BCE",
+    "originalId": 2751591555,
+    "name": "尾声",
+    "duration": 395583,
+    "artistIds": [
+      "DE8EDF94232F98EA04CABDFE650F2DAC"
+    ],
+    "albumId": "D8264D721F3F223EA8769F41D746D627",
+    "coverImgUrl": "http://p1.music.126.net/kosNCC_biQoPuNyR-Naolw==/109951172698043518.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "hires",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "4B188483728B1A661F2E6B47A650BB4D",
+    "originalId": 2071798227,
+    "name": "Call Me Wild (feat. dodie)",
+    "duration": 184957,
+    "artistIds": [
+      "3EC901243C0434036BDD8A31FD1AEB16",
+      "FC49B6B7C833678DE8CA03CB1B2C9BF4"
+    ],
+    "albumId": "386089B29636F11C2E2F233EECCBFDF5",
+    "coverImgUrl": "http://p1.music.126.net/h5PMXMivhExps5IZbE2WcQ==/109951168828828115.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "hires",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "7DA79E9D2F402A2B4DA6C64A249471AF",
+    "originalId": 542827,
+    "name": "メリー・ゴー・ラウンド",
+    "duration": 379560,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "21FB6432905268A8175B781434A9B40C",
+    "coverImgUrl": "http://p1.music.126.net/oF9DDzFJdoJOI_xnIzmqSA==/109951171752747084.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "06EDD568F7F8498109FD6D9BCDE6ABDE",
+    "originalId": 20513215,
+    "name": "Wondrous Place (Single Version)",
+    "duration": 143963,
+    "artistIds": [
+      "7B6D8DD8365192BF802683560B551DD3"
+    ],
+    "albumId": "0F1BB0DB099B81CE39D330543D02139C",
+    "coverImgUrl": "http://p1.music.126.net/y9mXvLDxgCLzTQbnapWZ-w==/2544269907839588.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "C8EF6BF086799EA122F5DE95935553D6",
+    "originalId": 473602054,
+    "name": "Tearz",
+    "duration": 151926,
+    "artistIds": [
+      "D7EA268E9190485EBB9526B33FB80038"
+    ],
+    "albumId": "04D9B1295564B6C90AB088BC20B9DE11",
+    "coverImgUrl": "http://p1.music.126.net/zSnBoj2Fub_3TEKDN767xg==/109951164216852542.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "5922728255B019E9F85E1D584BD4222B",
+    "originalId": 506154668,
+    "name": "Turn black",
+    "duration": 297999,
+    "artistIds": [
+      "8BF336E4DF675C890AA7A8918A2E7FB5"
+    ],
+    "albumId": "6D7D2976B08C64C4A6C43FC8D48FCEFE",
+    "coverImgUrl": "http://p1.music.126.net/uFs7QBSCTTeqRjvR5DnMrw==/109951163025301690.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "CCB5A225EF6A6E9EC2BF3C6D73CBFC6E",
+    "originalId": 17464342,
+    "name": "Fragile Wind",
+    "duration": 256464,
+    "artistIds": [
+      "133FDAE93F1EDC1E83F8D22A0E3A6C74"
+    ],
+    "albumId": "28E257463CFFE9A571BA3F4A2D6DD417",
+    "coverImgUrl": "http://p1.music.126.net/8J5TncKsk-icinSG8dR-wg==/109951167625193316.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "4E22DDD637A23243BB099F1B46BF9537",
+    "originalId": 4378539,
+    "name": "Miserere mei Deus",
+    "duration": 751000,
+    "artistIds": [
+      "4EFDA37DCE379DCAE6DBFD67A48E7BE1"
+    ],
+    "albumId": "EF0E13A1A9C180C931439A38AE6DF5A6",
+    "coverImgUrl": "http://p1.music.126.net/m981SOeT1DwF_EdwM6R1Fg==/708085488331197.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "022743DEAD8628108C90A28B2E17EE30",
+    "originalId": 343316,
+    "name": "Meow Meow Meow",
+    "duration": 130080,
+    "artistIds": [
+      "6929615AD93542C917469244132759CE"
+    ],
+    "albumId": "FE54C975179F95B9DFC803B82A7F086F",
+    "coverImgUrl": "http://p1.music.126.net/KRC8eZQD-3_ikjILG0IiIA==/109951168992352561.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "E4B1389CFBE713B284BCF334EDC9E8F5",
+    "originalId": 506986102,
+    "name": "新・東京ラプソディー",
+    "duration": 306560,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "3035360C89007AC3523F04A93D3593B8",
+    "coverImgUrl": "http://p1.music.126.net/E8wxiiXuxcSF2mmSR4NrMw==/109951163027392000.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "691B29FE774D9BD3C8991B774D6316BC",
+    "originalId": 22693786,
+    "name": "Magic Ways",
+    "duration": 288266,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "B048A1254C1DD1BFD636BFD078C2AFCF",
+    "coverImgUrl": "http://p1.music.126.net/ENFQHVyFTVOcYiUclz0W-g==/109951168242394901.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "773A919375676BEC6E6B381668B69BC7",
+    "originalId": 540621,
+    "name": "街物语",
+    "duration": 350000,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "17DDE1031C476D87D026B4E38B298FBA",
+    "coverImgUrl": "http://p1.music.126.net/Mx7DT-wkP2SbHX7wWpqxbw==/723478651088700.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "exhigh",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "18DF279558DF3120CEDE71FCC8846B4E",
+    "originalId": 185841,
+    "name": "Don’t Give A Damn About Me！",
+    "duration": 459000,
+    "artistIds": [
+      "572EE28A256B3778ACB26A1D4C0050DF"
+    ],
+    "albumId": "C9AB974A3D0E0520803D6F37429B2176",
+    "coverImgUrl": "http://p1.music.126.net/u-kekO1wvBF4i-XdH1M4nA==/109951170915743717.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "350EC82B97F2BA4DD32EE8ECBE7DEADC",
+    "originalId": 1819799988,
+    "name": "Heart Of Glass",
+    "duration": 229423,
+    "artistIds": [
+      "4F5BC9D1DC06B0F47B7D19BE232DD7D1"
+    ],
+    "albumId": "CC8495EF5D335CC1289C183EDBB4584F",
+    "coverImgUrl": "http://p1.music.126.net/pExeHJcaHZMLKHhQkczFiw==/109951170271129356.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "EA0F6F21CC46B8A9A1979F1B5452F683",
+    "originalId": 1864902758,
+    "name": "冬",
+    "duration": 432213,
+    "artistIds": [
+      "485BF6D425E72ACBDC2A9AA1DF9BB00C",
+      "8A63FCE4F803A8E5A0D59CD0EF1FE6CC"
+    ],
+    "albumId": "CAF2BD0F54D0C8DD8B7D804D0479E4A2",
+    "coverImgUrl": "http://p1.music.126.net/tA9LIqzXkTswP24O4D8TcQ==/109951166226356335.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "7640F80E71F01B6223D0A3351C4271D1",
+    "originalId": 4237911,
+    "name": "Shine On You Crazy Diamond (Pts. 1-5)",
+    "duration": 810933,
+    "artistIds": [
+      "DF59636F08D03C526EB026AD35E4300C"
+    ],
+    "albumId": "6C4E68BEB70F903C04FAA756AA73AA87",
+    "coverImgUrl": "http://p1.music.126.net/YNiXGF64S5GPWQteqILYXQ==/109951172027020970.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "03CCA8620177F18D7908EDE596170501",
+    "originalId": 2144934368,
+    "name": "this is what slow dancing feels like",
+    "duration": 145735,
+    "artistIds": [
+      "3C5A1D8F7E7DFB903DE9669636632AB6"
+    ],
+    "albumId": "0A5511C827A0157775C612B13BEA9F41",
+    "coverImgUrl": "http://p1.music.126.net/_BIfPbug8rYTASDSE33xog==/109951169489764681.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "AD6DB99F612AAF6F1366AB12D5499B93",
+    "originalId": 3360835405,
+    "name": "完美偶像 Perfect Idol",
+    "duration": 119585,
+    "artistIds": [
+      "D01D5E82DE27541F38A5496D41F3535E"
+    ],
+    "albumId": "F0A417198159B42F5BBD00A5BF4B252A",
+    "coverImgUrl": "http://p1.music.126.net/UNGV1Gn7dH-1f5uJa_Nhyg==/109951172908201876.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "hires",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "FD46E6F0A0B7C2396D0A574EECE8EB69",
+    "originalId": 28741201,
+    "name": "Fantasma (Unreleased Exclusive)",
+    "duration": 364000,
+    "artistIds": [
+      "73CB0DDEBD0C8AAB1D8EBE03565ED91D"
+    ],
+    "albumId": "7B725F26A5FECD254321ED28A57CD87B",
+    "coverImgUrl": "http://p1.music.126.net/RPDL9pO7QKCfRlR9Ob8SbA==/5971447650843115.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "F6048AA68844B32089DAAAA6F0AB5646",
+    "originalId": 2095883494,
+    "name": "宮",
+    "duration": 315210,
+    "artistIds": [
+      "51318F8CBBEC1F7F03DE50196A593988"
+    ],
+    "albumId": "C156601B84A394672B0BED1A5A0598B1",
+    "coverImgUrl": "http://p1.music.126.net/V1_5Eo6LYhLCSQC2Bp-B9A==/109951169024610744.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "5647D762EEAE177B973A31E14537AC01",
+    "originalId": 360711,
+    "name": "日久他乡是故乡",
+    "duration": 270651,
+    "artistIds": [
+      "3BF2A02EE7924AFFC848D6CB9D92DA5E"
+    ],
+    "albumId": "2574157D78A7BDF5B534332C80A3BA19",
+    "coverImgUrl": "http://p1.music.126.net/jECrDddsyhJXR9pOw2RHHw==/109951164910286024.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "889EC928B3D61D5AC37007FEFF153F9C",
+    "originalId": 77363,
+    "name": "消失的影像",
+    "duration": 212715,
+    "artistIds": [
+      "485BF6D425E72ACBDC2A9AA1DF9BB00C"
+    ],
+    "albumId": "F1597517A751E85F49DE75F92BD117F5",
+    "coverImgUrl": "http://p1.music.126.net/WNXmhB71uZw-VN4UAuBfBA==/109951163903721825.jpg",
+    "liked": true,
+    "visible": true,
+    "maxBrLevel": "dolby",
+    "plLevel": "dolby",
+    "dlLevel": "dolby",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "57D911E311DF3DCDD4E64ADD66981952",
+    "originalId": 18095077,
+    "name": "Estranged",
+    "duration": 565266,
+    "artistIds": [
+      "D60A6F9885ADA234C5819C8D2311B5C1"
+    ],
+    "albumId": "70319B7EABE9592BC96238BE4394BD70",
+    "coverImgUrl": "http://p1.music.126.net/5nhikM-uQuOMvXiawnP8Jg==/109951163326693570.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "DB96C5D76F315550B51E6E3886055C2B",
+    "originalId": 348003,
+    "name": "十公里",
+    "duration": 333373,
+    "artistIds": [
+      "DE8EDF94232F98EA04CABDFE650F2DAC"
+    ],
+    "albumId": "ADFDD4F409077EBD3E98397D14008A91",
+    "coverImgUrl": "http://p1.music.126.net/ppB2uFjAyOcWyW8Zq40nqA==/109951172945877468.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "9882CDF08F196D493DD211E55B1152AA",
+    "originalId": 299910,
+    "name": "半途而废",
+    "duration": 213000,
+    "artistIds": [
+      "5008FFF55315C9DAFA222726C448FBC4"
+    ],
+    "albumId": "A85F134653D7326B3730FF9A70F29263",
+    "coverImgUrl": "http://p1.music.126.net/W6MDlem6_FsymbnxKc_BKQ==/109951171530948990.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "48C510F1F1BF95FD69DC5A24F00B3333",
+    "originalId": 2744403174,
+    "name": "The Fate of Ophelia",
+    "duration": 226073,
+    "artistIds": [
+      "2F69A4F98FC17F41B222D457B99C543E"
+    ],
+    "albumId": "AE631185A00258F155F7F3506CF84881",
+    "coverImgUrl": "http://p1.music.126.net/kgSrl1121l_8KNc77j8Qkw==/109951172077792684.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "dolby",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "2B3D59580010BD36223F6718C53B0AC7",
+    "originalId": 442182152,
+    "name": "Damage Done",
+    "duration": 238342,
+    "artistIds": [
+      "AA97E83266518A6C0353A95FFED5B998"
+    ],
+    "albumId": "C6A58EEEDF7284ED387B4F20750E2AE2",
+    "coverImgUrl": "http://p1.music.126.net/uWnReHppoMXRIMlSWZP6fw==/109951163704646034.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "7AE534424937841A40E42619CF3B364B",
+    "originalId": 571336542,
+    "name": "時よ",
+    "duration": 506426,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "4BA98D500C67F366DD40A408911BFD60",
+    "coverImgUrl": "http://p1.music.126.net/LPc9ShWoLCUFO5U6e04NsA==/109951169790180749.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "AAF9E487C4AA30B5B42A318AF457E1DC",
+    "originalId": 22693580,
+    "name": "RIDE ON TIME",
+    "duration": 265000,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "0FE74F40E92A01949CFF4BD63A4159ED",
+    "coverImgUrl": "http://p1.music.126.net/SM5Xc_zjJlHH0mRR3b7mgw==/668503069710481.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "80F6D3174B4FAF83C5E2F90A345DC612",
+    "originalId": 22693818,
+    "name": "Your Eyes",
+    "duration": 198138,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "73EAD5894EC5E0C85453C598392E86E5",
+    "coverImgUrl": "http://p1.music.126.net/ZGAvK2mIgZBNOu7Uk1TlAQ==/720180116215439.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "exhigh",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "E38244761F012D2C4B847A11D892EA8D",
+    "originalId": 506986098,
+    "name": "さよなら夏の日",
+    "duration": 267800,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "3035360C89007AC3523F04A93D3593B8",
+    "coverImgUrl": "http://p1.music.126.net/E8wxiiXuxcSF2mmSR4NrMw==/109951163027392000.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "A714F81841474E459BA970322F088998",
+    "originalId": 540931,
+    "name": "クリスマス・イブ",
+    "duration": 255866,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "67C511675B8D3FC69CED87BAA55D464A",
+    "coverImgUrl": "http://p1.music.126.net/1W27ek9Z8GhIkulXFP16FA==/109951168485926130.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "24750AD55B9A8E84B59B7D0A862CD3E2",
+    "originalId": 22693790,
+    "name": "Jody",
+    "duration": 230173,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "B048A1254C1DD1BFD636BFD078C2AFCF",
+    "coverImgUrl": "http://p1.music.126.net/ENFQHVyFTVOcYiUclz0W-g==/109951168242394901.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "78F427757490765995C7D54B7A839183",
+    "originalId": 28712318,
+    "name": "FRAGILE",
+    "duration": 328150,
+    "artistIds": [
+      "92A930546CB70B5FD11D6E293E969A19"
+    ],
+    "albumId": "0279C0C6CC8A4FECC5CABD653CE69EB4",
+    "coverImgUrl": "http://p1.music.126.net/_mo0lyMf2V5wG4FqkZraWA==/109951171752766794.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "D91106813FE23351601935D9C4FF4B28",
+    "originalId": 2153624911,
+    "name": "Before Sunrise III",
+    "duration": 880628,
+    "artistIds": [
+      "68D91AB0C4E314D299BE30C36FD3D311"
+    ],
+    "albumId": "DF5F29F841B713685AD95CCFA22E40BC",
+    "coverImgUrl": "http://p1.music.126.net/HFTP2Mw3_PUqE8RzWZlASA==/109951169570817145.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "931E7FB59A5C52AC447E356D4EA4EA97",
+    "originalId": 3352795757,
+    "name": "Through the Darkness",
+    "duration": 270741,
+    "artistIds": [
+      "A54501A928EC86494F95D1C47A39B312",
+      "7AE10D5FD5B46139ADEB692CCF63DB98"
+    ],
+    "albumId": "D2AB54AE0D973BB9A8925BE865F97364",
+    "coverImgUrl": "http://p1.music.126.net/NgIJVdJMJs7h9-AmoPA2XA==/109951172791907178.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "D76F91476583F8A6CD67A388E3FD358F",
+    "originalId": 573870212,
+    "name": "Les rues de Paris",
+    "duration": 149200,
+    "artistIds": [
+      "F08B62841D4FB5C03A7B592E867F13EB"
+    ],
+    "albumId": "0E5C1DBC91EF3FEA992872B233DB0B6E",
+    "coverImgUrl": "http://p1.music.126.net/ew8I3LQEpgXQNRX0b2nvgg==/109951163361052088.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "424910EF4C60CC6A02E803140DABEFB8",
+    "originalId": 26609781,
+    "name": "Don't Stop",
+    "duration": 209730,
+    "artistIds": [
+      "58859EC205D988B94863DE42D04A83AC"
+    ],
+    "albumId": "EEF6CC18BB8512D137E4783F19C7482A",
+    "coverImgUrl": "http://p1.music.126.net/nGkG_Rp86bJtkjw0n6dBQg==/6654244372248034.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "dolby",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "DC7C3A6D546C90623E18175B4A54C667",
+    "originalId": 517890065,
+    "name": "Snowman",
+    "duration": 165906,
+    "artistIds": [
+      "EC86ECC50EBC2F3138CF2F6EAFDA2D94"
+    ],
+    "albumId": "4A811F6E20819473536663F39E40CE9B",
+    "coverImgUrl": "http://p1.music.126.net/PuQ77wo1CR4zf8sCwC0QLQ==/18438809998071244.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "A93128412402EECC2152A1D6D17B0E8B",
+    "originalId": 4012953,
+    "name": "All You're Going to Want to Do Is Get Back There",
+    "duration": 226235,
+    "artistIds": [
+      "60ED328943DB9A17EEC9E145C8C2DD0E"
+    ],
+    "albumId": "66F2E418B52CB24C6A7B8D4D7026604A",
+    "coverImgUrl": "http://p1.music.126.net/d0HWk06SH3_AemqP6DwYEg==/652010395315409.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "E2CEBA799FF15004591C0D1BBB258B52",
+    "originalId": 3336915637,
+    "name": "Sweet",
+    "duration": 320460,
+    "artistIds": [
+      "931549890BF21A26D9CEBDAF6B3DDD08"
+    ],
+    "albumId": "103FEFF516BDB8D38F2D12AAF7A32073",
+    "coverImgUrl": "http://p1.music.126.net/XJ6TpXFNLvrpznfD_Uhtcg==/109951172552740127.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "D16A0EA00F0E6ED9C1F255C8287684C5",
+    "originalId": 28234540,
+    "name": "Always Alright",
+    "duration": 244240,
+    "artistIds": [
+      "95BCD786924B7E76F286F49B35F86B90"
+    ],
+    "albumId": "28BF40400A94BB57CAF00E387D2C9689",
+    "coverImgUrl": "http://p1.music.126.net/rWdOQYOflNEmO7htSea7Vg==/6048413464406677.jpg",
+    "liked": true,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "3D29135592030582827A40A6B1FEEE89",
+    "originalId": 28826107,
+    "name": "Now Time Meander (Studio Monkey Mix)",
+    "duration": 466986,
+    "artistIds": [
+      "EA46756F5C10F79C4921AEF6258FAEE2"
+    ],
+    "albumId": "9603E371B959E6DCFDC65A214BC139BE",
+    "coverImgUrl": "http://p1.music.126.net/Qs2mvH0yIeg0HuN3gP5Wdw==/5790028232102786.jpg",
+    "liked": true,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "B736689B11A72FB796EC9D7824173463",
+    "originalId": 17784716,
+    "name": "I'm Gonna Haunt You",
+    "duration": 163173,
+    "artistIds": [
+      "49E9CE303BA76F9176A262D599B63412"
+    ],
+    "albumId": "CAC83C428F2C4394C6A7E4CBE25E0A95",
+    "coverImgUrl": "http://p1.music.126.net/RappqSpsW75MI2DPGpokeA==/109951163909421961.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "23DAF13FE3087FBF805B2F6684A52ECD",
+    "originalId": 25731082,
+    "name": "Ya Ya (Ringe Ringe Raja)",
+    "duration": 145072,
+    "artistIds": [
+      "8ED6C2734EF3235606109E83E052222D"
+    ],
+    "albumId": "5D49C268AE52B594B2339E6B2F4D90F2",
+    "coverImgUrl": "http://p1.music.126.net/GncJM2mg_bOvNobpgZx9fg==/2297979302067500.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "F1303DEBC977A5D646F68D5A9D4735D4",
+    "originalId": 1803334842,
+    "name": "送行 Send-off",
+    "duration": 420339,
+    "artistIds": [
+      "9656CEE84D8D16888A23E27FE1CAA187"
+    ],
+    "albumId": "42E432C02281FF7845D1C74A416B0B67",
+    "coverImgUrl": "http://p1.music.126.net/a2BGFM1BAb9XVpulPo6Eiw==/109951165531661196.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "71371F223BC97A2464F69F5CCAF1D6B2",
+    "originalId": 3356014146,
+    "name": "愛楽",
+    "duration": 180697,
+    "artistIds": [
+      "6D1597F106AEA3B76E68273F4537398C",
+      "8DC82964614FACFFE4D180D82C25ECB5"
+    ],
+    "albumId": "14AB5E132495FC11B7020A071D24CCAE",
+    "coverImgUrl": "http://p1.music.126.net/acCcUzRcWZKZ7BRbCHIBsw==/109951172841665531.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "64A63633B44777E2A384ADCB3DAD5A3F",
+    "originalId": 1917733223,
+    "name": "Come 2 Me",
+    "duration": 158593,
+    "artistIds": [
+      "979A08472357FAECD90625C9608D8F54"
+    ],
+    "albumId": "27AA7A06337878750AB0F6458A9D2814",
+    "coverImgUrl": "http://p1.music.126.net/DzAOfM92ip36JpXvfBSFgQ==/109951167016415156.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "D1A0BA4982E9E6D754A48304F3172726",
+    "originalId": 28520996,
+    "name": "Darshan",
+    "duration": 495000,
+    "artistIds": [
+      "A2014B9983450FE8B83586CD5605F32C"
+    ],
+    "albumId": "8C454DF4B99D9838FB6AA1134381FDCF",
+    "coverImgUrl": "http://p1.music.126.net/j6UB1ZLLCJhUOjfiKqpiYg==/109951168943666366.jpg",
+    "liked": false,
+    "visible": false,
+    "maxBrLevel": "lossless",
+    "plLevel": "none",
+    "dlLevel": "none",
+    "genreTags": [],
+    "moodTags": []
+  },
+  {
+    "id": "4326F57715E9EEB3E3E67D5CE4DC90F7",
+    "originalId": 3985383,
+    "name": "Noah's Ark",
+    "duration": 253400,
+    "artistIds": [
+      "A43B4BE41AC6538B7237E1427AF0CD0F"
+    ],
+    "albumId": "0529FBBD46CA16BF59555F8F5C0C97BB",
+    "coverImgUrl": "http://p1.music.126.net/h084qLFzBxvWrCQ3xjf0YQ==/109951168899044678.jpg",
+    "liked": false,
+    "visible": true,
+    "maxBrLevel": "lossless",
+    "plLevel": "lossless",
+    "dlLevel": "lossless",
+    "genreTags": [],
+    "moodTags": []
+  }
+]
