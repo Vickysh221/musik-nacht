@@ -1,4 +1,6 @@
 import { execFile } from 'node:child_process'
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import { promisify } from 'node:util'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -113,6 +115,29 @@ type SongLyricResponse = {
   }
 }
 
+type SearchSongResponse = {
+  data?: {
+    records?: FavoriteTrack[]
+  }
+}
+
+type BotSongMapEntry = {
+  songId: string
+  songTitle: string
+  artist: string
+  botId: string
+  botRole: string
+  lyricSurface: {
+    type: string
+    placement: string
+    style: string
+  }
+}
+
+type ResolvedBotSongMapEntry = BotSongMapEntry & {
+  resolvedSong: SceneSong | null
+}
+
 const FAVORITE_CACHE_TTL_MS = 5 * 60 * 1000
 const STYLE_TERMS = [
   'psychedelic',
@@ -139,6 +164,13 @@ let favoriteSongsCache:
   | {
       expiresAt: number
       songs: SceneSong[]
+    }
+  | undefined
+
+let botSongMapCache:
+  | {
+      expiresAt: number
+      entries: ResolvedBotSongMapEntry[]
     }
   | undefined
 
@@ -176,6 +208,25 @@ function shuffle<T>(items: T[]) {
 function extractStyleTags(text: string) {
   const lowered = text.toLowerCase()
   return STYLE_TERMS.filter((term) => lowered.includes(term)).slice(0, 6)
+}
+
+function toSceneSong(track: FavoriteTrack): SceneSong {
+  return {
+    id: track.id,
+    originalId: track.originalId,
+    name: track.name,
+    duration: track.duration,
+    artistIds: (track.fullArtists ?? []).map((artist) => artist.id),
+    artistNames: (track.fullArtists ?? []).map((artist) => artist.name),
+    albumId: track.album?.id ?? null,
+    coverImgUrl: track.coverImgUrl ?? null,
+    liked: Boolean(track.liked),
+    visible: track.visible ?? true,
+    maxBrLevel: track.maxBrLevel ?? null,
+    plLevel: track.plLevel ?? null,
+    dlLevel: track.dlLevel ?? null,
+    playable: Boolean(track.playFlag),
+  }
 }
 
 async function loadAlbumMeta(albumId: string) {
@@ -222,6 +273,56 @@ async function loadSongLyrics(songId: string) {
     noLyric: Boolean(result.data?.noLyric),
     pureMusic: Boolean(result.data?.pureMusic),
   }
+}
+
+async function resolveBotSong(entry: BotSongMapEntry) {
+  const keyword = `${entry.songTitle} ${entry.artist}`.trim()
+  const result = parseJson<SearchSongResponse>(
+    await execFileAsync('ncm-cli', ['search', 'song', '--keyword', keyword, '--limit', '10', '--output', 'json'], {
+      timeout: 15000,
+      maxBuffer: 2 * 1024 * 1024,
+    }).then(({ stdout }) => JSON.parse(stdout)),
+  )
+
+  const targetOriginalId = Number(entry.songId)
+  const records = result.data?.records ?? []
+  const match =
+    records.find((track) => track.originalId === targetOriginalId && track.playFlag && track.id) ??
+    records.find((track) => track.originalId === targetOriginalId && track.id) ??
+    null
+
+  return match ? toSceneSong(match) : null
+}
+
+async function loadBotSongMap() {
+  if (botSongMapCache && botSongMapCache.expiresAt > Date.now()) {
+    return botSongMapCache.entries
+  }
+
+  const source = await readFile(path.resolve(process.cwd(), 'notes/clawd-bot-song-map.json'), 'utf8')
+  const entries = parseJson<BotSongMapEntry[]>(JSON.parse(source))
+  const resolvedEntries = await Promise.all(
+    entries.map(async (entry) => {
+      try {
+        return {
+          ...entry,
+          resolvedSong: await resolveBotSong(entry),
+        }
+      } catch {
+        return {
+          ...entry,
+          resolvedSong: null,
+        }
+      }
+    }),
+  )
+
+  botSongMapCache = {
+    expiresAt: Date.now() + FAVORITE_CACHE_TTL_MS,
+    entries: resolvedEntries,
+  }
+
+  return resolvedEntries
 }
 
 async function loadFavoritePlayableSongs() {
@@ -275,19 +376,8 @@ async function loadFavoritePlayableSongs() {
   const favoriteSongs = allTracks
     .filter((track) => track.liked && track.playFlag && track.id && track.originalId)
     .map<SceneSong>((track) => ({
-      id: track.id,
-      originalId: track.originalId,
-      name: track.name,
-      duration: track.duration,
-      artistIds: (track.fullArtists ?? []).map((artist) => artist.id),
-      artistNames: (track.fullArtists ?? []).map((artist) => artist.name),
-      albumId: track.album?.id ?? null,
-      coverImgUrl: track.coverImgUrl ?? null,
+      ...toSceneSong(track),
       liked: true,
-      visible: true,
-      maxBrLevel: track.maxBrLevel ?? null,
-      plLevel: track.plLevel ?? null,
-      dlLevel: track.dlLevel ?? null,
       playable: true,
     }))
 
@@ -420,6 +510,12 @@ export default defineConfig({
 
               const lyrics = await loadSongLyrics(songId)
               asJsonResponse(res, { success: true, ...lyrics })
+              return
+            }
+
+            if (action === 'bot-song-map') {
+              const entries = await loadBotSongMap()
+              asJsonResponse(res, { success: true, entries })
               return
             }
 

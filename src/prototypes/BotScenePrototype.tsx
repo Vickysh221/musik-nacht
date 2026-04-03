@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useMuseumSceneStore } from '../store/useMuseumSceneStore'
 import type { BotSceneConfig } from '../data/botSceneMap'
 import { ClawtAnimationLayer } from './components/ClawtAnimationLayer'
@@ -10,14 +10,22 @@ interface BotScenePrototypeProps {
 }
 
 export function BotScenePrototype({ config }: BotScenePrototypeProps) {
-  const songs      = useMuseumSceneStore((s) => s.songs)
   const selectSong = useMuseumSceneStore((s) => s.selectSong)
+  const upsertSongs = useMuseumSceneStore((s) => s.upsertSongs)
+  const playSelectedSong = useMuseumSceneStore((s) => s.playSelectedSong)
+  const autoplayRef = useRef<string | null>(null)
 
-  // On mount (or when config changes), select the matching song in the store
   useEffect(() => {
-    const match = songs.find((s) => s.originalId === config.originalSongId)
-    if (match) selectSong(match.id)
-  }, [config.originalSongId, songs, selectSong])
+    const song = config.resolvedSong
+    if (!song) return
+
+    upsertSongs([song])
+    selectSong(song.id)
+
+    if (autoplayRef.current === config.botId) return
+    autoplayRef.current = config.botId
+    void playSelectedSong(song.id)
+  }, [config.botId, config.resolvedSong, playSelectedSong, selectSong, upsertSongs])
 
   return (
     <div

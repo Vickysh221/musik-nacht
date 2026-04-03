@@ -1,14 +1,40 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BOT_SCENE_MAP } from '../data/botSceneMap'
+import { buildBotSceneConfigs, FALLBACK_BOT_SCENE_MAP, type BotSceneConfig } from '../data/botSceneMap'
 import { BotScenePrototype } from './BotScenePrototype'
 
 export function BotPrototypesPage() {
+  const [configs, setConfigs] = useState<BotSceneConfig[]>(FALLBACK_BOT_SCENE_MAP)
   const [idx, setIdx] = useState(0)
-  const total = BOT_SCENE_MAP.length
-  const config = BOT_SCENE_MAP[idx]!
+  const total = configs.length
+  const config = configs[idx]!
 
   const prev = useCallback(() => setIdx((i) => (i - 1 + total) % total), [total])
   const next = useCallback(() => setIdx((i) => (i + 1) % total), [total])
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadConfigs() {
+      try {
+        const response = await fetch('/api/library/bot-song-map')
+        const result = await response.json()
+        if (!response.ok || !Array.isArray(result?.entries)) return
+
+        const nextConfigs = buildBotSceneConfigs(result.entries)
+        if (!cancelled && nextConfigs.length > 0) {
+          setConfigs(nextConfigs)
+          setIdx((current) => Math.min(current, nextConfigs.length - 1))
+        }
+      } catch {
+        // Keep fallback map when bot-song-map cannot be resolved.
+      }
+    }
+
+    void loadConfigs()
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   // Keyboard navigation
   useEffect(() => {
@@ -39,7 +65,7 @@ export function BotPrototypesPage() {
           pointerEvents: 'auto',
         }}
       >
-        {BOT_SCENE_MAP.map((scene, i) => (
+        {configs.map((scene, i) => (
           <button
             key={scene.botId}
             type="button"

@@ -22,6 +22,7 @@ type MuseumSceneStore = {
   activeVisitorIds: string[]
   visitorRefreshCount: number
   setSongs: (nextSongs: Song[]) => void
+  upsertSongs: (nextSongs: Song[]) => void
   setAgents: (nextAgents: Agent[]) => void
   setEdges: (nextEdges: RelationEdge[]) => void
   selectSong: (songId: string | null) => void
@@ -33,7 +34,7 @@ type MuseumSceneStore = {
   refreshPlayerState: () => Promise<void>
   loadRandomPlayableFavorites: (count?: number) => Promise<void>
   runNightVisitorSelection: () => void
-  playSelectedSong: () => Promise<void>
+  playSelectedSong: (songId?: string) => Promise<void>
   pausePlayback: () => Promise<void>
   stopPlayback: () => Promise<void>
 }
@@ -78,6 +79,14 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
   activeVisitorIds: initialSelection.activeVisitorIds,
   visitorRefreshCount: 0,
   setSongs: (nextSongs) => set({ songs: hydrateSongs(nextSongs) }),
+  upsertSongs: (nextSongs) =>
+    set((state) => {
+      const merged = new Map(state.songs.map((song) => [song.id, song]))
+      for (const song of hydrateSongs(nextSongs)) {
+        merged.set(song.id, song)
+      }
+      return { songs: Array.from(merged.values()) }
+    }),
   setAgents: (nextAgents) => set({ agents: hydrateAgents(nextAgents) }),
   setEdges: (nextEdges) => set({ edges: nextEdges }),
   selectSong: (songId) =>
@@ -199,10 +208,15 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
       libraryHint: `访客偏好已刷新第 ${nextRefreshCount} 轮，今晚来访 ${nightlySelection.activeVisitorIds.length} 位`,
     }))
   },
-  playSelectedSong: async () => {
+  playSelectedSong: async (songId) => {
     const state = get()
-    const selectedSong = state.songs.find((song) => song.id === state.selectedSongId)
+    const targetSongId = songId ?? state.selectedSongId
+    const selectedSong = state.songs.find((song) => song.id === targetSongId)
     if (!selectedSong) return
+
+    if (targetSongId !== state.selectedSongId) {
+      state.selectSong(targetSongId)
+    }
 
     set({ playerBusy: true, playerHint: `尝试播放：${selectedSong.name}` })
 
@@ -218,9 +232,9 @@ export const useMuseumSceneStore = create<MuseumSceneStore>((set, get) => ({
         playback: {
           ...current.playback,
           status: response.ok ? 'playing' : current.playback.status,
-          currentSongId: selectedSong.id,
-          duration: selectedSong.duration / 1000,
-          source: 'local-bridge',
+          currentSongId: response.ok ? selectedSong.id : current.playback.currentSongId,
+          duration: response.ok ? selectedSong.duration / 1000 : current.playback.duration,
+          source: response.ok ? 'local-bridge' : current.playback.source,
         },
         playerHint: result?.message ?? result?.raw ?? `已发送播放请求：${selectedSong.name}`,
       }))

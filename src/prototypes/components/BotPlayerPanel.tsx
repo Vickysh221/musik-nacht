@@ -15,28 +15,33 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
   const playerHint      = useMuseumSceneStore((s) => s.playerHint)
 
   const selectedSong = songs.find((s) => s.id === selectedSongId) ?? null
+  const actualSong   = songs.find((s) => s.id === playback.currentSongId) ?? null
   const isPlaying    = playback.status === 'playing'
-  // Consider "this bot is active" only when the store's selected song matches
   const isCurrentBot =
-    selectedSong !== null &&
-    selectedSong.originalId === config.originalSongId
+    actualSong !== null &&
+    actualSong.originalId === config.originalSongId
 
   const handleToggle = async () => {
     if (playerBusy) return
     if (isPlaying) await pausePlayback()
-    else await playSelectedSong()
+    else await playSelectedSong(config.resolvedSong?.id ?? selectedSongId ?? undefined)
   }
 
-  // Always show the bot's own song meta; cover only when store has the match
-  const displayTitle  = config.songTitle
-  const displayArtist = config.artist
-  const coverUrl      = isCurrentBot ? (selectedSong?.coverImgUrl ?? null) : null
+  const displaySong = config.resolvedSong ?? selectedSong
+  const displayTitle = displaySong?.name ?? config.songTitle
+  const displayArtist = displaySong?.artistNames?.join(', ') ?? config.artist
+  const coverUrl = (isCurrentBot ? actualSong?.coverImgUrl : displaySong?.coverImgUrl) ?? null
 
   const accent = config.colorAccent
 
-  const dur = playback.duration ?? (selectedSong?.duration ? selectedSong.duration / 1000 : 0)
+  const dur = playback.duration ?? (displaySong?.duration ? displaySong.duration / 1000 : 0)
   const prog = playback.progress ?? 0
   const progressPct = dur > 0 ? Math.min(1, prog / dur) * 100 : 0
+  const actualArtist = actualSong?.artistNames?.join(', ')
+  const statusText =
+    actualSong && playback.status !== 'stopped'
+      ? `${playback.status === 'paused' ? '已暂停' : '实际播放'}：${actualSong.name}${actualArtist ? ` · ${actualArtist}` : ''}`
+      : playerHint
 
   return (
     <div
@@ -188,7 +193,7 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
       </button>
 
       {/* Status hint */}
-      {playerHint && (
+      {statusText && (
         <div
           style={{
             position: 'absolute',
@@ -205,7 +210,7 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
             textOverflow: 'ellipsis',
           }}
         >
-          {playerHint}
+          {statusText}
         </div>
       )}
 
