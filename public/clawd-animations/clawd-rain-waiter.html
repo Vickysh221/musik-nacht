@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clawd — Rain Waiter 雨中等待</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #080D14;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+  }
+  canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .info {
+    color: #2A4060;
+    font-size: 11px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<canvas id="c" width="720" height="720"></canvas>
+<div class="info" id="info">いつも雨 — clawd rain waiter</div>
+
+<script>
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+// ─── PALETTE ─────────────────────────────────────────────────
+const PALETTE = {
+  background: { bg: '#080D14', dot: '#0E1520' },
+  clawd:      { body: '#CD6E58', eye: '#000000' },
+  ui:         { white: '#C8D8E8', bubbleBorder: '#3A5070', textDark: '#1A2A3A' },
+  rain:       { drop: '#3A5878', trail: '#2A4060', splash: '#4A6888' },
+  lamp:       {
+    housing: '#C4CC88', glow: '#E8F0B0', glowDim: '#2A3018',
+    glowMid: '#3C4A20', pole: '#1A2230', light: '#B8C870'
+  },
+  ground:     { wet: '#0E1A28', line: '#060E18', puddle: '#121E30', puddleLit: '#1C2E48' },
+  mist:       { a: '#101820', b: '#14202E' },
+};
+
+// ─── PIXEL GRID ──────────────────────────────────────────────
+const PX = 20;
+const GW = cv.width / PX;
+const GH = cv.height / PX;
+
+function px(gx, gy, col) {
+  if (gx < 0 || gx >= GW || gy < 0 || gy >= GH) return;
+  ctx.fillStyle = col;
+  ctx.fillRect(Math.round(gx) * PX, Math.round(gy) * PX, PX, PX);
+}
+
+// ─── SPRITES ─────────────────────────────────────────────────
+const CLAWD_BODY = {
+  width: 14, height: 8,
+  data: [
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,0,1,0,0,1,0,1,0,0,0],
+    [0,0,0,1,0,1,0,0,1,0,1,0,0,0]
+  ],
+  anchors: {
+    eyeLeft:  { x: 4, y: 1 },
+    eyeRight: { x: 9, y: 1 },
+  }
+};
+
+const EYES = {
+  forward:    { left: {dx:0,dy:0}, right: {dx:0,dy:0} },
+  look_right: { left: {dx:1,dy:0}, right: {dx:1,dy:0} },
+  look_left:  { left: {dx:-1,dy:0}, right: {dx:-1,dy:0} },
+  look_down:  { left: {dx:0,dy:1}, right: {dx:0,dy:1} },
+  blink:      { type: 'hidden' }
+};
+
+// ─── BACKGROUND ──────────────────────────────────────────────
+function drawBg() {
+  ctx.fillStyle = PALETTE.background.bg;
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  for (let gy = 4; gy < GH; gy += 6) {
+    for (let gx = 4; gx < GW; gx += 6) {
+      ctx.fillStyle = PALETTE.background.dot;
+      ctx.beginPath();
+      ctx.arc(gx * PX + PX/2, gy * PX + PX/2, 1, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+}
+
+// Wet ground + lamp-lit puddle
+const LAMP_POST_X = 17; // lamp pole x position
+
+function drawGround() {
+  for (let x = 0; x < GW; x++) px(x, 27, PALETTE.ground.line);
+  for (let x = 0; x < GW; x++) {
+    px(x, 28, PALETTE.ground.wet);
+    px(x, 29, PALETTE.ground.wet);
+    px(x, 30, PALETTE.ground.wet);
+  }
+  // Lit puddle under lamp
+  for (let x = LAMP_POST_X - 3; x <= LAMP_POST_X + 4; x++) {
+    px(x, 28, PALETTE.ground.puddle);
+    if (x >= LAMP_POST_X - 1 && x <= LAMP_POST_X + 2) px(x, 28, PALETTE.ground.puddleLit);
+  }
+}
+
+// Streetlamp: pole from y=17 to y=27, lamp head at y=14-16
+function drawLamp() {
+  // Lamp housing (3×3 at top)
+  px(LAMP_POST_X,     14, PALETTE.lamp.housing);
+  px(LAMP_POST_X + 1, 14, PALETTE.lamp.glow);
+  px(LAMP_POST_X - 1, 15, PALETTE.lamp.housing);
+  px(LAMP_POST_X,     15, PALETTE.lamp.glow);
+  px(LAMP_POST_X + 1, 15, PALETTE.lamp.glow);
+  px(LAMP_POST_X + 2, 15, PALETTE.lamp.housing);
+  px(LAMP_POST_X,     16, PALETTE.lamp.housing);
+  px(LAMP_POST_X + 1, 16, PALETTE.lamp.housing);
+
+  // Glow cone below lamp head
+  const g = PALETTE.lamp.glowDim;
+  const gm = PALETTE.lamp.glowMid;
+  // Row 17
+  px(LAMP_POST_X,     17, gm);  px(LAMP_POST_X+1, 17, gm);
+  // Row 18
+  px(LAMP_POST_X-1,   18, g);   px(LAMP_POST_X,   18, gm);
+  px(LAMP_POST_X+1,   18, gm);  px(LAMP_POST_X+2, 18, g);
+  // Row 19
+  px(LAMP_POST_X-2,   19, g);   px(LAMP_POST_X-1, 19, g);
+  px(LAMP_POST_X+2,   19, g);   px(LAMP_POST_X+3, 19, g);
+  // Row 20-21 (widening cone, very dim)
+  for (let x = LAMP_POST_X-3; x <= LAMP_POST_X+4; x++) px(x, 20, g);
+
+  // Pole
+  for (let y = 17; y <= 26; y++) {
+    px(LAMP_POST_X,     y, PALETTE.lamp.pole);
+    px(LAMP_POST_X + 1, y, PALETTE.lamp.pole);
+  }
+}
+
+// ─── DRAW FUNCTIONS ──────────────────────────────────────────
+function drawClawd(ox, oy, opts = {}) {
+  const eyeVariant = opts.eyes || 'forward';
+  for (let r = 0; r < CLAWD_BODY.height; r++)
+    for (let c = 0; c < CLAWD_BODY.width; c++)
+      if (CLAWD_BODY.data[r][c] === 1) px(ox + c, oy + r, PALETTE.clawd.body);
+
+  const ev = EYES[eyeVariant];
+  if (ev && ev.type !== 'hidden') {
+    const el = CLAWD_BODY.anchors.eyeLeft;
+    const er = CLAWD_BODY.anchors.eyeRight;
+    px(ox + el.x + ev.left.dx,  oy + el.y + ev.left.dy,  PALETTE.clawd.eye);
+    px(ox + er.x + ev.right.dx, oy + er.y + ev.right.dy, PALETTE.clawd.eye);
+  }
+}
+
+function drawBubble(bx, by, text) {
+  const tw = text.length + 2;
+  for (let y = 0; y < 3; y++) {
+    for (let x = 0; x < tw; x++) {
+      const isEdge = (y === 0 || y === 2 || x === 0 || x === tw - 1);
+      if ((y === 0 || y === 2) && (x === 0 || x === tw - 1)) continue;
+      px(bx + x, by + y, isEdge ? PALETTE.ui.bubbleBorder : PALETTE.ui.white);
+    }
+  }
+  px(bx + 1, by + 3, PALETTE.ui.bubbleBorder);
+  ctx.fillStyle = PALETTE.ui.textDark;
+  ctx.font = 'bold 11px Courier New';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText(text, (bx + 1) * PX + 3, by * PX + 6);
+}
+
+// ─── RAIN SYSTEM ─────────────────────────────────────────────
+let rainDrops = [];
+
+function spawnRain(count) {
+  for (let i = 0; i < count; i++) {
+    rainDrops.push({
+      x: Math.random() * (GW + 4) - 2,
+      y: -2,
+      vy: 0.85 + Math.random() * 0.35,
+      vx: 0.07,
+    });
+  }
+}
+
+function tickRain() {
+  for (let i = rainDrops.length - 1; i >= 0; i--) {
+    const r = rainDrops[i];
+    r.x += r.vx;
+    r.y += r.vy;
+    if (r.y > GH + 1) { rainDrops.splice(i, 1); continue; }
+    const gx = Math.round(r.x);
+    const gy = Math.round(r.y);
+    px(gx, gy, PALETTE.rain.drop);
+    // Short trail above
+    if (gy - 1 >= 0) px(gx, gy - 1, PALETTE.rain.trail);
+  }
+}
+
+// ─── PARTICLE SYSTEM ─────────────────────────────────────────
+let particles = [];
+
+function addParticle(x, y, col, opts = {}) {
+  particles.push({
+    x, y,
+    vx: opts.vx !== undefined ? opts.vx : (Math.random() - 0.5) * 0.6,
+    vy: opts.vy !== undefined ? opts.vy : -Math.random() * 0.5 - 0.1,
+    life: 1.0,
+    decay: opts.decay || 0.022,
+    col
+  });
+}
+
+function tickParticles() {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.02;
+    p.life -= p.decay;
+    if (p.life <= 0) { particles.splice(i, 1); continue; }
+    if (p.life > 0.1) px(Math.round(p.x), Math.round(p.y), p.col);
+  }
+}
+
+// ─── EASING ──────────────────────────────────────────────────
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+function easeInOut(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+// ─── ANIMATION ───────────────────────────────────────────────
+const FPS   = 30;
+const DUR   = 8;
+const TOTAL = FPS * DUR;
+
+function getPhase(t) {
+  if (t < 0.22) return { name: 'walk_in',   p: t / 0.22 };
+  if (t < 0.45) return { name: 'pause_lamp',p: (t - 0.22) / 0.23 };
+  if (t < 0.62) return { name: 'look_back', p: (t - 0.45) / 0.17 };
+  if (t < 0.75) return { name: 'accept',    p: (t - 0.62) / 0.13 };
+  return               { name: 'continue',  p: (t - 0.75) / 0.25 };
+}
+
+function render(f) {
+  const t = f / TOTAL;
+  const phase = getPhase(t);
+
+  drawBg();
+
+  // Spawn rain every frame
+  spawnRain(2);
+  tickRain();
+
+  drawGround();
+  drawLamp();
+
+  // ── Compute Clawd position ──
+  const groundY = 19;
+  let cx, cy, eyeState, walkBob = 0;
+
+  if (phase.name === 'walk_in') {
+    cx = lerp(-14, LAMP_POST_X - 6, easeOut(phase.p));
+    cy = groundY;
+    walkBob = Math.sin(phase.p * Math.PI * 5) * 0.45;
+    eyeState = 'look_right';
+  } else if (phase.name === 'pause_lamp') {
+    cx = LAMP_POST_X - 6;
+    cy = groundY;
+    // Gentle rain sway
+    walkBob = Math.sin(phase.p * Math.PI * 3.5) * 0.2;
+    eyeState = 'forward';
+  } else if (phase.name === 'look_back') {
+    cx = LAMP_POST_X - 6;
+    cy = groundY;
+    walkBob = Math.sin(phase.p * Math.PI * 2.5) * 0.18;
+    eyeState = 'look_left';
+  } else if (phase.name === 'accept') {
+    cx = LAMP_POST_X - 6;
+    cy = groundY;
+    walkBob = 0;
+    eyeState = phase.p < 0.5 ? 'look_down' : 'forward';
+  } else {
+    // continue walking
+    cx = lerp(LAMP_POST_X - 6, 40, easeInOut(phase.p));
+    cy = groundY;
+    walkBob = Math.sin(phase.p * Math.PI * 6) * 0.38;
+    eyeState = 'look_right';
+  }
+
+  const drawCy = Math.round(cy + walkBob);
+  const drawCx = Math.round(cx);
+
+  // Rain splash particles at feet
+  if (f % 18 === 0 && drawCx > -2 && drawCx < GW) {
+    addParticle(drawCx + 6, 27, PALETTE.rain.splash, {
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: -0.3,
+      decay: 0.04
+    });
+  }
+
+  drawClawd(drawCx, drawCy, { eyes: eyeState });
+
+  // "..." bubble during look_back (when no one comes)
+  if (phase.name === 'look_back' && phase.p > 0.55) {
+    const fade = Math.min(1, (phase.p - 0.55) / 0.1);
+    if (fade > 0.6) drawBubble(drawCx - 2, drawCy - 5, '?');
+  }
+
+  // Lone droplet on body during accept phase (visual: wet)
+  if (phase.name === 'accept' && f % 12 === 0) {
+    addParticle(drawCx + 5, drawCy + 1, PALETTE.rain.drop, {
+      vx: 0.08,
+      vy: 0.15,
+      decay: 0.05
+    });
+  }
+
+  tickParticles();
+}
+
+// ─── LOOP ────────────────────────────────────────────────────
+let startTime = null;
+
+function loop(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = (ts - startTime) / 1000;
+  const loopT   = elapsed % DUR;
+  const frame   = Math.floor(loopT * FPS);
+
+  if (loopT < 0.05) {
+    particles = [];
+    rainDrops = [];
+  }
+
+  render(frame);
+
+  document.getElementById('info').textContent =
+    `いつも雨  ${loopT.toFixed(1)}s/${DUR}s  loop ${Math.floor(elapsed/DUR)+1}`;
+
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

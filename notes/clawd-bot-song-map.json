@@ -1,0 +1,125 @@
+[
+  {
+    "songId": "1364351242",
+    "songTitle": "春を待って",
+    "artist": "never young beach",
+    "botId": "clawd-spring-traveler",
+    "botRole": "初春旅人 bot",
+    "theme": ["spring", "waiting", "departure", "rain-after", "hesitation"],
+    "prompt": "clawd 在初春刚停的细雨后，提着一盏小灯和小包从画面外慢慢走进来，停下来像是在整理想说的话，然后带着一点笨拙和寂寞继续出发去见某个人。",
+    "lyricIntent": "熬过冬天之后，带着一点犹豫去见某个人。",
+    "sceneZone": "entry-walkway",
+    "phaseHints": [
+      "enter with bag and lamp",
+      "pause and hesitate",
+      "resume walking toward someone"
+    ],
+    "playbackBinding": {
+      "selected": "soft warm glow around lamp and bag",
+      "playing": "main walking animation with short pause",
+      "paused": "gentle breathing idle with light sway",
+      "inactive": "dim silhouette near doorway"
+    },
+    "lyricSurface": {
+      "type": "fog-window",
+      "placement": "left-window-near-entry",
+      "style": "soft fading handwritten"
+    },
+    "scenePrototype": {
+      "sceneId": "spring-waiting-scene",
+      "environment": "rainy-early-spring-entry",
+      "playerPlacement": "bench-radio",
+      "visualMood": "wet floor, pale spring light, quiet departure",
+      "components": [
+        "clawd traveler sprite",
+        "small lamp sprite",
+        "small bag sprite",
+        "fogged window lyric surface",
+        "compact radio player object",
+        "wet floor reflection layer"
+      ]
+    }
+  },
+  {
+    "songId": "1364351247",
+    "songTitle": "いつも雨",
+    "artist": "never young beach",
+    "botId": "clawd-rain-waiter",
+    "botRole": "雨中等待 bot",
+    "theme": ["rain", "waiting", "missed-connection", "night-walk", "melancholy"],
+    "prompt": "clawd 在夜晚的细雨里沿着湿漉漉的路面缓慢前行，偶尔停在路灯下等待、回望，却始终没有等到要见的人，最后又在雨里继续往前走。",
+    "lyricIntent": "一直在路上，也一直在错过；每到关键处，总是下雨。",
+    "sceneZone": "rain-lamp-corner",
+    "phaseHints": [
+      "walk through drizzle",
+      "pause under lamp and look back",
+      "continue walking alone in rain"
+    ],
+    "playbackBinding": {
+      "selected": "cool light reflection appears on wet ground",
+      "playing": "main rain-walk animation with pause and look-back",
+      "paused": "light rain idle with minimal sway",
+      "inactive": "faint bot outline under dark lamp"
+    },
+    "lyricSurface": {
+      "type": "rain-glass-projection",
+      "placement": "window-or-wet-wall-near-lamp",
+      "style": "blurred reflective subtitles"
+    },
+    "scenePrototype": {
+      "sceneId": "rain-waiting-scene",
+      "environment": "night-rain-lamp-corner",
+      "playerPlacement": "signal-box-or-window-radio",
+      "visualMood": "streetlamp reflection, damp glass, missed encounter",
+      "components": [
+        "clawd waiting sprite",
+        "rain particle layer",
+        "lamp light cone",
+        "wet ground reflection strip",
+        "small radio or signal box player object",
+        "rain-glass lyric surface"
+      ]
+    }
+  },
+  {
+    "songId": "1435628297",
+    "songTitle": "La lune",
+    "artist": "L'Impératrice",
+    "botId": "clawd-lunar-goddess",
+    "botRole": "月桂女神 bot",
+    "theme": ["moon", "ritual", "night", "cold-blue", "goddess", "field-shift"],
+    "prompt": "clawd 化身为月桂女神般的夜之使者，在深蓝夜色中缓缓显现，抬起钳子召来银白月光与星屑，让周围的空气和地面一点点染上月亮般的冷蓝光。",
+    "lyricIntent": "不是赶路，而是作为高位存在改变整个场域。",
+    "sceneZone": "moon-altar",
+    "phaseHints": [
+      "slow reveal from darkness",
+      "raise claw and summon silver light",
+      "hold lunar field and drifting particles"
+    ],
+    "playbackBinding": {
+      "selected": "silver shimmer activates around altar",
+      "playing": "main summon-moonlight animation",
+      "paused": "gentle lunar glow with drifting particles",
+      "inactive": "faint silhouette in upper darkness"
+    },
+    "lyricSurface": {
+      "type": "moonlight-glyph",
+      "placement": "upper-wall-or-altar-air",
+      "style": "thin silver text fading in and out"
+    },
+    "scenePrototype": {
+      "sceneId": "lunar-altar-scene",
+      "environment": "upper-blue-night-altar",
+      "playerPlacement": "altar-console",
+      "visualMood": "deep blue darkness, silver particles, ritual calm",
+      "components": [
+        "clawd goddess sprite",
+        "silver particle field",
+        "moonlight beam layer",
+        "altar or pedestal player object",
+        "cold blue ground tint",
+        "moonlight lyric glyph surface"
+      ]
+    }
+  }
+]

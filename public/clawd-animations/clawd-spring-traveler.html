@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clawd — Spring Traveler 初春旅人</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0D1118;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+  }
+  canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .info {
+    color: #3A5070;
+    font-size: 11px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<canvas id="c" width="720" height="720"></canvas>
+<div class="info" id="info">春を待って — clawd spring traveler</div>
+
+<script>
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+// ─── PALETTE ─────────────────────────────────────────────────
+const PALETTE = {
+  background: { bg: '#0D1118', dot: '#131B26' },
+  stars:      { dark: '#1E2A3A', mid: '#2A3A52', light: '#3A5070' },
+  clawd:      { body: '#CD6E58', eye: '#000000' },
+  ui:         { white: '#FFFFFF', bubbleBorder: '#4A6078', textDark: '#2A3A52' },
+  lamp:       { glass: '#E8CC80', glow: '#FFF8C8', handle: '#8B7A60', glowDim: '#4A3A18', glowMid: '#6A5228' },
+  bag:        { strap: '#A07858', body: '#8A6848', buckle: '#C4A070' },
+  ground:     { wet: '#1A2535', line: '#0E1820', puddle: '#1E3050', puddleHi: '#2A4068' },
+  mist:       { a: '#1E3048', b: '#263A58' },
+  spring:     { blossom: '#E8A8B8', blossomDark: '#C07890' },
+  rain:       { drop: '#2A4060', trace: '#1E3050' },
+};
+
+// ─── PIXEL GRID ──────────────────────────────────────────────
+const PX = 20;
+const GW = cv.width / PX;
+const GH = cv.height / PX;
+
+function px(gx, gy, col) {
+  if (gx < 0 || gx >= GW || gy < 0 || gy >= GH) return;
+  ctx.fillStyle = col;
+  ctx.fillRect(Math.round(gx) * PX, Math.round(gy) * PX, PX, PX);
+}
+
+// ─── SPRITES ─────────────────────────────────────────────────
+const CLAWD_BODY = {
+  width: 14, height: 8,
+  data: [
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,0,1,0,0,1,0,1,0,0,0],
+    [0,0,0,1,0,1,0,0,1,0,1,0,0,0]
+  ],
+  anchors: {
+    eyeLeft:  { x: 4, y: 1 },
+    eyeRight: { x: 9, y: 1 },
+  }
+};
+
+const EYES = {
+  forward:    { left: {dx:0,dy:0}, right: {dx:0,dy:0} },
+  look_right: { left: {dx:1,dy:0}, right: {dx:1,dy:0} },
+  look_left:  { left: {dx:-1,dy:0}, right: {dx:-1,dy:0} },
+  look_down:  { left: {dx:0,dy:1}, right: {dx:0,dy:1} },
+  blink:      { type: 'hidden' }
+};
+
+// Lamp sprite (3 wide × 5 tall): head up, handle down
+// Row0: .GL.  G=glass, L=bright center, H=handle
+// Row1: GGL
+// Row2: GGL
+// Row3: .H.
+// Row4: .H.
+const LAMP = {
+  w: 3, h: 5,
+  data: [
+    [1,2,1],
+    [1,2,1],
+    [1,1,1],
+    [0,3,0],
+    [0,3,0],
+  ],
+  cols: ['', PALETTE.lamp.glass, PALETTE.lamp.glow, PALETTE.lamp.handle]
+};
+
+// Bag sprite (4 wide × 4 tall)
+const BAG = {
+  w: 4, h: 4,
+  data: [
+    [0,1,1,0],
+    [2,2,2,2],
+    [2,3,2,2],
+    [0,2,2,0],
+  ],
+  cols: ['', PALETTE.bag.strap, PALETTE.bag.body, PALETTE.bag.buckle]
+};
+
+// ─── BACKGROUND ──────────────────────────────────────────────
+function drawBg() {
+  ctx.fillStyle = PALETTE.background.bg;
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  // Sparse dot grid
+  for (let gy = 3; gy < GH; gy += 5) {
+    for (let gx = 3; gx < GW; gx += 5) {
+      ctx.fillStyle = PALETTE.background.dot;
+      ctx.beginPath();
+      ctx.arc(gx * PX + PX / 2, gy * PX + PX / 2, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+// Wet ground strip (y=27-30)
+function drawGround() {
+  for (let x = 0; x < GW; x++) px(x, 27, PALETTE.ground.line);
+  for (let x = 0; x < GW; x++) {
+    px(x, 28, PALETTE.ground.wet);
+    px(x, 29, PALETTE.ground.wet);
+  }
+  // Puddle patches
+  for (let x = 4; x <= 10; x++) px(x, 28, PALETTE.ground.puddle);
+  for (let x = 5; x <= 9;  x++) px(x, 28, PALETTE.ground.puddleHi);
+  for (let x = 20; x <= 27; x++) px(x, 28, PALETTE.ground.puddle);
+}
+
+// Fading rain traces (vertical line remnants after rain)
+function drawRainTraces(t) {
+  const fade = Math.max(0, 1 - t / 0.35);
+  if (fade <= 0) return;
+  const traces = [
+    {x:3,y:4},{x:8,y:2},{x:13,y:6},{x:19,y:3},
+    {x:25,y:5},{x:31,y:2},{x:6,y:11},{x:22,y:9},
+    {x:29,y:8},{x:34,y:12},{x:16,y:7},{x:10,y:14}
+  ];
+  for (const tr of traces) {
+    if (fade > 0.5) px(tr.x, tr.y, PALETTE.rain.trace);
+    px(tr.x, tr.y + 1, PALETTE.rain.drop);
+  }
+}
+
+// Lamp ambient glow (drawn before Clawd)
+function drawLampGlow(lx, ly) {
+  const g = PALETTE.lamp.glowDim;
+  const gm = PALETTE.lamp.glowMid;
+  px(lx - 1, ly,     g); px(lx - 1, ly + 1, g); px(lx - 1, ly + 2, g);
+  px(lx + 3, ly,     g); px(lx + 3, ly + 1, g); px(lx + 3, ly + 2, g);
+  px(lx,     ly - 1, g); px(lx + 1, ly - 1, gm); px(lx + 2, ly - 1, g);
+}
+
+// Lamp ground reflection
+function drawLampReflection(lx) {
+  px(lx,     29, PALETTE.lamp.glowDim);
+  px(lx + 1, 29, PALETTE.lamp.glowMid);
+  px(lx + 2, 29, PALETTE.lamp.glowDim);
+  px(lx + 1, 30, PALETTE.lamp.glowDim);
+}
+
+// ─── DRAW FUNCTIONS ──────────────────────────────────────────
+function drawClawd(ox, oy, opts = {}) {
+  const eyeVariant = opts.eyes || 'forward';
+  for (let r = 0; r < CLAWD_BODY.height; r++) {
+    for (let c = 0; c < CLAWD_BODY.width; c++) {
+      if (CLAWD_BODY.data[r][c] === 1) px(ox + c, oy + r, PALETTE.clawd.body);
+    }
+  }
+  const ev = EYES[eyeVariant];
+  if (ev && ev.type !== 'hidden') {
+    const el = CLAWD_BODY.anchors.eyeLeft;
+    const er = CLAWD_BODY.anchors.eyeRight;
+    px(ox + el.x + ev.left.dx,  oy + el.y + ev.left.dy,  PALETTE.clawd.eye);
+    px(ox + er.x + ev.right.dx, oy + er.y + ev.right.dy, PALETTE.clawd.eye);
+  }
+}
+
+function drawLamp(lx, ly) {
+  for (let r = 0; r < LAMP.h; r++)
+    for (let c = 0; c < LAMP.w; c++) {
+      const v = LAMP.data[r][c];
+      if (v > 0) px(lx + c, ly + r, LAMP.cols[v]);
+    }
+}
+
+function drawBag(bx, by) {
+  for (let r = 0; r < BAG.h; r++)
+    for (let c = 0; c < BAG.w; c++) {
+      const v = BAG.data[r][c];
+      if (v > 0) px(bx + c, by + r, BAG.cols[v]);
+    }
+}
+
+function drawBubble(bx, by, text) {
+  const tw = text.length + 2;
+  for (let y = 0; y < 3; y++) {
+    for (let x = 0; x < tw; x++) {
+      const isEdge = (y === 0 || y === 2 || x === 0 || x === tw - 1);
+      if ((y === 0 || y === 2) && (x === 0 || x === tw - 1)) continue;
+      px(bx + x, by + y, isEdge ? PALETTE.ui.bubbleBorder : PALETTE.ui.white);
+    }
+  }
+  px(bx + 1, by + 3, PALETTE.ui.bubbleBorder);
+  ctx.fillStyle = PALETTE.ui.textDark;
+  ctx.font = 'bold 11px Courier New';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText(text, (bx + 1) * PX + 3, by * PX + 6);
+}
+
+// ─── PARTICLE SYSTEM ─────────────────────────────────────────
+let particles = [];
+
+function addParticle(x, y, col, opts = {}) {
+  particles.push({
+    x, y,
+    vx: opts.vx !== undefined ? opts.vx : (Math.random() - 0.5) * 0.7,
+    vy: opts.vy !== undefined ? opts.vy : -Math.random() * 0.7 - 0.2,
+    life: 1.0,
+    decay: opts.decay || 0.022,
+    col
+  });
+}
+
+function tickParticles() {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.025;
+    p.life -= p.decay;
+    if (p.life <= 0) { particles.splice(i, 1); continue; }
+    if (p.life > 0.12) px(Math.round(p.x), Math.round(p.y), p.col);
+  }
+}
+
+// ─── EASING ──────────────────────────────────────────────────
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+function easeInOut(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+function lerp(a, b, t) { return a + (b - a) * t; }
+function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+// ─── ANIMATION ───────────────────────────────────────────────
+const FPS   = 30;
+const DUR   = 7;
+const TOTAL = FPS * DUR;
+
+function getPhase(t) {
+  if (t < 0.18) return { name: 'enter',   p: t / 0.18 };
+  if (t < 0.38) return { name: 'walk_in', p: (t - 0.18) / 0.20 };
+  if (t < 0.62) return { name: 'pause',   p: (t - 0.38) / 0.24 };
+  if (t < 0.75) return { name: 'gather',  p: (t - 0.62) / 0.13 };
+  return               { name: 'depart',  p: (t - 0.75) / 0.25 };
+}
+
+function render(f) {
+  const t = f / TOTAL;
+  const phase = getPhase(t);
+
+  drawBg();
+  drawRainTraces(t);
+  drawGround();
+
+  // ── Compute Clawd position ──
+  // groundY=19 → Clawd top so feet (rows 6-7) land at y=25-26, above ground line y=27
+  const groundY = 19;
+  let cx, cy, eyeState, walkBob = 0;
+
+  if (phase.name === 'enter') {
+    cx = lerp(-14, 4, easeOut(phase.p));
+    cy = groundY;
+    walkBob = Math.sin(phase.p * Math.PI * 5) * 0.45;
+    eyeState = 'look_right';
+  } else if (phase.name === 'walk_in') {
+    cx = lerp(4, 11, easeOut(phase.p));
+    cy = groundY;
+    walkBob = Math.sin(phase.p * Math.PI * 5) * 0.35;
+    eyeState = 'look_right';
+  } else if (phase.name === 'pause') {
+    cx = 11;
+    cy = groundY;
+    // Gentle breathing bob
+    walkBob = Math.sin(phase.p * Math.PI * 4) * 0.22;
+    eyeState = phase.p < 0.55 ? 'look_down' : 'forward';
+  } else if (phase.name === 'gather') {
+    cx = 11;
+    // Slight upward pull as courage gathers
+    cy = groundY - easeOut(phase.p) * 0.6;
+    walkBob = 0;
+    eyeState = 'forward';
+  } else {
+    // depart
+    cx = lerp(11, 40, easeInOut(phase.p));
+    cy = groundY;
+    walkBob = Math.sin(phase.p * Math.PI * 6) * 0.4;
+    eyeState = 'look_right';
+  }
+
+  const drawCy = Math.round(cy + walkBob);
+  const drawCx = Math.round(cx);
+
+  // Lamp: held on left (trailing) side, lamp head at ~(cx-4, cy)
+  const lampX = drawCx - 4;
+  const lampY = drawCy - 1;
+
+  // Bag: right trailing side (behind walking direction)
+  const bagX = drawCx + 14;
+  const bagY = drawCy + 3;
+
+  // ── Glow around lamp ──
+  if (lampX > -5 && lampX < GW) {
+    drawLampGlow(lampX, lampY);
+    drawLampReflection(lampX);
+  }
+
+  // ── Warm lamp sparks ──
+  if (f % 14 === 0 && lampX > -2 && lampX < GW - 2) {
+    addParticle(lampX + 1, lampY, PALETTE.lamp.glass, {
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: -0.4 - Math.random() * 0.3,
+      decay: 0.032
+    });
+  }
+
+  // ── Bag (draw first, behind Clawd body) ──
+  if (bagX < GW + 4 && bagX > -5) drawBag(bagX, bagY);
+
+  // ── Clawd ──
+  drawClawd(drawCx, drawCy, { eyes: eyeState });
+
+  // ── Lamp (draw after Clawd, on left claw) ──
+  if (lampX > -4 && lampX < GW) drawLamp(lampX, lampY);
+
+  // ── Hesitation bubble (during pause, 45–80%) ──
+  if (phase.name === 'pause' && phase.p > 0.42 && phase.p < 0.82) {
+    const fade = Math.min(1, Math.min(phase.p - 0.42, 0.82 - phase.p) / 0.08);
+    if (fade > 0.6) drawBubble(drawCx + 2, drawCy - 5, '...');
+  }
+
+  // ── Mist particles during pause ──
+  if (phase.name === 'pause' && f % 9 === 0) {
+    addParticle(drawCx + 7, drawCy + 3, PALETTE.mist.a, {
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: -0.15,
+      decay: 0.012
+    });
+  }
+
+  // ── Blossom particles when gathering resolve ──
+  if (phase.name === 'gather' && phase.p > 0.6 && f % 6 === 0) {
+    addParticle(drawCx + 6, drawCy, PALETTE.spring.blossom, {
+      vx: (Math.random() - 0.5) * 0.7,
+      vy: -0.45,
+      decay: 0.024
+    });
+  }
+
+  // ── Blink occasionally during pause ──
+  if (phase.name === 'pause') {
+    const blinkCycle = f % 55;
+    if (blinkCycle >= 50) {
+      // redraw eyes as blink (fill over eye pixels)
+      const el = CLAWD_BODY.anchors.eyeLeft;
+      const er = CLAWD_BODY.anchors.eyeRight;
+      px(drawCx + el.x, drawCy + el.y + 1, PALETTE.clawd.eye);
+      px(drawCx + er.x, drawCy + er.y + 1, PALETTE.clawd.eye);
+    }
+  }
+
+  tickParticles();
+}
+
+// ─── LOOP ────────────────────────────────────────────────────
+let startTime = null;
+
+function loop(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = (ts - startTime) / 1000;
+  const loopT   = elapsed % DUR;
+  const frame   = Math.floor(loopT * FPS);
+
+  if (loopT < 0.05) particles = [];
+
+  render(frame);
+
+  document.getElementById('info').textContent =
+    `春を待って  ${loopT.toFixed(1)}s/${DUR}s  loop ${Math.floor(elapsed/DUR)+1}`;
+
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

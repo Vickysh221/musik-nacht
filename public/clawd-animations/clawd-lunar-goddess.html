@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clawd — Lunar Goddess 月桂女神</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #040810;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+  }
+  canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .info {
+    color: #2A3A58;
+    font-size: 11px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<canvas id="c" width="720" height="720"></canvas>
+<div class="info" id="info">La lune — clawd lunar goddess</div>
+
+<script>
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+// ─── PALETTE ─────────────────────────────────────────────────
+const PALETTE = {
+  background: { bg: '#040810', dot: '#08101C' },
+  clawd:      { body: '#CD6E58', bodyDim: '#4A2018', bodyMid: '#8A4030', eye: '#000000' },
+  lunar:      {
+    silver:    '#B8C8D8',
+    moonbeam:  '#D8E8F8',
+    starDust:  '#8898B8',
+    coldBlue:  '#1A2848',
+    altar:     '#141E30',
+    altarHi:   '#1E2C42',
+    rim:       '#304878',
+    rimGlow:   '#4A6898',
+    glyphCol:  '#7898C8',
+  },
+  ground:     { base: '#080E18', tint: '#101828', lit: '#182438' },
+  stars:      { a: '#1E2E48', b: '#283A60', c: '#384A78' },
+};
+
+// ─── PIXEL GRID ──────────────────────────────────────────────
+const PX = 20;
+const GW = cv.width / PX;
+const GH = cv.height / PX;
+
+function px(gx, gy, col) {
+  if (gx < 0 || gx >= GW || gy < 0 || gy >= GH) return;
+  ctx.fillStyle = col;
+  ctx.fillRect(Math.round(gx) * PX, Math.round(gy) * PX, PX, PX);
+}
+
+// ─── SPRITES ─────────────────────────────────────────────────
+const CLAWD_BODY = {
+  width: 14, height: 8,
+  data: [
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,1,0,1,0,0,1,0,1,0,0,0],
+    [0,0,0,1,0,1,0,0,1,0,1,0,0,0]
+  ],
+  anchors: {
+    eyeLeft:  { x: 4, y: 1 },
+    eyeRight: { x: 9, y: 1 },
+    handLeft:  { x: 0,  y: 2 },
+    handRight: { x: 13, y: 2 },
+  }
+};
+
+const EYES = {
+  forward:    { left: {dx:0,dy:0}, right: {dx:0,dy:0} },
+  look_right: { left: {dx:1,dy:0}, right: {dx:1,dy:0} },
+  look_left:  { left: {dx:-1,dy:0}, right: {dx:-1,dy:0} },
+  look_down:  { left: {dx:0,dy:1}, right: {dx:0,dy:1} },
+  blink:      { type: 'hidden' }
+};
+
+// Static star field (fixed positions)
+const STAR_POSITIONS = [
+  {x:2,y:2},{x:10,y:1},{x:19,y:3},{x:28,y:1},{x:34,y:4},
+  {x:5,y:6},{x:15,y:5},{x:24,y:7},{x:31,y:5},
+  {x:1,y:11},{x:7,y:9},{x:22,y:8},{x:33,y:10},
+  {x:3,y:15},{x:13,y:13},{x:26,y:14},{x:35,y:12},
+];
+
+// ─── BACKGROUND ──────────────────────────────────────────────
+function drawBg(revealT) {
+  ctx.fillStyle = PALETTE.background.bg;
+  ctx.fillRect(0, 0, cv.width, cv.height);
+
+  // Star field gradually brightens with reveal
+  for (const s of STAR_POSITIONS) {
+    const twinkle = Math.sin(Date.now() * 0.001 * 0.8 + s.x * 0.7 + s.y * 0.5);
+    const brightA = revealT > 0.1 ? Math.min(1, (revealT - 0.1) / 0.3) : 0;
+    if (brightA <= 0) continue;
+    if (twinkle > 0.3) {
+      px(s.x, s.y, PALETTE.stars.c);
+    } else if (twinkle > -0.2) {
+      px(s.x, s.y, PALETTE.stars.b);
+    } else {
+      px(s.x, s.y, PALETTE.stars.a);
+    }
+  }
+}
+
+// Altar/pedestal below Clawd
+function drawAltar(altarReveal) {
+  if (altarReveal <= 0) return;
+  const ax = 9, ay = 25; // altar top-left
+  // Main slab (8×2)
+  for (let x = ax; x < ax + 16; x++) {
+    px(x, ay,     PALETTE.lunar.altar);
+    px(x, ay + 1, PALETTE.lunar.altarHi);
+    px(x, ay + 2, PALETTE.lunar.altar);
+  }
+  // Altar edge highlights
+  px(ax,      ay, PALETTE.lunar.rim);
+  px(ax + 15, ay, PALETTE.lunar.rim);
+  // Pedestal glow rim (appears after reveal)
+  if (altarReveal > 0.5) {
+    for (let x = ax - 1; x <= ax + 16; x++) {
+      px(x, ay - 1, PALETTE.lunar.coldBlue);
+    }
+  }
+}
+
+// Moonbeam column descending from top to Clawd
+function drawMoonbeam(intensity, claydX) {
+  if (intensity <= 0) return;
+  const centerX = claydX + 7; // Clawd center
+  // Beam from y=0 to y=17 (where Clawd sits on altar at y=17)
+  for (let y = 0; y <= 16; y++) {
+    const progress = y / 16;
+    // Beam narrows as it descends
+    const halfW = Math.round(lerp(4, 1, progress));
+    for (let dx = -halfW; dx <= halfW; dx++) {
+      const distFromCenter = Math.abs(dx);
+      if (distFromCenter === 0) {
+        px(centerX + dx, y, PALETTE.lunar.moonbeam);
+      } else if (distFromCenter <= 2) {
+        px(centerX + dx, y, PALETTE.lunar.silver);
+      } else {
+        px(centerX + dx, y, PALETTE.lunar.starDust);
+      }
+    }
+  }
+}
+
+// Ground cold-blue field expanding from center
+function drawLunarField(fieldT, claydX) {
+  if (fieldT <= 0) return;
+  const centerX = claydX + 7;
+  const spreadW = Math.round(fieldT * 18);
+  for (let y = 27; y <= 31; y++) {
+    for (let dx = -spreadW; dx <= spreadW; dx++) {
+      const x = centerX + dx;
+      if (x < 0 || x >= GW) continue;
+      const distFrac = Math.abs(dx) / Math.max(1, spreadW);
+      if (distFrac < 0.3) px(x, y, PALETTE.ground.lit);
+      else if (distFrac < 0.7) px(x, y, PALETTE.ground.tint);
+      else px(x, y, PALETTE.ground.base);
+    }
+  }
+}
+
+// Energy tendrils above Clawd claws (raised claws effect)
+function drawEnergyTendrils(ox, oy, intensity) {
+  if (intensity <= 0) return;
+  // Left claw tendril
+  const lx = ox + 1, rx = ox + 12;
+  const height = Math.round(intensity * 4);
+  for (let dy = 0; dy < height; dy++) {
+    const col = dy === 0 ? PALETTE.lunar.silver : PALETTE.lunar.starDust;
+    px(lx, oy - dy - 1, col);
+    px(rx, oy - dy - 1, col);
+  }
+  // Spread at top
+  if (height >= 3) {
+    px(lx - 1, oy - height, PALETTE.lunar.starDust);
+    px(rx + 1,  oy - height, PALETTE.lunar.starDust);
+  }
+}
+
+// ─── DRAW FUNCTIONS ──────────────────────────────────────────
+function drawClawd(ox, oy, opts = {}) {
+  const eyeVariant = opts.eyes || 'forward';
+  const bodyCol = opts.bodyCol || PALETTE.clawd.body;
+
+  for (let r = 0; r < CLAWD_BODY.height; r++)
+    for (let c = 0; c < CLAWD_BODY.width; c++)
+      if (CLAWD_BODY.data[r][c] === 1) px(ox + c, oy + r, bodyCol);
+
+  if (opts.rimGlow) {
+    // Draw a silver rim around Clawd (1-pixel border on visible cells)
+    for (let r = 0; r < CLAWD_BODY.height; r++) {
+      for (let c = 0; c < CLAWD_BODY.width; c++) {
+        if (CLAWD_BODY.data[r][c] === 1) {
+          // Check neighbors
+          const neighbors = [
+            [r-1,c],[r+1,c],[r,c-1],[r,c+1]
+          ];
+          for (const [nr,nc] of neighbors) {
+            if (nr < 0 || nr >= CLAWD_BODY.height || nc < 0 || nc >= CLAWD_BODY.width ||
+                CLAWD_BODY.data[nr][nc] === 0) {
+              px(ox + c + (nc - c), oy + r + (nr - r), PALETTE.lunar.rimGlow);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const ev = EYES[eyeVariant];
+  if (ev && ev.type !== 'hidden') {
+    const el = CLAWD_BODY.anchors.eyeLeft;
+    const er = CLAWD_BODY.anchors.eyeRight;
+    px(ox + el.x + ev.left.dx,  oy + el.y + ev.left.dy,  PALETTE.clawd.eye);
+    px(ox + er.x + ev.right.dx, oy + er.y + ev.right.dy, PALETTE.clawd.eye);
+  }
+}
+
+// ─── PARTICLE SYSTEM ─────────────────────────────────────────
+let particles = [];
+
+function addParticle(x, y, col, opts = {}) {
+  particles.push({
+    x, y,
+    vx: opts.vx !== undefined ? opts.vx : (Math.random() - 0.5) * 0.6,
+    vy: opts.vy !== undefined ? opts.vy : -Math.random() * 0.5 - 0.2,
+    life: 1.0,
+    decay: opts.decay || 0.018,
+    col
+  });
+}
+
+function tickParticles() {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.015; // gentle gravity
+    p.life -= p.decay;
+    if (p.life <= 0) { particles.splice(i, 1); continue; }
+    if (p.life > 0.1) px(Math.round(p.x), Math.round(p.y), p.col);
+  }
+}
+
+// ─── EASING ──────────────────────────────────────────────────
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+function easeIn(t) { return t * t * t; }
+function easeInOut(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+function lerp(a, b, t) { return a + (b - a) * t; }
+function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+function lerpCol(c1, c2, t) {
+  // Parse hex colors and interpolate
+  function hexToRgb(h) {
+    const r = parseInt(h.slice(1,3),16);
+    const g = parseInt(h.slice(3,5),16);
+    const b = parseInt(h.slice(5,7),16);
+    return {r,g,b};
+  }
+  const a = hexToRgb(c1), b = hexToRgb(c2);
+  const r = Math.round(lerp(a.r, b.r, t));
+  const g = Math.round(lerp(a.g, b.g, t));
+  const bv= Math.round(lerp(a.b, b.b, t));
+  return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${bv.toString(16).padStart(2,'0')}`;
+}
+
+// ─── ANIMATION ───────────────────────────────────────────────
+const FPS   = 30;
+const DUR   = 9;
+const TOTAL = FPS * DUR;
+
+function getPhase(t) {
+  if (t < 0.22) return { name: 'reveal',  p: t / 0.22 };
+  if (t < 0.48) return { name: 'summon',  p: (t - 0.22) / 0.26 };
+  if (t < 0.72) return { name: 'hold',    p: (t - 0.48) / 0.24 };
+  if (t < 0.86) return { name: 'zenith',  p: (t - 0.72) / 0.14 };
+  return               { name: 'sustain', p: (t - 0.86) / 0.14 };
+}
+
+// Clawd always centered
+const CLAWD_X = 11;
+const CLAWD_Y = 17; // sits on altar at y=17 (altar at y=25, which is oy+8)
+
+function render(f) {
+  const t = f / TOTAL;
+  const phase = getPhase(t);
+  const revealT = Math.min(1, t / 0.25);
+
+  drawBg(revealT);
+
+  // ── Global floats ──
+  const fieldT   = phase.name === 'reveal' ? 0 :
+                   phase.name === 'summon'  ? easeOut(phase.p) * 0.5 :
+                   phase.name === 'hold'    ? 0.5 + phase.p * 0.3 :
+                   phase.name === 'zenith'  ? 0.8 + easeOut(phase.p) * 0.2 : 1.0;
+
+  const beamT    = phase.name === 'summon'  ? easeOut(phase.p) :
+                   phase.name === 'hold'    ? 1.0 :
+                   phase.name === 'zenith'  ? 1.0 :
+                   phase.name === 'sustain' ? 1.0 : 0;
+
+  const altarT   = Math.min(1, revealT * 1.5);
+  const tendrilT = phase.name === 'reveal' ? 0 :
+                   phase.name === 'summon'  ? easeOut(phase.p) :
+                   1.0;
+
+  // Body color: fade from void → dim → full
+  const bodyColor = revealT < 0.4
+    ? lerpCol(PALETTE.clawd.bodyDim, PALETTE.clawd.bodyMid, revealT / 0.4)
+    : lerpCol(PALETTE.clawd.bodyMid, PALETTE.clawd.body, (revealT - 0.4) / 0.6);
+
+  // Rim glow: appears in summon+ phases
+  const rimGlow = phase.name !== 'reveal';
+
+  // ── Lunar field on ground ──
+  drawLunarField(fieldT, CLAWD_X);
+
+  // ── Ground base ──
+  for (let x = 0; x < GW; x++) {
+    px(x, 27, PALETTE.ground.base);
+  }
+
+  // ── Altar ──
+  drawAltar(altarT);
+
+  // ── Moonbeam (behind Clawd) ──
+  if (beamT > 0) drawMoonbeam(beamT, CLAWD_X);
+
+  // ── Silver star-dust particles (continuous in hold+) ──
+  if (phase.name !== 'reveal') {
+    const rate = phase.name === 'summon' ? 6 :
+                 phase.name === 'zenith' ? 3 : 5;
+    if (f % rate === 0) {
+      const spread = 12;
+      addParticle(
+        CLAWD_X + 7 + (Math.random() - 0.5) * spread,
+        CLAWD_Y - 2 - Math.random() * 3,
+        Math.random() > 0.5 ? PALETTE.lunar.silver : PALETTE.lunar.starDust,
+        {
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: -0.35 - Math.random() * 0.25,
+          decay: 0.014
+        }
+      );
+    }
+  }
+
+  // ── Energy tendrils (raised claws) ──
+  drawEnergyTendrils(CLAWD_X, CLAWD_Y, tendrilT);
+
+  // ── Clawd ──
+  // Gentle bob (majestic, slow)
+  const bob = Math.sin(f * 0.04) * 0.3;
+  drawClawd(CLAWD_X, Math.round(CLAWD_Y + bob), {
+    eyes: 'forward',
+    bodyCol: bodyColor,
+    rimGlow: rimGlow
+  });
+
+  // ── Moonlight glyph dots (appears in zenith) ──
+  if (phase.name === 'zenith' || phase.name === 'sustain') {
+    const glyphT = phase.name === 'zenith' ? easeOut(phase.p) : 1.0;
+    // Constellation-like dots above and to sides
+    const glyphDots = [
+      {x: CLAWD_X - 3, y: CLAWD_Y - 3},
+      {x: CLAWD_X - 5, y: CLAWD_Y - 1},
+      {x: CLAWD_X + 17,y: CLAWD_Y - 3},
+      {x: CLAWD_X + 19,y: CLAWD_Y - 1},
+      {x: CLAWD_X + 7, y: CLAWD_Y - 7},
+    ];
+    for (const dot of glyphDots) {
+      if (Math.random() > (1 - glyphT * 0.85)) {
+        px(dot.x, dot.y, PALETTE.lunar.glyphCol);
+      }
+    }
+  }
+
+  tickParticles();
+}
+
+// ─── LOOP ────────────────────────────────────────────────────
+let startTime = null;
+
+function loop(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = (ts - startTime) / 1000;
+  const loopT   = elapsed % DUR;
+  const frame   = Math.floor(loopT * FPS);
+
+  if (loopT < 0.05) particles = [];
+
+  render(frame);
+
+  document.getElementById('info').textContent =
+    `La lune  ${loopT.toFixed(1)}s/${DUR}s  loop ${Math.floor(elapsed/DUR)+1}`;
+
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
