@@ -101,9 +101,11 @@ export function BotLyricsLayer({ config }: BotLyricsLayerProps) {
         if (!res.ok) throw new Error(data?.message ?? '歌词加载失败')
         if (cancelled) return
         const merged = mergeLyrics(parseLrc(data?.lyric), parseLrc(data?.transLyric))
+        const bridgeUnavailable = !data?.lyric && !data?.transLyric && !data?.noLyric && !data?.pureMusic
         setLyrics(merged)
         setLyricHint(
-          data?.noLyric     ? '这首歌没有歌词'
+          bridgeUnavailable ? '歌词桥接暂不可用'
+          : data?.noLyric ? '这首歌没有歌词'
           : data?.pureMusic ? '纯音乐'
           : merged.length > 0 ? ''
           : '未解析到可同步歌词',

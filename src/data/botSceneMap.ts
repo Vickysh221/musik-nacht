@@ -32,6 +32,10 @@ type BotSceneVisualConfig = {
   playerPosition: CSSProperties
 }
 
+function createResolvedSong(song: Song): Song {
+  return song
+}
+
 export type BotSceneConfig = BotSongMapEntry &
   BotSceneVisualConfig & {
     lyricSurfaceType: LyricSurfaceType
@@ -97,6 +101,66 @@ const BOT_SCENE_VISUALS: Record<string, BotSceneVisualConfig> = {
     },
     playerPosition: { bottom: '40px', left: '50%', transform: 'translateX(-50%)' },
   },
+  'clawd-submarine-drifter': {
+    animationFile: '/clawd-animations/clawd-submarine-drifter.html',
+    colorAccent: '#67C7C9',
+    colorBg: '#07141A',
+    lyricStyle: {
+      color: '#B9F0EC',
+      textShadow: '0 2px 14px rgba(103,199,201,0.38), 0 4px 28px rgba(0,0,0,0.78)',
+      fontSize: 24,
+      fontWeight: 400,
+      letterSpacing: '0.05em',
+    },
+    lyricPosition: {
+      top: '34%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      textAlign: 'center',
+      maxWidth: 420,
+    },
+    playerPosition: { bottom: '36px', left: '50%', transform: 'translateX(-50%)' },
+  },
+  'clawd-night-train-watcher': {
+    animationFile: '/clawd-animations/clawd-night-train-watcher.html',
+    colorAccent: '#D3A86B',
+    colorBg: '#060A10',
+    lyricStyle: {
+      color: '#E2C69A',
+      textShadow: '0 2px 10px rgba(211,168,107,0.32), 0 4px 24px rgba(0,0,0,0.86)',
+      fontSize: 23,
+      fontWeight: 400,
+      letterSpacing: '0.06em',
+    },
+    lyricPosition: {
+      top: '30%',
+      left: '54%',
+      transform: 'translateX(-50%)',
+      textAlign: 'center',
+      maxWidth: 380,
+    },
+    playerPosition: { bottom: '36px', left: '50%', transform: 'translateX(-50%)' },
+  },
+  'clawd-dusk-dancer': {
+    animationFile: '/clawd-animations/clawd-dusk-dancer.html',
+    colorAccent: '#F0B27A',
+    colorBg: '#140C0B',
+    lyricStyle: {
+      color: '#FFD9B8',
+      textShadow: '0 2px 12px rgba(240,178,122,0.34), 0 4px 24px rgba(0,0,0,0.72)',
+      fontSize: 24,
+      fontWeight: 500,
+      letterSpacing: '0.04em',
+    },
+    lyricPosition: {
+      top: '32%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      textAlign: 'center',
+      maxWidth: 400,
+    },
+    playerPosition: { bottom: '36px', left: '50%', transform: 'translateX(-50%)' },
+  },
 }
 
 const FALLBACK_BOT_SCENE_ENTRIES: BotSongMapEntry[] = [
@@ -111,7 +175,22 @@ const FALLBACK_BOT_SCENE_ENTRIES: BotSongMapEntry[] = [
       placement: 'left-window-near-entry',
       style: 'soft fading handwritten',
     },
-    resolvedSong: null,
+    resolvedSong: createResolvedSong({
+      id: '2C58DF72E4FB660EDC6DDFD1C57F79D6',
+      originalId: 1364351242,
+      name: '春を待って',
+      duration: 140366,
+      artistIds: ['C9F7AE11CB1C9BB60ADCC88DE828CEB2'],
+      artistNames: ['never young beach'],
+      albumId: 'F0054093493D290388A6E380A0D0247A',
+      coverImgUrl: 'http://p1.music.126.net/AwoeiEQ0z0KBu2yzOdplhA==/109951167355547592.jpg',
+      liked: true,
+      visible: true,
+      maxBrLevel: 'lossless',
+      plLevel: 'lossless',
+      dlLevel: 'lossless',
+      playable: true,
+    }),
   },
   {
     songId: '1364351247',
@@ -124,7 +203,22 @@ const FALLBACK_BOT_SCENE_ENTRIES: BotSongMapEntry[] = [
       placement: 'window-or-wet-wall-near-lamp',
       style: 'blurred reflective subtitles',
     },
-    resolvedSong: null,
+    resolvedSong: createResolvedSong({
+      id: '85BDD6FDFE4607E4A96F9C78AE3DC9EA',
+      originalId: 1364351247,
+      name: 'いつも雨',
+      duration: 252900,
+      artistIds: ['C9F7AE11CB1C9BB60ADCC88DE828CEB2'],
+      artistNames: ['never young beach'],
+      albumId: 'F0054093493D290388A6E380A0D0247A',
+      coverImgUrl: 'http://p1.music.126.net/AwoeiEQ0z0KBu2yzOdplhA==/109951167355547592.jpg',
+      liked: true,
+      visible: true,
+      maxBrLevel: 'lossless',
+      plLevel: 'lossless',
+      dlLevel: 'lossless',
+      playable: true,
+    }),
   },
   {
     songId: '1435628297',
@@ -136,6 +230,60 @@ const FALLBACK_BOT_SCENE_ENTRIES: BotSongMapEntry[] = [
       type: 'moonlight-glyph',
       placement: 'upper-wall-or-altar-air',
       style: 'thin silver text fading in and out',
+    },
+    resolvedSong: createResolvedSong({
+      id: '00C93487CD7E59DCF37ED125E81C5ACB',
+      originalId: 1435628297,
+      name: 'La lune',
+      duration: 193629,
+      artistIds: ['ECA86A3B6CBBBA9CB47ECA3750F51320'],
+      artistNames: ["L'Impératrice"],
+      albumId: '595F338E3E68F4AC8221384B8E882E21',
+      coverImgUrl: 'http://p1.music.126.net/Dk18HibI009__AsOOuDwag==/109951164854352690.jpg',
+      liked: true,
+      visible: true,
+      maxBrLevel: 'hires',
+      plLevel: 'hires',
+      dlLevel: 'hires',
+      playable: true,
+    }),
+  },
+  {
+    songId: '1808923954',
+    songTitle: 'Submarine',
+    artist: "L'Impératrice",
+    botId: 'clawd-submarine-drifter',
+    botRole: '潜航漂流 bot',
+    lyricSurface: {
+      type: 'fog-window',
+      placement: 'mid-water-center',
+      style: 'soft aqua glow captions',
+    },
+    resolvedSong: null,
+  },
+  {
+    songId: '340376',
+    songTitle: '夜车',
+    artist: '曾轶可',
+    botId: 'clawd-night-train-watcher',
+    botRole: '夜车凝望 bot',
+    lyricSurface: {
+      type: 'rain-glass-projection',
+      placement: 'train-window-reflection',
+      style: 'passing light text bands',
+    },
+    resolvedSong: null,
+  },
+  {
+    songId: '1888864514',
+    songTitle: '踊り子',
+    artist: 'Vaundy',
+    botId: 'clawd-dusk-dancer',
+    botRole: '黄昏舞者 bot',
+    lyricSurface: {
+      type: 'fog-window',
+      placement: 'soft-backdrop-center',
+      style: 'warm blurred lyric glow',
     },
     resolvedSong: null,
   },

@@ -14,7 +14,6 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
   const playerBusy      = useMuseumSceneStore((s) => s.playerBusy)
   const playerHint      = useMuseumSceneStore((s) => s.playerHint)
 
-  const selectedSong = songs.find((s) => s.id === selectedSongId) ?? null
   const actualSong   = songs.find((s) => s.id === playback.currentSongId) ?? null
   const isPlaying    = playback.status === 'playing'
   const isCurrentBot =
@@ -27,7 +26,7 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
     else await playSelectedSong(config.resolvedSong?.id ?? selectedSongId ?? undefined)
   }
 
-  const displaySong = config.resolvedSong ?? selectedSong
+  const displaySong = config.resolvedSong
   const displayTitle = displaySong?.name ?? config.songTitle
   const displayArtist = displaySong?.artistNames?.join(', ') ?? config.artist
   const coverUrl = (isCurrentBot ? actualSong?.coverImgUrl : displaySong?.coverImgUrl) ?? null
@@ -98,19 +97,6 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
           >
             ♪
           </div>
-        )}
-        {/* Spinning ring when playing */}
-        {isPlaying && isCurrentBot && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: -3,
-              borderRadius: 13,
-              border: `2px solid transparent`,
-              borderTopColor: accent,
-              animation: 'botCoverSpin 2.4s linear infinite',
-            }}
-          />
         )}
       </div>
 
@@ -213,13 +199,6 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
           {statusText}
         </div>
       )}
-
-      <style>{`
-        @keyframes botCoverSpin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   )
 }

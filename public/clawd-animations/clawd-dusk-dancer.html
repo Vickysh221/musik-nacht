@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clawd Dusk Dancer</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#140C0B;display:flex;align-items:center;justify-content:center;height:100vh;overflow:hidden}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  canvas{image-rendering:pixelated;image-rendering:crisp-edges;display:block;flex:none}
+</style>
+</head>
+<body>
+<div class="stage"><canvas id="c" width="720" height="720"></canvas></div>
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const PX=20,GW=36,GH=36;
+const P={bg:'#140C0B',bg2:'#241613',amber:'#F0B27A',gold:'#B97A4D',peach:'#FFD9B8',rose:'#C98677',spark:'#FFE7C7',body:'#CD6E58',eye:'#000'};
+function px(x,y,c,a=1){ctx.globalAlpha=a;ctx.fillStyle=c;ctx.fillRect(Math.round(x)*PX,Math.round(y)*PX,PX,PX);ctx.globalAlpha=1}
+const BODY=[[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,0,1,0,0,1,0,1,0,0,0],[0,0,0,1,0,1,0,0,1,0,1,0,0,0]];
+function drawClawd(ox,oy,eyes='forward',pose=0){
+  for(let r=0;r<8;r++)for(let c=0;c<14;c++)if(BODY[r][c])px(ox+c,oy+r,P.body);
+  if(pose===1){px(ox+13,oy+1,P.body);px(ox+14,oy,P.body);} // right claw up
+  if(pose===2){px(ox+0,oy+1,P.body);px(ox-1,oy,P.body);}   // left claw up
+  let lx=4,rx=9,dy=1;
+  if(eyes==='right'){lx=5;rx=10}
+  if(eyes==='left'){lx=3;rx=8}
+  if(eyes==='down')dy=2;
+  if(eyes==='blink'){px(ox+4,oy+1,P.eye);px(ox+9,oy+1,P.eye)}
+  else{px(ox+lx,oy+dy,P.eye);px(ox+rx,oy+dy,P.eye)}
+}
+function glow(x,y,r,c,a){ctx.globalAlpha=a;ctx.fillStyle=c;ctx.beginPath();ctx.arc(x*PX+10,y*PX+10,r*PX,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+let particles=[];
+function addP(x,y,c,vx,vy,life=1,decay=0.03){particles.push({x,y,c,vx,vy,life,decay})}
+function tickP(){for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=0.015;p.life-=p.decay;if(p.life<=0){particles.splice(i,1);continue}if(p.life>0.08)px(p.x,p.y,p.c,Math.min(p.life,1))}}
+const FPS=30,DUR=4,TOTAL=FPS*DUR;
+function render(frame){
+  const t=frame/TOTAL;
+  ctx.fillStyle=P.bg;ctx.fillRect(0,0,720,720);
+  for(let y=0;y<GH;y++)for(let x=0;x<GW;x++) if((x+y)%2===0) px(x,y,P.bg2,0.16);
+  // warm moving lights
+  for(let i=0;i<7;i++){
+    const gx=5+i*4+Math.sin(frame*0.04+i)*1.5;
+    const gy=7+(i%3)*5+Math.cos(frame*0.03+i)*1.2;
+    glow(gx,gy,1.6,i%2?P.amber:P.rose,0.09);
+  }
+  // stage floor
+  for(let y=27;y<GH;y++)for(let x=0;x<GW;x++) px(x,y,(x+y)%2?'#2A1713':'#20110F',0.95);
+
+  const bounce=Math.abs(Math.sin(t*Math.PI*4))*2.2;
+  const spinPhase=(t*4)%1;
+  const x=11;
+  const y=18-bounce;
+  let eyes='forward', pose=0;
+  if(spinPhase<0.25){ eyes='left'; pose=2; }
+  else if(spinPhase<0.5){ eyes='forward'; pose=0; }
+  else if(spinPhase<0.75){ eyes='right'; pose=1; }
+  else { eyes='forward'; pose=0; }
+
+  if(frame%6===0){
+    addP(x+7+Math.random()*3-1.5,y+8,P.spark,(Math.random()-0.5)*0.35,-Math.random()*0.4-0.1,0.8,0.04);
+    addP(x+7+Math.random()*4-2,y+8,P.gold,(Math.random()-0.5)*0.45,-Math.random()*0.25,0.7,0.045);
+  }
+
+  glow(x+7,y+6,3.8,P.amber,0.08);
+  drawClawd(x,y,eyes,pose);
+  // shadow pulse under feet
+  for(let i=0;i<6;i++) px(x+4+i,26,P.gold,0.12+0.06*Math.sin(t*Math.PI*4));
+  tickP();
+}
+function fitCanvas(){
+  const scale=Math.max(1,Math.floor(Math.min(window.innerWidth/720,window.innerHeight/720)));
+  cv.style.width=`${720*scale}px`; cv.style.height=`${720*scale}px`;
+}
+window.addEventListener('resize',fitCanvas); fitCanvas();
+let st=null; function loop(ts){if(!st)st=ts;const el=(ts-st)/1000,lt=el%DUR,f=Math.floor(lt*FPS);render(f);requestAnimationFrame(loop)} requestAnimationFrame(loop);
+</script>
+</body>
+</html>

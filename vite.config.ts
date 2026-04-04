@@ -260,18 +260,37 @@ async function loadAlbumMeta(albumId: string) {
 }
 
 async function loadSongLyrics(songId: string) {
-  const result = parseJson<SongLyricResponse>(
-    await execFileAsync('ncm-cli', ['song', 'lyric', '--songId', songId, '--output', 'json'], {
-      timeout: 15000,
-      maxBuffer: 2 * 1024 * 1024,
-    }).then(({ stdout }) => JSON.parse(stdout)),
-  )
+  try {
+    const result = parseJson<SongLyricResponse>(
+      await execFileAsync('ncm-cli', ['song', 'lyric', '--songId', songId, '--output', 'json'], {
+        timeout: 15000,
+        maxBuffer: 2 * 1024 * 1024,
+      }).then(({ stdout }) => JSON.parse(stdout)),
+    )
 
-  return {
-    lyric: result.data?.lyric ?? null,
-    transLyric: result.data?.transLyric ?? null,
-    noLyric: Boolean(result.data?.noLyric),
-    pureMusic: Boolean(result.data?.pureMusic),
+    return {
+      lyric: result.data?.lyric ?? null,
+      transLyric: result.data?.transLyric ?? null,
+      noLyric: Boolean(result.data?.noLyric),
+      pureMusic: Boolean(result.data?.pureMusic),
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    const lyricCommandMissing =
+      message.includes("unknown command 'song'") ||
+      message.includes('Unknown command: song') ||
+      message.includes('song lyric')
+
+    if (lyricCommandMissing) {
+      return {
+        lyric: null,
+        transLyric: null,
+        noLyric: false,
+        pureMusic: false,
+      }
+    }
+
+    throw error
   }
 }
 

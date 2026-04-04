@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clawd Submarine Drifter</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#07141A;display:flex;align-items:center;justify-content:center;height:100vh;overflow:hidden}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  canvas{image-rendering:pixelated;image-rendering:crisp-edges;display:block;flex:none}
+</style>
+</head>
+<body>
+<div class="stage"><canvas id="c" width="720" height="720"></canvas></div>
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const PX=20,GW=36,GH=36;
+const P={bg:'#07141A',bg2:'#0D2026',teal:'#67C7C9',teal2:'#3D8E93',foam:'#B9F0EC',body:'#CD6E58',eye:'#000',soft:'#10323A'};
+function px(x,y,c,a=1){ctx.globalAlpha=a;ctx.fillStyle=c;ctx.fillRect(Math.round(x)*PX,Math.round(y)*PX,PX,PX);ctx.globalAlpha=1}
+const BODY=[[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,0,1,0,0,1,0,1,0,0,0],[0,0,0,1,0,1,0,0,1,0,1,0,0,0]];
+function drawClawd(ox,oy,eyes='forward'){
+ for(let r=0;r<8;r++)for(let c=0;c<14;c++)if(BODY[r][c])px(ox+c,oy+r,P.body);
+ let lx=4,rx=9,dy=1; if(eyes==='left'){lx--;rx--} if(eyes==='right'){lx++;rx++} if(eyes==='down')dy=2;
+ if(eyes==='blink'){px(ox+4,oy+1,P.eye);px(ox+9,oy+1,P.eye)} else {px(ox+lx,oy+dy,P.eye);px(ox+rx,oy+dy,P.eye)}
+}
+function drawBubbleField(f){
+ for(let i=0;i<18;i++){
+   const x=(i*5+Math.sin(f*0.01+i)*2+4)%36, y=(36-((f*0.12+i*3)%40));
+   px(x,y,P.teal,0.35); if(i%3===0) px(x+1,y+1,P.foam,0.25);
+ }
+}
+function drawCurrents(f){
+ for(let y=4;y<30;y+=5) for(let x=0;x<36;x++) if((x+y)%3===0) px(x+Math.sin(f*0.02+y)*0.8,y,P.soft,0.35);
+}
+function drawGlow(cx,cy,r,col,a){ctx.globalAlpha=a;ctx.fillStyle=col;ctx.beginPath();ctx.arc(cx*PX+10,cy*PX+10,r*PX,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+const FPS=30,DUR=6,TOTAL=FPS*DUR;
+function render(frame){
+ const t=frame/TOTAL;
+ ctx.fillStyle=P.bg;ctx.fillRect(0,0,720,720);
+ for(let y=0;y<GH;y++)for(let x=0;x<GW;x++) if((x+y)%2===0) px(x,y,P.bg2,0.18);
+ drawCurrents(frame); drawBubbleField(frame);
+ const driftX=11+Math.sin(t*Math.PI*2)*2.2;
+ const driftY=14+Math.sin(t*Math.PI*4)*0.8;
+ const eyes=t<0.3?'forward':t<0.6?'left':'right';
+ drawGlow(driftX+7,driftY+4,3.2,P.teal,0.08);
+ drawClawd(driftX,driftY,eyes);
+ for(let i=0;i<8;i++) if(i!==3&&i!==4){ px(driftX-2+i,driftY+3,P.teal2,0.6); px(driftX-2+i,driftY+4,P.teal2,0.35); }
+ px(driftX+15,driftY+3,P.foam,0.9); px(driftX+16,driftY+3,P.teal,0.8);
+}
+function fitCanvas(){
+  const scale=Math.max(1,Math.floor(Math.min(window.innerWidth/720,window.innerHeight/720)));
+  cv.style.width=`${720*scale}px`;
+  cv.style.height=`${720*scale}px`;
+}
+window.addEventListener('resize',fitCanvas);
+fitCanvas();
+let st=null;
+function loop(ts){
+  if(!st)st=ts;
+  const el=(ts-st)/1000, lt=el%DUR, f=Math.floor(lt*FPS);
+  render(f);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

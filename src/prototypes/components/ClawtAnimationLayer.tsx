@@ -1,11 +1,18 @@
+import { useMemo } from 'react'
+
 interface ClawtAnimationLayerProps {
   animationFile: string
 }
 
 export function ClawtAnimationLayer({ animationFile }: ClawtAnimationLayerProps) {
+  const src = useMemo(() => {
+    const sep = animationFile.includes('?') ? '&' : '?'
+    return `${animationFile}${sep}v=${Date.now()}`
+  }, [animationFile])
+
   return (
     <iframe
-      src={animationFile}
+      src={src}
       title="clawd animation"
       style={{
         position: 'absolute',

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clawd Night Train Watcher</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#060A10;display:flex;align-items:center;justify-content:center;height:100vh;overflow:hidden}
+  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  canvas{image-rendering:pixelated;image-rendering:crisp-edges;display:block;flex:none}
+</style>
+</head>
+<body>
+<div class="stage"><canvas id="c" width="720" height="720"></canvas></div>
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const PX=20,GW=36,GH=36;
+const P={bg:'#060A10',bg2:'#0B121A',wall:'#101826',seat:'#1A2230',seat2:'#243041',window:'#0A0F18',frame:'#2A3443',amber:'#D3A86B',amber2:'#8A693E',body:'#CD6E58',eye:'#000',soft:'#141C28'};
+function px(x,y,c,a=1){ctx.globalAlpha=a;ctx.fillStyle=c;ctx.fillRect(Math.round(x)*PX,Math.round(y)*PX,PX,PX);ctx.globalAlpha=1}
+const BODY=[[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,0,1,0,1,0,0,1,0,1,0,0,0],[0,0,0,1,0,1,0,0,1,0,1,0,0,0]];
+function drawClawd(ox,oy,eyes='left'){
+  for(let r=0;r<8;r++)for(let c=0;c<14;c++)if(BODY[r][c])px(ox+c,oy+r,P.body);
+  let lx=3,rx=8,dy=1;
+  if(eyes==='forward'){lx=4;rx=9}
+  if(eyes==='right'){lx=5;rx=10}
+  if(eyes==='blink'){px(ox+4,oy+1,P.eye);px(ox+9,oy+1,P.eye)} else {px(ox+lx,oy+dy,P.eye);px(ox+rx,oy+dy,P.eye)}
+}
+function drawWindowFrame(){
+  for(let x=4;x<32;x++){px(x,5,P.frame);px(x,22,P.frame)}
+  for(let y=5;y<23;y++){px(4,y,P.frame);px(31,y,P.frame)}
+  for(let y=6;y<22;y++)px(17,y,P.frame,0.85);
+}
+function drawCarriage(){
+  for(let y=0;y<26;y++)for(let x=0;x<GW;x++) px(x,y,(x+y)%2?P.wall:P.bg2,0.45);
+  for(let y=26;y<GH;y++)for(let x=0;x<GW;x++) px(x,y,(x+y)%2?P.seat:P.seat2,0.96);
+  for(let x=0;x<GW;x+=3) px(x,25,P.soft,0.6);
+}
+function drawPassingLights(frame){
+  for(let i=0;i<8;i++){
+    const base=36-((frame*0.95+i*7)%48);
+    const h=8+(i%4)*3;
+    for(let w=0;w<3;w++){
+      px(base+w,h,P.amber,0.18+0.04*w);
+      px(base+w,h+1,P.amber2,0.12+0.03*w);
+    }
+  }
+}
+function drawSeat(){
+  // simple seat bench and backrest
+  for(let x=7;x<28;x++) px(x,26,P.seat2);
+  for(let x=9;x<26;x++) px(x,25,P.frame,0.35);
+  for(let y=23;y<26;y++) for(let x=8;x<15;x++) px(x,y,P.seat,0.9);
+}
+const FPS=30,DUR=6,TOTAL=FPS*DUR;
+function render(frame){
+  const t=frame/TOTAL;
+  ctx.fillStyle=P.bg;ctx.fillRect(0,0,720,720);
+  drawCarriage();
+  drawPassingLights(frame);
+  drawWindowFrame();
+  drawSeat();
+
+  const sway=Math.sin(t*Math.PI*4)*0.35;
+  const ox=10, oy=18+sway;
+  const eyes=t<0.6?'left':'forward';
+
+  // seated posture cue: lower body visually anchored on seat
+  for(let x=ox+2;x<ox+11;x++) px(x,oy+8,P.body,0.92);
+  for(let x=ox+3;x<ox+10;x++) px(x,oy+9,P.body,0.82);
+  drawClawd(ox,oy,eyes);
+
+  // subtle window reflection shimmer near face
+  if(frame%20<10){ px(23,13,P.amber,0.18); px(24,14,P.amber2,0.14); }
+
+  // tiny private player by seat side
+  px(26,27,P.amber2,0.7); px(27,27,P.amber,0.45); px(26,28,P.amber2,0.35);
+}
+function fitCanvas(){
+  const scale=Math.max(1,Math.floor(Math.min(window.innerWidth/720,window.innerHeight/720)));
+  cv.style.width=`${720*scale}px`; cv.style.height=`${720*scale}px`;
+}
+window.addEventListener('resize',fitCanvas); fitCanvas();
+let st=null; function loop(ts){if(!st)st=ts; const el=(ts-st)/1000, lt=el%DUR, f=Math.floor(lt*FPS); render(f); requestAnimationFrame(loop)} requestAnimationFrame(loop);
+</script>
+</body>
+</html>

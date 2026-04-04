@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clawd Spring Entry</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0b1016;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+  }
+  canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    border-radius: 12px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .info {
+    color: rgba(255,255,255,0.45);
+    font-size: 11px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+  #layer-panel {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 720px;
+  }
+  .layer-btn {
+    padding: 4px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.62);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.15s;
+    user-select: none;
+    backdrop-filter: blur(6px);
+  }
+  .layer-btn.active { background: rgba(232,204,128,0.18); color: #f5edd8; border-color: rgba(232,204,128,0.5); }
+  .layer-btn.solo { background: #e8cc80; color: #10141a; border-color: #e8cc80; }
+  #sprite-strip {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .sprite-preview { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .sprite-preview canvas {
+    image-rendering: pixelated;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    background: rgba(255,255,255,0.02);
+  }
+  .sprite-label { font-size: 9px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="720" height="720"></canvas>
+<div class="info" id="info">clawd spring entry — 0.0s</div>
+<div id="layer-panel"></div>
+<div id="sprite-strip"></div>
+<script>
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const PX = 20, GW = 36, GH = 36;
+function px(x, y, c) { ctx.fillStyle = c; ctx.fillRect(Math.round(x) * PX, Math.round(y) * PX, PX, PX); }
+
+const PALETTE = {
+  sky: { bg: '#0d1118', dot: '#151b24', haze: '#1a2330' },
+  rain: { drop: '#546679', dropLight: '#8397aa' },
+  ground: { a: '#1f2831', b: '#25303a', shine: '#31414e' },
+  window: { frame: '#2a3138', glass: '#27333d', fog: '#d9d3c3', glow: '#e8cc80' },
+  lamp: { body: '#6f5841', shade: '#e8cc80', warm: '#f6df9a', dim: '#a88b56' },
+  bag: { main: '#7a5e48', edge: '#5d4635', shine: '#a4876c' },
+  clawd: { body: '#cd6e58', eye: '#000000', blush: '#fac8d8' }
+};
+
+const SPRITES = {
+  clawd: {
+    label: 'Clawd', role: 'character', width: 14, height: 8,
+    palette: { 1: PALETTE.clawd.body, 2: PALETTE.clawd.eye },
+    data: [
+      [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+      [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+      [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+      [0,1,1,1,1,1,1,1,1,1,1,1,1,0],
+      [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+      [0,0,0,1,1,1,1,1,1,1,1,0,0,0],
+      [0,0,0,1,0,1,0,0,1,0,1,0,0,0],
+      [0,0,0,1,0,1,0,0,1,0,1,0,0,0]
+    ]
+  },
+  lamp: {
+    label: 'Lamp', role: 'prop', width: 5, height: 8,
+    palette: { 1: PALETTE.lamp.body, 2: PALETTE.lamp.shade, 3: PALETTE.lamp.warm, 4: PALETTE.lamp.dim },
+    data: [
+      [0,0,2,0,0],
+      [0,2,3,2,0],
+      [0,2,2,2,0],
+      [0,0,1,0,0],
+      [0,0,1,0,0],
+      [0,1,1,1,0],
+      [0,0,1,0,0],
+      [0,4,0,4,0]
+    ]
+  },
+  bag: {
+    label: 'Bag', role: 'prop', width: 6, height: 6,
+    palette: { 1: PALETTE.bag.main, 2: PALETTE.bag.edge, 3: PALETTE.bag.shine },
+    data: [
+      [0,1,1,1,1,0],
+      [1,0,0,0,0,1],
+      [1,1,1,1,1,1],
+      [1,1,3,1,1,1],
+      [1,1,1,1,1,1],
+      [2,2,2,2,2,2]
+    ]
+  },
+  puddle: {
+    label: 'Reflection', role: 'decoration', width: 12, height: 3,
+    palette: { 1: '#2f4050', 2: '#4f677a', 3: '#758b9b' },
+    data: [
+      [0,1,1,1,1,2,2,1,1,1,1,0],
+      [1,1,2,2,2,3,3,2,2,2,1,1],
+      [0,1,1,1,2,2,2,2,1,1,1,0]
+    ]
+  },
+  window: {
+    label: 'Window', role: 'background', width: 11, height: 13,
+    palette: { 1: PALETTE.window.frame, 2: PALETTE.window.glass, 3: '#34424d', 4: '#c8c0ad' },
+    data: [
+      [1,1,1,1,1,1,1,1,1,1,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,2,3,2,2,1,2,3,2,2,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,1,1,1,1,1,1,1,1,1,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,2,2,4,2,1,2,2,4,2,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,2,2,2,2,1,2,2,2,2,1],
+      [1,1,1,1,1,1,1,1,1,1,1]
+    ]
+  }
+};
+
+const SCENE_LAYERS = [
+  { key: 'rain', x: 0, y: 0, z: 0, programmatic: true, label: 'Rain' },
+  { key: 'room', x: 0, y: 0, z: 1, programmatic: true, label: 'Room' },
+  { key: 'window', x: 22, y: 7, z: 2, programmatic: false, label: 'Window' },
+  { key: 'puddle', x: 8, y: 29, z: 3, programmatic: false, label: 'Reflection' },
+  { key: 'bag', x: 14, y: 24, z: 4, programmatic: false, label: 'Bag' },
+  { key: 'lamp', x: 10, y: 21, z: 5, programmatic: false, label: 'Lamp' },
+  { key: 'clawd', x: 6, y: 20, z: 6, programmatic: false, label: 'Clawd' }
+];
+const layerVisible = {}; for (const l of SCENE_LAYERS) layerVisible[l.key] = true;
+function drawSprite(key, ox, oy, alpha = 1) {
+  const s = SPRITES[key]; if (!s) return;
+  if (alpha < 1) ctx.globalAlpha = alpha;
+  for (let r = 0; r < s.height; r++) for (let c = 0; c < s.width; c++) {
+    const v = s.data[r]?.[c]; if (!v) continue; px(ox + c, oy + r, s.palette[v]);
+  }
+  if (alpha < 1) ctx.globalAlpha = 1;
+}
+function drawBg() {
+  const visibleLayers = SCENE_LAYERS.filter(l => layerVisible[l.key] && !l.programmatic);
+  const isSolo = visibleLayers.length === 1 && SCENE_LAYERS.filter(l => layerVisible[l.key]).length === 1;
+  if (isSolo) {
+    ctx.fillStyle = '#171c22'; ctx.fillRect(0, 0, cv.width, cv.height);
+    ctx.fillStyle = '#1f252d';
+    for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) if ((x+y)%2===0) ctx.fillRect(x*PX,y*PX,PX,PX);
+  } else {
+    ctx.fillStyle = PALETTE.sky.bg; ctx.fillRect(0, 0, cv.width, cv.height);
+    for (let y = 1; y < GH; y += 2) for (let x = 1; x < GW; x += 2) {
+      ctx.fillStyle = PALETTE.sky.dot; ctx.beginPath(); ctx.arc(x*PX+10,y*PX+10,2,0,Math.PI*2); ctx.fill();
+    }
+  }
+}
+function drawRoomShell() {
+  for (let y = 26; y < GH; y++) for (let x = 0; x < GW; x++) px(x, y, (x + y) % 2 ? PALETTE.ground.a : PALETTE.ground.b);
+  for (let y = 24; y < 26; y++) for (let x = 0; x < GW; x++) px(x, y, '#202934');
+  for (let x = 0; x < GW; x += 3) px(x, 25, PALETTE.ground.shine);
+  for (let y = 0; y < 24; y++) {
+    px(0, y, '#121821'); px(35, y, '#121821');
+  }
+}
+function drawRain(f) {
+  for (let i = 0; i < 18; i++) {
+    const rx = (i * 5 + Math.floor(f * 0.45) + i) % 36;
+    const ry = (i * 7 + Math.floor(f * 0.9)) % 36;
+    px(rx, ry, PALETTE.rain.drop); if (ry+1 < GH) px(rx-1, ry+1, PALETTE.rain.dropLight);
+  }
+}
+let particles = [];
+function addParticle(x, y, c, vx, vy, decay = 0.022) { particles.push({ x, y, c, vx, vy, life: 1, decay }); }
+function tickParticles() {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i]; p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.life -= p.decay;
+    if (p.life <= 0) { particles.splice(i,1); continue; }
+    if (p.life > 0.12) { ctx.globalAlpha = Math.min(p.life, 1); px(Math.round(p.x), Math.round(p.y), p.c); ctx.globalAlpha = 1; }
+  }
+}
+const FPS = 30, DUR = 6, TOTAL = FPS * DUR;
+function getPhase(t) {
+  if (t < 0.42) return { ph: 'enter', pt: t / 0.42 };
+  if (t < 0.68) return { ph: 'pause', pt: (t - 0.42) / 0.26 };
+  return { ph: 'resume', pt: (t - 0.68) / 0.32 };
+}
+function drawGlow(cx, cy, radius, color, alpha) {
+  ctx.globalAlpha = alpha;
+  for (let r = radius; r > 0; r--) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(cx * PX + 10, cy * PX + 10, r * PX * 0.45, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha *= 0.82;
+  }
+  ctx.globalAlpha = 1;
+}
+function drawClawdEyes(ox, oy, mode='forward') {
+  let ldx = 0, rdx = 0, dy = 0;
+  if (mode === 'right') { ldx = 1; rdx = 1; }
+  if (mode === 'left') { ldx = -1; rdx = -1; }
+  if (mode === 'down') dy = 1;
+  if (mode === 'blink') {
+    px(ox + 4, oy + 1, PALETTE.clawd.eye); px(ox + 9, oy + 1, PALETTE.clawd.eye); return;
+  }
+  px(ox + 4 + ldx, oy + 1 + dy, PALETTE.clawd.eye);
+  px(ox + 9 + rdx, oy + 1 + dy, PALETTE.clawd.eye);
+}
+function render(frame) {
+  const t = frame / TOTAL;
+  const { ph, pt } = getPhase(t);
+  drawBg();
+  if (layerVisible.room) drawRoomShell();
+  if (layerVisible.rain) drawRain(frame);
+  if (layerVisible.window) {
+    drawSprite('window', 22, 7);
+    if (ph !== 'enter') {
+      const fogAlpha = ph === 'pause' ? 0.28 + 0.2 * Math.sin(pt * Math.PI) : 0.18;
+      ctx.globalAlpha = fogAlpha;
+      for (let x = 23; x < 31; x++) for (let y = 9; y < 16; y += 2) px(x, y, PALETTE.window.fog);
+      ctx.globalAlpha = 1;
+    }
+  }
+  if (layerVisible.puddle) drawSprite('puddle', 8 + (Math.sin(frame * 0.08) > 0.8 ? 1 : 0), 29, 0.95);
+
+  let clawdX = 6, clawdY = 20, lampX = 10, lampY = 21, bagX = 14, bagY = 24, eyes='forward';
+  if (ph === 'enter') {
+    clawdX = Math.round(-12 + (18 * (1 - Math.pow(1 - pt, 3))));
+    lampX = clawdX + 4; lampY = 21 + Math.round(Math.sin(pt * Math.PI * 4) * 0.3);
+    bagX = clawdX + 8; bagY = 24;
+    eyes = 'forward';
+  } else if (ph === 'pause') {
+    clawdX = 6; lampX = 10; bagX = 14;
+    clawdY = 20 + Math.round(Math.sin(pt * Math.PI * 2) * 0.4);
+    lampY = 21 + Math.round(Math.sin(pt * Math.PI * 2) * 0.4);
+    eyes = pt < 0.5 ? 'down' : 'right';
+  } else {
+    clawdX = Math.round(6 + 5 * pt);
+    lampX = clawdX + 4; bagX = clawdX + 8;
+    clawdY = 20 + Math.round(Math.sin(pt * Math.PI * 2) * 0.2);
+    lampY = 21 + Math.round(Math.sin(pt * Math.PI * 2) * 0.2);
+    eyes = 'forward';
+  }
+
+  if (layerVisible.lamp) {
+    drawGlow(lampX + 2, lampY + 1, ph === 'pause' ? 3.6 : 3, PALETTE.lamp.warm, ph === 'pause' ? 0.18 : 0.14);
+    drawSprite('lamp', lampX, lampY);
+  }
+  if (layerVisible.bag) drawSprite('bag', bagX, bagY);
+  if (layerVisible.clawd) {
+    drawSprite('clawd', clawdX, clawdY);
+    drawClawdEyes(clawdX, clawdY, eyes);
+  }
+  if (layerVisible.puddle && frame % 28 === 0) {
+    addParticle(12 + Math.random() * 6, 29, '#6f8396', (Math.random()-0.5)*0.4, -Math.random()*0.6-0.15, 0.03);
+  }
+  tickParticles();
+}
+function buildLayerPanel() {
+  const panel = document.getElementById('layer-panel'); panel.innerHTML = '';
+  const allBtn = document.createElement('button'); allBtn.className = 'layer-btn active'; allBtn.textContent = 'ALL';
+  allBtn.onclick = () => { for (const l of SCENE_LAYERS) layerVisible[l.key] = true; refreshPanel(); };
+  panel.appendChild(allBtn);
+  for (const layer of SCENE_LAYERS) {
+    const btn = document.createElement('button'); btn.id = `btn-${layer.key}`; btn.className = 'layer-btn active'; btn.textContent = layer.label;
+    btn.onclick = () => { layerVisible[layer.key] = !layerVisible[layer.key]; refreshPanel(); };
+    btn.ondblclick = (e) => { e.preventDefault(); for (const l of SCENE_LAYERS) layerVisible[l.key] = false; layerVisible[layer.key] = true; refreshPanel(); };
+    panel.appendChild(btn);
+  }
+}
+function refreshPanel() {
+  const count = SCENE_LAYERS.filter(l => layerVisible[l.key]).length;
+  for (const l of SCENE_LAYERS) {
+    const btn = document.getElementById(`btn-${l.key}`); if (!btn) continue;
+    btn.className = 'layer-btn' + (layerVisible[l.key] ? (count === 1 ? ' solo' : ' active') : '');
+  }
+}
+function buildSpriteStrip() {
+  const strip = document.getElementById('sprite-strip'); strip.innerHTML = '';
+  for (const [key, sprite] of Object.entries(SPRITES)) {
+    const scale = 4; const sc = document.createElement('canvas'); sc.width = sprite.width*scale; sc.height = sprite.height*scale;
+    const sctx = sc.getContext('2d');
+    for (let r = 0; r < sprite.height; r++) for (let c = 0; c < sprite.width; c++) {
+      const v = sprite.data[r]?.[c]; if (!v) continue; sctx.fillStyle = sprite.palette[v]; sctx.fillRect(c*scale, r*scale, scale, scale);
+    }
+    const wrap = document.createElement('div'); wrap.className = 'sprite-preview';
+    const lbl = document.createElement('div'); lbl.className = 'sprite-label'; lbl.textContent = sprite.label;
+    wrap.appendChild(sc); wrap.appendChild(lbl); strip.appendChild(wrap);
+  }
+}
+let start = null;
+function loop(ts) {
+  if (!start) start = ts; const elapsed = (ts - start) / 1000; const loopT = elapsed % DUR; const frame = Math.floor(loopT * FPS);
+  if (loopT < 0.05) particles = [];
+  render(frame);
+  const vis = SCENE_LAYERS.filter(l => layerVisible[l.key]).map(l => l.label).join(' · ');
+  document.getElementById('info').textContent = `clawd spring entry — ${loopT.toFixed(1)}s / ${DUR}.0s | visible: ${vis}`;
+  requestAnimationFrame(loop);
+}
+buildLayerPanel(); buildSpriteStrip(); requestAnimationFrame(loop);
+</script>
+</body>
+</html>
