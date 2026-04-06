@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMuseumSceneStore } from '../store/useMuseumSceneStore'
 import type { BotSceneConfig } from '../data/botSceneMap'
 import { ClawtAnimationLayer } from './components/ClawtAnimationLayer'
 import { BotLyricsLayer } from './components/BotLyricsLayer'
 import { BotPlayerPanel } from './components/BotPlayerPanel'
+import { BotDebugPanel } from './components/BotDebugPanel'
 
 interface BotScenePrototypeProps {
   config: BotSceneConfig
@@ -14,6 +15,7 @@ export function BotScenePrototype({ config }: BotScenePrototypeProps) {
   const upsertSongs = useMuseumSceneStore((s) => s.upsertSongs)
   const playSelectedSong = useMuseumSceneStore((s) => s.playSelectedSong)
   const autoplayRef = useRef<string | null>(null)
+  const [animationDebug, setAnimationDebug] = useState<{ title?: string; detail?: string } | null>(null)
 
   useEffect(() => {
     const song = config.resolvedSong
@@ -27,6 +29,10 @@ export function BotScenePrototype({ config }: BotScenePrototypeProps) {
     void playSelectedSong(song.id)
   }, [config.botId, config.resolvedSong, playSelectedSong, selectSong, upsertSongs])
 
+  useEffect(() => {
+    setAnimationDebug(null)
+  }, [config.botId])
+
   return (
     <div
       style={{
@@ -38,13 +44,15 @@ export function BotScenePrototype({ config }: BotScenePrototypeProps) {
       }}
     >
       {/* Layer 1 — Clawd animation (iframe, full bleed) */}
-      <ClawtAnimationLayer animationFile={config.animationFile} />
+      <ClawtAnimationLayer animationFile={config.animationFile} onDebugChange={setAnimationDebug} />
 
       {/* Layer 2 — Floating lyrics (transparent, no card) */}
       <BotLyricsLayer config={config} />
 
       {/* Layer 3 — Mini player panel */}
       <BotPlayerPanel config={config} />
+
+      <BotDebugPanel config={config} animationDebug={animationDebug} />
 
       {/* Bot role badge (top-left) */}
       <div

@@ -1,0 +1,556 @@
+{
+  "mvTitle": "夜车 ghost-witch",
+  "duration": 10,
+  "character": {
+    "type": "pixel-character-json",
+    "name": "ghost-witch",
+    "label": "Ghost Witch",
+    "width": 16,
+    "height": 16,
+    "palette": {
+      "1": "#C58586",
+      "2": "#F4F1EB",
+      "3": "#F0B9C6",
+      "4": "#111111",
+      "5": "#D7D4CF",
+      "6": "#E26B73"
+    },
+    "data": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        0,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        2,
+        2,
+        2,
+        4,
+        2,
+        2,
+        2,
+        2,
+        4,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        2,
+        3,
+        2,
+        2,
+        2,
+        4,
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        4,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        2,
+        5,
+        2,
+        0,
+        2,
+        2,
+        0,
+        5,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        5,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        5,
+        0,
+        0,
+        0
+      ]
+    ],
+    "anchors": {
+      "head": {
+        "x": 8,
+        "y": 0
+      },
+      "eyeLeft": {
+        "x": 5,
+        "y": 9
+      },
+      "eyeRight": {
+        "x": 10,
+        "y": 9
+      },
+      "handLeft": {
+        "x": 1,
+        "y": 11
+      },
+      "handRight": {
+        "x": 14,
+        "y": 11
+      },
+      "footLeft": {
+        "x": 4,
+        "y": 15
+      },
+      "footRight": {
+        "x": 12,
+        "y": 15
+      },
+      "body": {
+        "x": 8,
+        "y": 11
+      }
+    },
+    "description": "戴着大巫师帽、方中带圆的小幽灵，白色主体、小黑眼、小鼻点、腮红和底部破边，侧边带一点翘起的尾巴感，忽略魔法棒。"
+  },
+  "phases": [
+    {
+      "id": "phase_0",
+      "start": 0,
+      "end": 2,
+      "duration": 2,
+      "description": "站台 - 哭泣",
+      "scene": {
+        "type": "raymarching",
+        "shader": "train_interior",
+        "size": {
+          "w": 1.5,
+          "h": 1.2,
+          "d": 5
+        },
+        "baseColor": "#0a0a0a"
+      },
+      "ghost": {
+        "animation": "cry",
+        "pose": "crouched",
+        "emissive": 11165252,
+        "trajectory": "static",
+        "speed": 0,
+        "position": [
+          -2.5,
+          0,
+          0
+        ],
+        "facing": "right",
+        "emotion": "sad",
+        "prop": "key",
+        "duration": 2
+      },
+      "lighting": {
+        "type": "cool",
+        "ambient": 13426175,
+        "ambientIntensity": 0.4,
+        "primary": 16777215,
+        "primaryIntensity": 0.8,
+        "primaryType": "directional",
+        "animationSpeed": 0
+      },
+      "_original": {
+        "location": "站台",
+        "action": "哭泣",
+        "lightingDesc": "冷的月光，静谧的灯光",
+        "state": {
+          "position": "left",
+          "facing": "right",
+          "emotion": "sad",
+          "prop": "key"
+        }
+      }
+    },
+    {
+      "id": "phase_1",
+      "start": 2,
+      "end": 5,
+      "duration": 3,
+      "description": "走廊 - 奔跑",
+      "scene": {
+        "type": "simple",
+        "shader": "corridor",
+        "size": {
+          "w": 1.5,
+          "h": 2,
+          "d": 5
+        },
+        "baseColor": "#222222"
+      },
+      "ghost": {
+        "animation": "run",
+        "pose": "leaning",
+        "emissive": 11165252,
+        "trajectory": "forward",
+        "speed": 5,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "facing": "right",
+        "emotion": "urgent",
+        "prop": null,
+        "duration": 3
+      },
+      "lighting": {
+        "type": "cool",
+        "ambient": 13426175,
+        "ambientIntensity": 0.4,
+        "primary": 16777215,
+        "primaryIntensity": 0.8,
+        "primaryType": "directional",
+        "animationSpeed": 0
+      },
+      "_original": {
+        "location": "走廊",
+        "action": "奔跑",
+        "lightingDesc": "冷的灯光，急促的变化",
+        "state": {
+          "position": "center",
+          "facing": "right",
+          "emotion": "urgent"
+        }
+      }
+    },
+    {
+      "id": "phase_2",
+      "start": 5,
+      "end": 8,
+      "duration": 3,
+      "description": "列车 - 上车",
+      "scene": {
+        "type": "raymarching",
+        "shader": "train_interior",
+        "size": {
+          "w": 1.5,
+          "h": 1.2,
+          "d": 5
+        },
+        "baseColor": "#0a0a0a"
+      },
+      "ghost": {
+        "animation": "board",
+        "pose": "climbing",
+        "emissive": 11165252,
+        "trajectory": "up",
+        "speed": 0,
+        "position": [
+          2.8,
+          0,
+          1
+        ],
+        "facing": "right",
+        "emotion": "tense",
+        "prop": "bottle",
+        "duration": 3
+      },
+      "lighting": {
+        "type": "cool",
+        "ambient": 13426175,
+        "ambientIntensity": 0.4,
+        "primary": 16777215,
+        "primaryIntensity": 0.8,
+        "primaryType": "directional",
+        "animationSpeed": 0
+      },
+      "_original": {
+        "location": "列车",
+        "action": "上车",
+        "lightingDesc": "明亮的白光，进入的仪式感",
+        "state": {
+          "position": "door",
+          "facing": "right",
+          "emotion": "tense",
+          "prop": "bottle"
+        }
+      }
+    },
+    {
+      "id": "phase_3",
+      "start": 8,
+      "end": 10,
+      "duration": 2,
+      "description": "列车座位 - 看窗外",
+      "scene": {
+        "type": "simple",
+        "shader": "train_seat",
+        "size": {
+          "w": 1,
+          "h": 0.8,
+          "d": 2
+        },
+        "baseColor": "#1a1a1a"
+      },
+      "ghost": {
+        "animation": "idle_gaze",
+        "pose": "sitting",
+        "emissive": 11165252,
+        "trajectory": "static",
+        "speed": 0,
+        "position": [
+          1.8,
+          0.5,
+          2
+        ],
+        "facing": "left",
+        "emotion": "quiet",
+        "prop": null,
+        "duration": 2
+      },
+      "lighting": {
+        "type": "dynamic",
+        "ambient": 14531498,
+        "ambientIntensity": 0.35,
+        "primary": 16777215,
+        "primaryIntensity": 0.6,
+        "primaryType": "point",
+        "animationSpeed": 2
+      },
+      "_original": {
+        "location": "列车座位",
+        "action": "看窗外",
+        "lightingDesc": "动态的窗外灯光掠过，沉静的凝视",
+        "state": {
+          "position": "seat",
+          "facing": "left",
+          "emotion": "quiet"
+        }
+      }
+    }
+  ]
+}

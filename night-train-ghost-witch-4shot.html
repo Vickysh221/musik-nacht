@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夜车 · ghost-witch 4-shot pixel MV prototype</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0b0d13;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: monospace;
+    }
+    .stage {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      display: block;
+      flex: none;
+    }
+    .info {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.32);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      text-align: center;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage"><canvas id="c" width="720" height="720"></canvas></div>
+  <div class="info">夜车 · ghost-witch 4-shot prototype<br/>哭泣 → 奔跑 → 上车 → 窗边凝望</div>
+<script>
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const PX = 20, GW = 36, GH = 36;
+const FPS = 30, DUR = 10, TOTAL = FPS * DUR;
+
+const P = {
+  bg: '#0b0d13', bg2: '#141821', dark: '#101722', platform: '#202733', rail: '#344152',
+  moon: '#c8d8f2', moon2: '#8fa5d2', tree: '#10161d', lamp: '#d8ac6e', lamp2: '#88643d',
+  ghost: '#f4f1eb', ghostShade: '#d7d4cf', blush: '#f0b9c6', eye: '#111111',
+  hat: '#c58586', hatLine: '#e26b73', tear: '#a7d8ff', bottle: '#5b7a70', bottle2: '#86a69b', key: '#d7c082'
+};
+
+function fitCanvas() {
+  const s = Math.max(1, Math.floor(Math.min(window.innerWidth / 720, window.innerHeight / 720)));
+  cv.style.width = `${720 * s}px`;
+  cv.style.height = `${720 * s}px`;
+}
+window.addEventListener('resize', fitCanvas);
+fitCanvas();
+
+function px(x, y, c, a = 1) {
+  ctx.globalAlpha = a;
+  ctx.fillStyle = c;
+  ctx.fillRect(Math.round(x) * PX, Math.round(y) * PX, PX, PX);
+  ctx.globalAlpha = 1;
+}
+
+function clearBg() {
+  ctx.fillStyle = P.bg;
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) if ((x + y) % 2 === 0) px(x, y, P.bg2, 0.16);
+}
+
+function easeInOut(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function drawMoon(x, y, r, a = 1) {
+  ctx.globalAlpha = a;
+  ctx.fillStyle = P.moon;
+  ctx.beginPath();
+  ctx.arc(x * PX + 10, y * PX + 10, r * PX, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = a * 0.35;
+  ctx.fillStyle = P.moon2;
+  ctx.beginPath();
+  ctx.arc((x + 0.6) * PX + 10, (y + 0.3) * PX + 10, r * PX * 0.8, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+}
+
+function drawGhostWitch(ox, oy, opts = {}) {
+  const tailLift = opts.tailLift || 0;
+  const cry = opts.cry || 0;
+  const look = opts.look || 'forward';
+  const arm = opts.arm || 'down';
+
+  const hat = [
+    [0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0],
+    [0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0],
+    [0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+    [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+  ];
+  for (let y = 0; y < hat.length; y++) for (let x = 0; x < hat[y].length; x++) if (hat[y][x]) px(ox + x, oy + y, P.hat);
+  for (let x = 1; x < 15; x++) if (x !== 7) px(ox + x, oy + 6, P.hatLine, 0.95);
+
+  for (let y = 7; y <= 13; y++) for (let x = 2; x <= 13; x++) px(ox + x, oy + y, P.ghost);
+  for (let y = 8; y <= 12; y++) px(ox + 1, oy + y, P.ghost);
+  for (let y = 8; y <= 12; y++) px(ox + 14, oy + y, P.ghost);
+  for (let x = 2; x <= 13; x++) px(ox + x, oy + 13, P.ghostShade, 0.7);
+  px(ox + 3, oy + 14, P.ghost); px(ox + 4, oy + 14, P.ghost);
+  px(ox + 7, oy + 14, P.ghost); px(ox + 8, oy + 14, P.ghost);
+  px(ox + 11, oy + 14, P.ghost); px(ox + 12, oy + 14, P.ghost);
+  px(ox + 4, oy + 15, P.ghostShade, 0.8); px(ox + 8, oy + 15, P.ghostShade, 0.8); px(ox + 12, oy + 15, P.ghostShade, 0.8);
+
+  let lx = 5, rx = 10;
+  if (look === 'left') { lx = 4; rx = 9; }
+  if (look === 'right') { lx = 6; rx = 11; }
+  px(ox + lx, oy + 9, P.eye); px(ox + rx, oy + 9, P.eye); px(ox + 8, oy + 10, P.eye, 0.8);
+  px(ox + 3, oy + 10, P.blush, 0.75); px(ox + 12, oy + 10, P.blush, 0.75);
+  if (cry > 0) {
+    px(ox + lx, oy + 10, P.tear, 0.6 + cry * 0.4);
+    px(ox + lx, oy + 11, P.tear, 0.35 + cry * 0.3);
+  }
+
+  if (arm === 'up') { px(ox + 1, oy + 8, P.ghost); px(ox + 0, oy + 7, P.ghost); }
+  else { px(ox + 1, oy + 10, P.ghostShade, 0.8); }
+  px(ox + 14, oy + 10, P.ghostShade, 0.8);
+
+  px(ox + 13, oy + 13 - tailLift, P.ghost);
+  px(ox + 14, oy + 14 - tailLift, P.ghostShade, 0.85);
+  px(ox + 15, oy + 13 - tailLift, P.ghostShade, 0.7);
+}
+
+function drawBottle(x, y, flash = 0) {
+  px(x + 1, y, P.bottle2, 0.85 + flash * 0.2);
+  px(x, y + 1, P.bottle2, 0.75); px(x + 1, y + 1, P.bottle, 0.95); px(x + 2, y + 1, P.bottle2, 0.75);
+  px(x, y + 2, P.bottle, 0.95); px(x + 1, y + 2, P.bottle, 0.95); px(x + 2, y + 2, P.bottle, 0.95);
+  px(x, y + 3, P.bottle, 0.95); px(x + 1, y + 3, P.bottle, 0.95); px(x + 2, y + 3, P.bottle, 0.95);
+  if (flash > 0) px(x + 2, y + 1, P.moon, flash * 0.85);
+}
+
+function drawKey(x, y, swing = 0, flash = 0) {
+  const sx = Math.round(swing);
+  px(x + sx, y, P.key, 0.9); px(x + 1 + sx, y, P.key, 0.9); px(x + 2 + sx, y, P.key, 0.9 + flash * 0.2); px(x + 3 + sx, y, P.key, 0.9);
+  px(x + 2 + sx, y + 1, P.key, 0.8); px(x + 4 + sx, y + 1, P.key, 0.8);
+}
+
+function drawPlatform() {
+  for (let y = 27; y < GH; y++) for (let x = 0; x < GW; x++) px(x, y, (x + y) % 2 ? P.platform : '#171d27', 0.96);
+  for (let x = 0; x < GW; x++) px(x, 26, P.rail, 0.9);
+}
+
+function drawRunningStreet(frame) {
+  for (let y = 28; y < GH; y++) for (let x = 0; x < GW; x++) px(x, y, (x + y) % 2 ? '#171c25' : '#12161f', 0.96);
+  for (let i = 0; i < 6; i++) {
+    const lx = 35 - ((frame * 1.4 + i * 8) % 44);
+    px(lx, 23 + (i % 3), P.lamp, 0.2);
+    px(lx + 1, 24 + (i % 3), P.lamp2, 0.18);
+  }
+}
+
+function drawTrainInterior() {
+  for (let y = 0; y < 26; y++) for (let x = 0; x < GW; x++) px(x, y, (x + y) % 2 ? P.dark : '#121a26', 0.44);
+  for (let y = 26; y < GH; y++) for (let x = 0; x < GW; x++) px(x, y, (x + y) % 2 ? P.platform : '#1c2431', 0.96);
+  for (let x = 4; x < 32; x++) { px(x, 5, P.rail); px(x, 22, P.rail); }
+  for (let y = 5; y < 23; y++) { px(4, y, P.rail); px(31, y, P.rail); }
+  for (let y = 6; y < 22; y++) px(17, y, P.rail, 0.8);
+}
+
+function drawTreeShadows(frame, strength = 0.18) {
+  for (let i = 0; i < 6; i++) {
+    const base = 34 - ((frame * 0.8 + i * 6) % 46);
+    for (let y = 7; y < 22; y++) {
+      const wobble = Math.sin(y * 0.9 + i) > 0 ? 0 : 1;
+      px(base + wobble, y, P.tree, strength);
+      if (y % 3 === 0) px(base - 1 + wobble, y, '#111821', strength * 0.7);
+    }
+  }
+}
+
+function drawPassingLights(frame, strength = 1, sparse = false) {
+  const count = sparse ? 3 : 7;
+  for (let i = 0; i < count; i++) {
+    const base = 36 - ((frame * 1.15 + i * 8) % 52);
+    const h = 8 + (i % 4) * 3;
+    for (let w = 0; w < 4; w++) {
+      px(base + w, h, P.lamp, (0.13 + 0.05 * w) * strength);
+      px(base + w, h + 1, P.lamp2, (0.08 + 0.04 * w) * strength);
+    }
+  }
+}
+
+function drawMoonWash(alpha) {
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = P.moon;
+  ctx.fillRect(4 * PX, 5 * PX, 28 * PX, 17 * PX);
+  ctx.globalAlpha = 1;
+}
+
+function drawGhostReflection(frame, alpha = 0.14) {
+  const rx = 22 + Math.sin(frame * 0.04) * 0.8;
+  px(rx, 13, P.ghost, alpha);
+  px(rx + 1, 14, P.ghost, alpha * 0.7);
+  px(rx, 15, P.moon2, alpha * 0.35);
+}
+
+function shotIndex(t) {
+  if (t < 0.25) return 0;
+  if (t < 0.5) return 1;
+  if (t < 0.75) return 2;
+  return 3;
+}
+
+function render(frame) {
+  const t = frame / TOTAL;
+  const shot = shotIndex(t);
+  const local = (t - shot * 0.25) / 0.25;
+  const e = easeInOut(local);
+  clearBg();
+
+  // shared role continuity anchors
+  const cryPos = { x: 10, y: 10 };
+  const runStart = { x: 11, y: 11.2 };
+  const runEnd = { x: 20, y: 11.2 };
+  const boardStart = { x: 20, y: 11.2 };
+  const boardEnd = { x: 21.5, y: 13.8 };
+  const seatPos = { x: 10, y: 17 };
+
+  if (shot === 0) {
+    // 1) crying on platform; end state pre-echoes running posture
+    drawMoon(27, 8, 2.8, 0.85);
+    drawPlatform();
+    const bob = Math.sin(local * Math.PI * 4) * 0.18;
+    const shiftX = local > 0.72 ? lerp(0, 1, (local - 0.72) / 0.28) : 0;
+    drawGhostWitch(cryPos.x + shiftX, cryPos.y + bob, {
+      cry: 1 - local * 0.45,
+      look: local > 0.72 ? 'right' : 'down',
+      tailLift: local > 0.72 ? 1 : 0,
+      arm: 'down'
+    });
+    drawBottle(20, 23, 0.15);
+    drawKey(16, 24, Math.sin(local * Math.PI * 2) * 0.4, 0);
+  } else if (shot === 1) {
+    // 2) running starts very near previous end pose and exits at boarding entry pose
+    drawMoon(29, 7, 2.4, 0.5);
+    drawRunningStreet(frame);
+    const runX = lerp(runStart.x, runEnd.x, e);
+    const bounce = Math.abs(Math.sin(local * Math.PI * 6)) * 1.1;
+    drawGhostWitch(runX, runStart.y - bounce, {
+      cry: 0.18 * (1 - local),
+      look: 'right',
+      tailLift: 1,
+      arm: 'up'
+    });
+    if (local > 0.12) drawKey(runX - 4.5, 24, -1.2 + Math.sin(local * Math.PI * 8), 0.16);
+    if (local > 0.4) drawBottle(runX - 7.5, 23, 0.08);
+  } else if (shot === 2) {
+    // 3) boarding begins where running leaves off and settles into seated-world logic
+    drawMoon(28, 7, 2.2, 0.4);
+    drawPlatform();
+    for (let y = 7; y < 26; y++) for (let x = 21; x < 35; x++) px(x, y, (x + y) % 2 ? '#1a2430' : '#111926', 0.92);
+    for (let y = 8; y < 24; y++) px(25, y, P.rail, 0.95);
+    const enterX = lerp(boardStart.x, boardEnd.x, e);
+    const enterY = lerp(boardStart.y, boardEnd.y, e);
+    drawGhostWitch(enterX, enterY, {
+      cry: 0.08 * (1 - local),
+      look: 'right',
+      tailLift: local > 0.55 ? 1 : 0,
+      arm: local > 0.35 ? 'up' : 'down'
+    });
+    drawBottle(18, 23, local > 0.65 ? 0.4 : 0);
+    drawKey(15, 24, Math.sin(local * Math.PI * 5) * 1.1, local > 0.65 ? 0.5 : 0.1);
+    // subtle moon wash increase prepares window shot
+    if (local > 0.7) drawMoonWash((local - 0.7) / 0.3 * 0.06);
+  } else {
+    // 4) seated by window; end settles back toward the opening moon/platform mood
+    drawTrainInterior();
+    const peak = Math.sin(local * Math.PI);
+    drawMoonWash(0.08 + peak * 0.12);
+    drawTreeShadows(frame, 0.12 + peak * 0.08);
+    drawPassingLights(frame, 0.35 + peak * 0.65, local < 0.2 || local > 0.85);
+    drawGhostReflection(frame, 0.09 + peak * 0.1);
+    const sway = Math.sin(local * Math.PI * 8) * 0.35;
+    const settleToCry = local > 0.7 ? (local - 0.7) / 0.3 : 0;
+    const ghostX = lerp(seatPos.x + (peak > 0.5 ? 1 : 0), seatPos.x, settleToCry);
+    const ghostY = lerp(seatPos.y + sway, 15.5, settleToCry);
+    drawGhostWitch(ghostX, ghostY, {
+      cry: 0.2 + settleToCry * 0.25,
+      look: local < 0.55 ? 'left' : (local < 0.82 ? 'forward' : 'down'),
+      tailLift: peak > 0.6 ? 1 : 0,
+      arm: 'down'
+    });
+    drawBottle(22, 24, peak * 0.55 + settleToCry * 0.15);
+    drawKey(18, 25, Math.sin(local * Math.PI * 8) * 1.2, peak * 0.5);
+    // loop closure: moon re-emerges, train detail softens, preparing emotional return to shot 1
+    if (local > 0.72) {
+      const a = (local - 0.72) / 0.28;
+      drawMoon(27, 8, 2.8, 0.2 + 0.35 * a);
+    }
+  }
+}
+
+let start = null;
+function loop(ts) {
+  if (!start) start = ts;
+  const elapsed = (ts - start) / 1000;
+  const loopT = elapsed % DUR;
+  const frame = Math.floor(loopT * FPS);
+  render(frame);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

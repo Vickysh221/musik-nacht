@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview - ghost-witch</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #13151b;
+      font-family: monospace;
+      color: rgba(255,255,255,0.8);
+      overflow: hidden;
+    }
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      display: block;
+      background: radial-gradient(circle at center, #232630 0%, #171920 60%, #111218 100%);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .label {
+      text-align: center;
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+      font-size: 13px;
+      color: rgba(255,255,255,0.68);
+    }
+    .label strong {
+      color: #fff;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <canvas id="c" width="640" height="640"></canvas>
+    <div class="label">
+      <strong>ghost-witch</strong><br />
+      戴着大巫师帽的圆润小幽灵（已注册角色预览）
+    </div>
+  </div>
+
+<script>
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const PX = 20;
+
+const palette = {
+  1: '#2F3137',
+  2: '#FFFDF8',
+  3: '#F7C8CF',
+  4: '#111111'
+};
+
+const data = [
+  [0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0],
+  [0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0],
+  [0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0],
+  [0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],
+  [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+  [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+  [0,0,0,1,1,1,2,2,2,2,2,1,1,1,0,0],
+  [0,0,2,2,2,2,2,4,2,2,4,2,2,2,2,0],
+  [0,2,2,2,3,2,2,2,4,2,2,3,2,2,2,2],
+  [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [0,0,2,2,2,2,0,2,2,0,2,2,2,2,0,0],
+  [0,0,0,2,2,0,0,0,0,0,0,2,2,0,0,0],
+  [0,0,0,0,2,2,0,0,0,0,2,2,0,0,0,0]
+];
+
+const anchors = {
+  head: { x: 8, y: 0 },
+  eyeLeft: { x: 7, y: 7 },
+  eyeRight: { x: 10, y: 7 },
+  handLeft: { x: 2, y: 8 },
+  handRight: { x: 14, y: 8 },
+  footLeft: { x: 5, y: 15 },
+  footRight: { x: 10, y: 15 },
+  body: { x: 8, y: 10 }
+};
+
+function drawBg() {
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  for (let y = 0; y < cv.height; y += 20) {
+    for (let x = 0; x < cv.width; x += 20) {
+      if (((x + y) / 20) % 2 === 0) {
+        ctx.fillStyle = 'rgba(255,255,255,0.025)';
+        ctx.fillRect(x, y, 20, 20);
+      }
+    }
+  }
+}
+
+function drawPixel(gx, gy, color, alpha = 1) {
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = color;
+  ctx.fillRect(gx * PX, gy * PX, PX, PX);
+  ctx.globalAlpha = 1;
+}
+
+function drawGhost(offsetX, offsetY) {
+  for (let y = 0; y < data.length; y++) {
+    for (let x = 0; x < data[y].length; x++) {
+      const v = data[y][x];
+      if (!v) continue;
+      drawPixel(offsetX + x, offsetY + y, palette[v]);
+    }
+  }
+}
+
+function drawAnchor(offsetX, offsetY, name, pt, color) {
+  drawPixel(offsetX + pt.x, offsetY + pt.y, color, 0.95);
+  ctx.fillStyle = color;
+  ctx.font = '12px monospace';
+  ctx.fillText(name, (offsetX + pt.x + 1) * PX, (offsetY + pt.y + 0.8) * PX);
+}
+
+function render() {
+  drawBg();
+  const offsetX = 10;
+  const offsetY = 8;
+  drawGhost(offsetX, offsetY);
+
+  drawAnchor(offsetX, offsetY, 'head', anchors.head, '#7FDBFF');
+  drawAnchor(offsetX, offsetY, 'body', anchors.body, '#FFD166');
+  drawAnchor(offsetX, offsetY, 'eyeL', anchors.eyeLeft, '#FF6B6B');
+  drawAnchor(offsetX, offsetY, 'eyeR', anchors.eyeRight, '#FF6B6B');
+  drawAnchor(offsetX, offsetY, 'handL', anchors.handLeft, '#8CE99A');
+  drawAnchor(offsetX, offsetY, 'handR', anchors.handRight, '#8CE99A');
+  drawAnchor(offsetX, offsetY, 'footL', anchors.footLeft, '#C77DFF');
+  drawAnchor(offsetX, offsetY, 'footR', anchors.footRight, '#C77DFF');
+}
+
+render();
+</script>
+</body>
+</html>

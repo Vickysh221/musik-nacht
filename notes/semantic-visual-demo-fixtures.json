@@ -1,0 +1,506 @@
+{
+  "version": "0.1",
+  "demoPositioning": {
+    "name": "semantic-to-visual planning demo",
+    "summary": "Take atmosphere-led, trace-led, breathing-led, refinement-heavy language and turn it into an explainable visual planning schema, then compress it into a visual brief and an image-generation-ready prompt.",
+    "focus": [
+      "structure vague but art-directed language into controllable visual planning",
+      "preserve atmosphere, trace, breathing, and constraint-led refinement instead of flattening them into generic style tags",
+      "show that planning can suppress common image-generation drift"
+    ],
+    "notFocus": [
+      "full natural-language understanding",
+      "production intent recognition",
+      "large ontology expansion",
+      "general LLM product behavior"
+    ]
+  },
+  "showcaseChain": [
+    "semantic input",
+    "visual planning schema",
+    "negative visual drift guardrails",
+    "structured visual brief",
+    "image-generation-ready prompt",
+    "optional side-by-side with raw direct prompt"
+  ],
+  "primaryShowcase": [
+    {
+      "id": "mist-bamboo-trace",
+      "text": "烟雨里有一点竹影",
+      "whySelected": "This is one of the cleanest atmosphere-first samples in the project language. It is sparse, directional, and already contains a strong refinement boundary through '一点'.",
+      "represents": [
+        "atmosphere-first",
+        "trace-not-object",
+        "low-density composition",
+        "restraint as art direction"
+      ],
+      "likelyMisreadAs": [
+        "a complete bamboo forest scene",
+        "generic fog landscape with no bamboo trace",
+        "traditional ink-painting cliche with overly explicit subject matter"
+      ],
+      "visualPlanningSchema": {
+        "subjects": [
+          "bamboo appears only as partial shadow or edge silhouette, not as the main object"
+        ],
+        "scene": [
+          "humid exterior or threshold-facing view",
+          "rain haze as the dominant field",
+          "no fully described landscape"
+        ],
+        "palette": [
+          "smoky grey-green",
+          "washed charcoal",
+          "muted wet jade",
+          "low-contrast off-white mist"
+        ],
+        "atmosphere": [
+          "fine wet air",
+          "soft suspended rain",
+          "quiet distance",
+          "visual understatement"
+        ],
+        "lighting": [
+          "overcast ambient light",
+          "diffused low-direction illumination",
+          "no direct sun or dramatic highlights"
+        ],
+        "styleHints": [
+          "minimal atmospheric image",
+          "keep visual language airy and sparse",
+          "favor presence-through-trace over object completion"
+        ],
+        "motifs": [
+          "bamboo shadow bands",
+          "mist layers",
+          "rain-softened edges"
+        ],
+        "textures": [
+          "wet paper-like diffusion",
+          "soft vapor grain",
+          "light rain veil"
+        ],
+        "composition": [
+          "large negative space",
+          "bamboo trace off-center or near edge",
+          "subject density kept below one-third of frame"
+        ]
+      },
+      "negativeVisualDrift": [
+        "do not grow into a dense bamboo grove",
+        "do not resolve into a scenic postcard landscape",
+        "do not lose the bamboo trace and become only generic mist",
+        "do not overcommit to classical ink illustration tropes"
+      ],
+      "structuredVisualBrief": {
+        "coreIntent": "Build an image where rain-haze is primary and bamboo exists only as a faint trace within it.",
+        "visualPriority": [
+          "atmosphere first",
+          "trace second",
+          "object completion suppressed"
+        ],
+        "artDirection": [
+          "keep the frame breathing and underfilled",
+          "let bamboo read as evidence, not inventory",
+          "make the image feel damp, hushed, and slightly withheld"
+        ]
+      },
+      "imagePrompt": "Create an atmospheric image dominated by fine rain haze and wet, grey-green air. Show only a slight trace of bamboo as partial shadow or edge silhouette, never a full bamboo grove. Keep the scene sparse, off-center, and breathing, with large negative space, diffused overcast light, soft vapor grain, and rain-softened edges. Avoid postcard landscape composition, avoid dense vegetation, avoid generic empty fog, avoid explicit ink-painting cliches."
+    },
+    {
+      "id": "floral-leaf-intent-not-full",
+      "text": "花叶意向，但不要太满",
+      "whySelected": "This is a strong refinement-led sample because it combines a visual direction with an explicit density constraint. It shows the project's ability to work with taste-driven correction instead of object naming alone.",
+      "represents": [
+        "constraint-led refinement",
+        "vague but art-directed preference",
+        "density control",
+        "motif planning rather than object listing"
+      ],
+      "likelyMisreadAs": [
+        "a full botanical wallpaper",
+        "clear flower illustration with decorative overload",
+        "lush garden abundance that ignores the '不要太满' boundary"
+      ],
+      "visualPlanningSchema": {
+        "subjects": [
+          "floral and leaf motifs appear as hints, fragments, or rhythm marks",
+          "no hero flower"
+        ],
+        "scene": [
+          "semi-abstract visual field",
+          "could be interior textile, painted surface, or soft environmental backdrop",
+          "avoid literal garden setting"
+        ],
+        "palette": [
+          "powdered green",
+          "faded petal pink",
+          "dusty cream",
+          "soft stem olive"
+        ],
+        "atmosphere": [
+          "lightly decorative",
+          "open",
+          "gently suspended",
+          "not crowded"
+        ],
+        "lighting": [
+          "soft even light",
+          "subtle surface bloom",
+          "no hard spotlighting"
+        ],
+        "styleHints": [
+          "suggestion over illustration",
+          "editorial restraint",
+          "pattern logic with intentional gaps"
+        ],
+        "motifs": [
+          "partial petals",
+          "leaf edges",
+          "broken clusters",
+          "breathing intervals between marks"
+        ],
+        "textures": [
+          "powdery matte surface",
+          "soft paper or fabric grain",
+          "lightly worn pigment"
+        ],
+        "composition": [
+          "disperse motifs with visible empty zones",
+          "keep rhythm irregular, not tiled",
+          "avoid full-frame fill"
+        ]
+      },
+      "negativeVisualDrift": [
+        "do not turn into full botanical pattern fill",
+        "do not render explicit bouquet or garden scene",
+        "do not make every area equally occupied",
+        "do not over-brighten into decorative lifestyle imagery"
+      ],
+      "structuredVisualBrief": {
+        "coreIntent": "Translate floral-leaf intent into a restrained motif field with visible breathing room.",
+        "visualPriority": [
+          "motif suggestion",
+          "controlled density",
+          "tasteful incompleteness"
+        ],
+        "artDirection": [
+          "leave gaps as part of the design",
+          "treat flowers and leaves as visual accents rather than named objects",
+          "keep the composition soft, airy, and edited"
+        ]
+      },
+      "imagePrompt": "Create a restrained visual field with floral and leaf intent, but keep it underfilled. Use partial petals, leaf edges, and broken clusters instead of fully described flowers or lush garden objects. Palette: powdered green, faded petal pink, dusty cream, soft olive. The image should feel airy, edited, and slightly abstract, with matte paper-or-fabric texture and visible empty zones between motifs. Avoid full botanical wallpaper density, avoid bouquet illustration, avoid decorative overload, avoid evenly tiled repetition."
+    },
+    {
+      "id": "sun-bleached-seaside-air",
+      "text": "海边那种被晒白的空气感",
+      "whySelected": "This is a strong atmosphere-material sample. It does not ask for a beach object set, but for an air quality transformed by light and salt. It demonstrates the project's strength in planning for ambience instead of inventory.",
+      "represents": [
+        "atmosphere as subject",
+        "materialized air",
+        "light-washed openness",
+        "anti-postcard coastal direction"
+      ],
+      "likelyMisreadAs": [
+        "a generic beach postcard",
+        "blue sea plus umbrella plus sunshine travel image",
+        "high-saturation summer vacation scene"
+      ],
+      "visualPlanningSchema": {
+        "subjects": [
+          "air haze and salt-faded exposure are the main subject",
+          "coast can remain implicit or peripheral"
+        ],
+        "scene": [
+          "coastal threshold or open edge condition",
+          "minimal environmental cues",
+          "horizon may be softened or nearly erased"
+        ],
+        "palette": [
+          "chalked sky blue",
+          "salt white",
+          "sun-faded beige",
+          "bleached pale aqua"
+        ],
+        "atmosphere": [
+          "dry brightness",
+          "salt-lifted openness",
+          "sun-bleached thinness",
+          "soft glare"
+        ],
+        "lighting": [
+          "high diffuse daylight",
+          "washed highlights",
+          "reduced contrast from bright air scatter"
+        ],
+        "styleHints": [
+          "less location postcard, more climate impression",
+          "keep forms faded by exposure",
+          "let air flatten edges"
+        ],
+        "motifs": [
+          "faded horizon line",
+          "sun-worn surfaces",
+          "light salt film",
+          "bleached open sky"
+        ],
+        "textures": [
+          "powdered salt haze",
+          "dry matte glare",
+          "sun-faded grain"
+        ],
+        "composition": [
+          "wide open frame",
+          "low object count",
+          "coastal cues remain secondary to air quality"
+        ]
+      },
+      "negativeVisualDrift": [
+        "do not auto-complete into beach chairs, umbrellas, or postcard surf",
+        "do not over-saturate blue sea and sky",
+        "do not make the coast the hero object",
+        "do not turn the frame into travel-ad brightness"
+      ],
+      "structuredVisualBrief": {
+        "coreIntent": "Make sun-bleached air itself carry the coastal feeling, with the shore remaining secondary.",
+        "visualPriority": [
+          "air quality first",
+          "light scatter second",
+          "location cues minimal"
+        ],
+        "artDirection": [
+          "bleach the frame gently instead of filling it with seaside props",
+          "keep openness and salt exposure visible",
+          "let the coast be sensed, not catalogued"
+        ]
+      },
+      "imagePrompt": "Create a coastal image where the main subject is sun-bleached air rather than beach objects. Use chalked sky blue, salt white, pale aqua, and sun-faded beige. Let diffuse daylight wash the frame so edges soften and the horizon nearly dissolves. Keep object count low and treat any shoreline cues as peripheral. The mood should feel dry, bright, open, and lightly salt-worn. Avoid postcard beach composition, avoid umbrellas or tourist props, avoid saturated blue-water hero shots, avoid travel-ad polish."
+    },
+    {
+      "id": "pre-rain-five-minutes",
+      "text": "下雨前五分钟的空气",
+      "whySelected": "This is a threshold-atmosphere sample with strong temporal pressure. It captures the project's ability to map pre-event tension into visual planning without needing explicit narrative objects.",
+      "represents": [
+        "threshold atmosphere",
+        "pre-event tension",
+        "temporal planning",
+        "breathing with pressure"
+      ],
+      "likelyMisreadAs": [
+        "a dramatic thunderstorm scene",
+        "heavy rain already happening",
+        "dark disaster sky with cinematic exaggeration"
+      ],
+      "visualPlanningSchema": {
+        "subjects": [
+          "charged air before rain",
+          "subtle environmental signs of imminent weather shift"
+        ],
+        "scene": [
+          "outdoor threshold, street edge, field edge, or open window context",
+          "stillness before event",
+          "no storm spectacle"
+        ],
+        "palette": [
+          "muted blue-grey",
+          "damp concrete grey",
+          "darkened sage",
+          "faint metallic cloud tint"
+        ],
+        "atmosphere": [
+          "compressed stillness",
+          "humidity rise",
+          "slight pressure in the air",
+          "held breath"
+        ],
+        "lighting": [
+          "pre-storm dimness",
+          "softened but not night-dark",
+          "low directional certainty"
+        ],
+        "styleHints": [
+          "build anticipation without spectacle",
+          "keep energy suspended",
+          "favor subtle weather cues over dramatic sky theater"
+        ],
+        "motifs": [
+          "waiting leaves",
+          "weighted clouds",
+          "barely moving surfaces",
+          "humid edge glow"
+        ],
+        "textures": [
+          "damp air film",
+          "slightly metallic moisture",
+          "soft cloud compression"
+        ],
+        "composition": [
+          "balanced but tense",
+          "mid-to-wide framing",
+          "room for air mass to dominate"
+        ]
+      },
+      "negativeVisualDrift": [
+        "do not jump straight to rainfall",
+        "do not turn into thunderstorm cinema",
+        "do not make black storm clouds fill the whole frame",
+        "do not lose the 'five minutes before' tension"
+      ],
+      "structuredVisualBrief": {
+        "coreIntent": "Show the air right before rain arrives: compressed, humid, expectant, and not yet released.",
+        "visualPriority": [
+          "threshold timing",
+          "pressure in the air",
+          "subtle environmental response"
+        ],
+        "artDirection": [
+          "hold the event back",
+          "make stillness feel heavy rather than empty",
+          "let the frame breathe, but with pressure inside it"
+        ]
+      },
+      "imagePrompt": "Create an image of the air five minutes before rain, with humid compression, muted blue-grey light, and subtle atmospheric tension. Show an outdoor threshold or open edge context, but keep objects secondary to the charged air. Use damp concrete grey, darkened sage, metallic cloud tint, and pre-storm dimness. The frame should feel suspended and expectant, not dramatic. Avoid visible rainfall, avoid thunderstorm spectacle, avoid disaster-sky contrast, avoid fully black cloud masses."
+    },
+    {
+      "id": "california-beach-lemon-leaf-scent",
+      "text": "加州沙滩和柠檬叶的香气",
+      "whySelected": "This is the strongest mixed-imagery sample in the new pool. It combines place memory and plant note into one visual planning problem, which is exactly where schema-based planning is more useful than direct prompting.",
+      "represents": [
+        "mixed imagery",
+        "cross-sensory translation",
+        "atmosphere plus note-layering",
+        "art-directed fusion rather than literal collage"
+      ],
+      "likelyMisreadAs": [
+        "a travel postcard plus lemons",
+        "bright fruit commercial styling",
+        "explicit beach scene with lemon props scattered in it"
+      ],
+      "visualPlanningSchema": {
+        "subjects": [
+          "coastal brightness and citrus-leaf freshness coexist",
+          "lemon enters as leaf note, not fruit still life"
+        ],
+        "scene": [
+          "California coastal openness as a diffuse field",
+          "botanical note can appear as edge presence or scent cue proxy",
+          "avoid literal prop staging"
+        ],
+        "palette": [
+          "sun-bleached sand",
+          "pale Pacific blue",
+          "soft lemon-leaf green",
+          "warm dry cream"
+        ],
+        "atmosphere": [
+          "open coastal air",
+          "clean aromatic lift",
+          "bright but not commercial",
+          "lightly nostalgic"
+        ],
+        "lighting": [
+          "clear diffuse daylight",
+          "soft reflective brightness",
+          "high-key but not glossy"
+        ],
+        "styleHints": [
+          "blend scent-note logic into the visual field",
+          "favor memory texture over literal collage",
+          "keep the image elegant and lightly art-directed"
+        ],
+        "motifs": [
+          "soft coastline hint",
+          "leaf edge or leaf shadow",
+          "salt-light openness",
+          "citrus-fresh air cue"
+        ],
+        "textures": [
+          "sun-warmed matte air",
+          "dry salt softness",
+          "thin botanical freshness"
+        ],
+        "composition": [
+          "wide breathing frame",
+          "coastal base with sparse botanical accent",
+          "avoid centered fruit object"
+        ]
+      },
+      "negativeVisualDrift": [
+        "do not place obvious lemons as still-life props",
+        "do not become a travel brochure beach shot",
+        "do not turn the frame into bright lifestyle commercial imagery",
+        "do not split coast and citrus into two disconnected halves"
+      ],
+      "structuredVisualBrief": {
+        "coreIntent": "Fuse coastal brightness with lemon-leaf freshness as one atmosphere, not as a literal object list.",
+        "visualPriority": [
+          "mixed sensory field",
+          "coastal openness",
+          "leaf-note freshness"
+        ],
+        "artDirection": [
+          "keep citrus in the register of leaf and air, not fruit display",
+          "let California beach read as exposure and openness rather than postcard tourism",
+          "maintain a refined, memory-like blend"
+        ]
+      },
+      "imagePrompt": "Create an image that blends California beach openness with the scent impression of lemon leaves. Use sun-bleached sand, pale Pacific blue, warm dry cream, and soft lemon-leaf green. Keep the frame wide, airy, and memory-like, with coastal brightness as the base field and only sparse botanical cues such as leaf edge, leaf shadow, or subtle green aromatic accents. The result should feel clean, lightly nostalgic, and art-directed rather than literal. Avoid visible lemon still-life props, avoid beach travel brochure imagery, avoid glossy commercial freshness, avoid splitting beach and citrus into separate visual zones."
+    }
+  ],
+  "alternateShowcase": [
+    {
+      "id": "lavender-fragrance",
+      "text": "薰衣草的芳香",
+      "whySelected": "Useful as a scent-to-visual translation sample with softer mood and less location pressure.",
+      "represents": [
+        "scent translation",
+        "soft field planning",
+        "non-object sensory cue"
+      ],
+      "likelyMisreadAs": [
+        "purple flower farm",
+        "beauty-product packaging image",
+        "obvious lavender bouquet still life"
+      ]
+    },
+    {
+      "id": "dark-indigo-floating-cloud",
+      "text": "黛色浮云",
+      "whySelected": "Good for testing tonal restraint and suspended mass without over-narration.",
+      "represents": [
+        "tonal atmosphere",
+        "floating mass planning",
+        "minimal weather image"
+      ],
+      "likelyMisreadAs": [
+        "dramatic fantasy sky",
+        "heavy ink cloud painting",
+        "storm spectacle"
+      ]
+    },
+    {
+      "id": "rotation-slot-mixed-or-threshold",
+      "type": "rotation-slot",
+      "label": "备选轮换槽",
+      "candidates": [
+        "海边那种被晒白的空气感",
+        "加州沙滩和柠檬叶的香气"
+      ],
+      "whySelected": "The current pool has 7 unique source samples. This slot preserves an 8-card demo layout without inventing an outside sentence, and can rotate between atmosphere-only and mixed-imagery emphasis.",
+      "represents": [
+        "showcase layout stability",
+        "direct comparison between atmosphere-first and mixed-imagery planning"
+      ],
+      "likelyMisreadAs": [
+        "treating the slot as a new semantic class instead of a presentation rotation slot"
+      ]
+    }
+  ],
+  "whyThisPoolReplacesTheOldOne": [
+    "These samples come from language structures the project has actually accumulated, rather than generic poetic lines.",
+    "They expose the project's strongest semantics: threshold atmosphere, trace-not-object, breathing room, mixed imagery, and refinement-led constraints.",
+    "They are closer to what the system can uniquely plan for visually, instead of asking it to perform broad semantic correctness.",
+    "They make the demo legible as a semantic-to-visual planning system, not as a general language-understanding product."
+  ]
+}

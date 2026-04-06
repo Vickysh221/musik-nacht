@@ -205,6 +205,50 @@
     }
   },
   {
+    "songId": "340376",
+    "songTitle": "夜车",
+    "artist": "曾轶可",
+    "botId": "ghost-witch-night-train-companion",
+    "botRole": "夜车陪伴幽灵 bot",
+    "theme": ["night", "train", "ghost", "sleeping-companion", "quiet-discovery", "passing-lights"],
+    "prompt": "ghost-witch 在夜里的站牌前等待，上车后在飞驰列车中被窗外灯光和树影掠过，随后发现另一只戴羽毛帽的小幽灵已经安静睡着，最后只是在他身旁坐下看着他。",
+    "lyricIntent": "这不是相认，而是在漫长夜路里发现原来还有另一个安静存在一起被载着向前。",
+    "sceneZone": "train-companion-booth",
+    "phaseHints": [
+      "wait at station sign",
+      "sit in moving carriage under passing lights",
+      "notice sleeping ghost companion",
+      "stay beside them quietly"
+    ],
+    "playbackBinding": {
+      "selected": "cold moon glow and carriage edge-light gather around both ghosts",
+      "playing": "4-phase stitched train collage with station, movement, discovery, and companionship",
+      "paused": "quiet seated idle beside sleeping companion",
+      "inactive": "dim double-ghost silhouette in the carriage"
+    },
+    "lyricSurface": {
+      "type": "rain-glass-projection",
+      "placement": "train-window-and-seat-reflection",
+      "style": "soft drifting night text bands"
+    },
+    "scenePrototype": {
+      "sceneId": "night-train-sleeping-companion-scene",
+      "environment": "moving-night-carriage-with-station-memory",
+      "playerPlacement": "seat-side-cassette",
+      "visualMood": "dark carriage, station residue, moon fragments, passing lights, soft companionship",
+      "components": [
+        "ghost-witch sprite",
+        "ghost-feather-sleeper sprite",
+        "station sign intro layer",
+        "train window frame",
+        "passing light band layer",
+        "tree shadow layer",
+        "zzz glyph layer",
+        "seat-side player object"
+      ]
+    }
+  },
+  {
     "songId": "1888864514",
     "songTitle": "踊り子",
     "artist": "Vaundy",
@@ -243,6 +287,126 @@
         "drifting spotlight particles",
         "stage floor layer"
       ]
+    }
+  },
+  {
+    "songId": "34078194",
+    "songTitle": "Milestones",
+    "artist": "Shook",
+    "botId": "glow-panel-drifter",
+    "botRole": "漂移面板体",
+    "theme": ["electronic", "floating", "glow-panel", "cool-space", "milestone"],
+    "prompt": "一个圆滑流动的发光面板存在在低重力合成器空间中缓慢漂移，边缘与内部细光带轻微明灭，像在校准方向的坐标体。",
+    "lyricIntent": "不是人物表演，而是一个被看见的空间坐标正在安静漂移。",
+    "sceneZone": "synth-drift-bay",
+    "phaseHints": ["slow drift", "gentle turn", "panel glow pulse"],
+    "playbackBinding": {
+      "selected": "cool cyan glow intensifies",
+      "playing": "main drifting motion with soft panel pulse",
+      "paused": "hover idle with low light",
+      "inactive": "dim coordinate silhouette"
+    },
+    "lyricSurface": {
+      "type": "fog-window",
+      "placement": "mid-space-center",
+      "style": "soft spectral captions"
+    },
+    "scenePrototype": {
+      "sceneId": "milestones-panel-scene",
+      "environment": "cool-synth-low-gravity-space",
+      "playerPlacement": "synth-console",
+      "visualMood": "cold cyan, spacious, floating coordinates",
+      "components": ["glow panel entity", "spectrum lines", "soft particles", "synth-console player"]
+    }
+  },
+  {
+    "songId": "1294604159",
+    "songTitle": "Sentiment Acide (Jennifer Cardini Remix)",
+    "artist": "Jennifer Cardini, David Shaw and The Beat",
+    "botId": "acid-neon-shard",
+    "botRole": "酸性霓虹切片",
+    "theme": ["electronic", "acid", "neon", "sharp", "night"],
+    "prompt": "一个尖锐切面的冷霓虹存在在夜色里短促显形，边缘酸绿色与冷紫色电流式闪动，像夜间空间中的危险标志物。",
+    "lyricIntent": "它不是角色，而是一个被看见的酸夜切片。",
+    "sceneZone": "acid-neon-edge",
+    "phaseHints": ["flash in", "edge pulse", "withdraw slightly"],
+    "playbackBinding": {
+      "selected": "acid edge light sharpens",
+      "playing": "main shard pulse and scan motion",
+      "paused": "faint neon hum",
+      "inactive": "barely visible shard outline"
+    },
+    "lyricSurface": {
+      "type": "rain-glass-projection",
+      "placement": "right-side-neon-wall",
+      "style": "sharp cold captions"
+    },
+    "scenePrototype": {
+      "sceneId": "acid-shard-scene",
+      "environment": "dark-neon-acid-night",
+      "playerPlacement": "edge-console",
+      "visualMood": "sharp acid green and violet on black",
+      "components": ["acid shard entity", "scan lines", "neon edge glow", "edge-console player"]
+    }
+  },
+  {
+    "songId": "17089071",
+    "songTitle": "The Whistler",
+    "artist": "Claude VonStroke",
+    "botId": "brass-whistle-engine",
+    "botRole": "黄铜哨引擎",
+    "theme": ["electronic", "mechanical", "brass", "underground", "guide"],
+    "prompt": "一个怪轮廓的旧机械黄铜存在在地下空间前探后撤，哨口与喇叭口周期性亮起，像在节拍点上示意你往更深处走。",
+    "lyricIntent": "它更像带路的地下机械引路器，而不是被观看的主角。",
+    "sceneZone": "underground-whistle-lane",
+    "phaseHints": ["lean forward", "whistle light", "pull back and beckon"],
+    "playbackBinding": {
+      "selected": "brass whistle tip glows",
+      "playing": "main beckoning machine rhythm",
+      "paused": "small ticking idle",
+      "inactive": "shadowy brass frame"
+    },
+    "lyricSurface": {
+      "type": "rain-glass-projection",
+      "placement": "left-industrial-wall",
+      "style": "mechanical cue text"
+    },
+    "scenePrototype": {
+      "sceneId": "whistle-engine-scene",
+      "environment": "underground-brass-corridor",
+      "playerPlacement": "pipe-console",
+      "visualMood": "brass, rust, weird underground cues",
+      "components": ["brass engine entity", "whistle light", "pipe shadows", "pipe-console player"]
+    }
+  },
+  {
+    "songId": "5069277",
+    "songTitle": "Jungle HeartBeat",
+    "artist": "Suduaya",
+    "botId": "biolume-pulse-totem",
+    "botRole": "生物荧光脉冲图腾",
+    "theme": ["electronic", "tribal", "bioluminescent", "pulse", "jungle"],
+    "prompt": "一个有机不规则的生物荧光图腾以心跳般的节律收缩扩张，中央脉冲核心不断向外扩散光圈，像在把节奏递给你。",
+    "lyricIntent": "它不是人物，而是会召唤你进入节律的图腾存在。",
+    "sceneZone": "jungle-pulse-core",
+    "phaseHints": ["pulse inward", "radiate outward", "lean and summon"],
+    "playbackBinding": {
+      "selected": "core glow intensifies",
+      "playing": "main pulse expansion and organic resonance",
+      "paused": "slow breathing biolume idle",
+      "inactive": "dark jungle outline"
+    },
+    "lyricSurface": {
+      "type": "moonlight-glyph",
+      "placement": "totem-air-ring",
+      "style": "organic pulse glyphs"
+    },
+    "scenePrototype": {
+      "sceneId": "jungle-pulse-scene",
+      "environment": "biolume-jungle-ritual-space",
+      "playerPlacement": "totem-console",
+      "visualMood": "dark green, pulse core, ritual biolume",
+      "components": ["pulse totem entity", "core rings", "organic tendrils", "totem-console player"]
     }
   }
 ]

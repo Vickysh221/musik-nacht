@@ -20,17 +20,10 @@
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
-  .info {
-    color: #2A4060;
-    font-size: 11px;
-    margin-top: 8px;
-    letter-spacing: 1px;
-  }
 </style>
 </head>
 <body>
 <canvas id="c" width="720" height="720"></canvas>
-<div class="info" id="info">いつも雨 — clawd rain waiter</div>
 
 <script>
 const cv = document.getElementById('c');
@@ -351,8 +344,11 @@ function loop(ts) {
 
   render(frame);
 
-  document.getElementById('info').textContent =
-    `いつも雨  ${loopT.toFixed(1)}s/${DUR}s  loop ${Math.floor(elapsed/DUR)+1}`;
+  window.parent?.postMessage({
+    type: 'musik-nacht:animation-debug',
+    title: 'いつも雨',
+    detail: `${loopT.toFixed(1)}s/${DUR}s  loop ${Math.floor(elapsed / DUR) + 1}`,
+  }, '*');
 
   requestAnimationFrame(loop);
 }

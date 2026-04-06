@@ -1,0 +1,7 @@
+歌曲: 夜车 ghost-witch
+角色: ghost-witch
+
+阶段1 (0-2s): 站台 | 哭泣 | 冷的月光，静谧的灯光 | position=left, facing=right, emotion=sad, prop=key
+阶段2 (2-5s): 走廊 | 奔跑 | 冷的灯光，急促的变化 | position=center, facing=right, emotion=urgent
+阶段3 (5-8s): 列车 | 上车 | 明亮的白光，进入的仪式感 | position=door, facing=right, emotion=tense, prop=bottle
+阶段4 (8-10s): 列车座位 | 看窗外 | 动态的窗外灯光掠过，沉静的凝视 | position=seat, facing=left, emotion=quiet

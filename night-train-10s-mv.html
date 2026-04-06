@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夜车 - 10s Pixel MV Prototype v2</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #060a10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: monospace;
+    }
+    .stage {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #060a10;
+    }
+    canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      display: block;
+      flex: none;
+    }
+    .info {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.28);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage"><canvas id="c" width="720" height="720"></canvas></div>
+  <div class="info">夜车 · 10s pixel MV prototype v2</div>
+<script>
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const PX = 20, GW = 36, GH = 36;
+const FPS = 30, DUR = 10, TOTAL = FPS * DUR;
+
+const P = {
+  bg: '#060A10',
+  bg2: '#0B121A',
+  wall: '#101826',
+  wall2: '#141C28',
+  seat: '#1A2230',
+  seat2: '#243041',
+  frame: '#2A3443',
+  window: '#09111A',
+  moon: '#C7D7F2',
+  moon2: '#8EA8D3',
+  tungsten: '#D3A86B',
+  tungsten2: '#8A693E',
+  ghost: '#D8E4F5',
+  ghost2: '#93A5C4',
+  key: '#D8C07E',
+  bottle: '#4A6D62',
+  bottle2: '#7AA091',
+  white: '#E8DCC8'
+};
+
+function px(x, y, c, a = 1) {
+  ctx.globalAlpha = a;
+  ctx.fillStyle = c;
+  ctx.fillRect(Math.round(x) * PX, Math.round(y) * PX, PX, PX);
+  ctx.globalAlpha = 1;
+}
+
+function fitCanvas() {
+  const s = Math.max(1, Math.floor(Math.min(window.innerWidth / 720, window.innerHeight / 720)));
+  cv.style.width = `${720 * s}px`;
+  cv.style.height = `${720 * s}px`;
+}
+window.addEventListener('resize', fitCanvas);
+fitCanvas();
+
+function clearBg() {
+  ctx.fillStyle = P.bg;
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) if ((x + y) % 2 === 0) px(x, y, P.bg2, 0.12);
+}
+
+function drawCarriageShell() {
+  for (let y = 0; y < 26; y++) for (let x = 0; x < GW; x++) px(x, y, (x + y) % 2 ? P.wall : P.wall2, 0.46);
+  for (let y = 26; y < GH; y++) for (let x = 0; x < GW; x++) px(x, y, (x + y) % 2 ? P.seat : P.seat2, 0.96);
+  for (let x = 0; x < GW; x += 3) px(x, 25, '#182231', 0.65);
+}
+
+function drawWindowFrame() {
+  for (let x = 4; x < 32; x++) { px(x, 5, P.frame); px(x, 22, P.frame); }
+  for (let y = 5; y < 23; y++) { px(4, y, P.frame); px(31, y, P.frame); }
+  for (let y = 6; y < 22; y++) px(17, y, P.frame, 0.85);
+  for (let x = 5; x < 31; x++) for (let y = 6; y < 22; y++) if ((x + y) % 3 === 0) px(x, y, P.window, 0.12);
+}
+
+function drawSeatArea() {
+  for (let x = 7; x < 28; x++) px(x, 26, P.seat2);
+  for (let x = 8; x < 15; x++) for (let y = 23; y < 26; y++) px(x, y, P.seat, 0.92);
+  for (let x = 9; x < 26; x++) px(x, 25, P.frame, 0.28);
+}
+
+function drawMoonWash(alpha) {
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = P.moon;
+  ctx.fillRect(4 * PX, 5 * PX, 28 * PX, 17 * PX);
+  ctx.globalAlpha = 1;
+}
+
+function drawTreeShadows(frame, strength = 0.2) {
+  for (let i = 0; i < 6; i++) {
+    const base = 34 - ((frame * 0.7 + i * 6) % 46);
+    for (let y = 7; y < 22; y++) {
+      const wobble = Math.sin(y * 0.9 + i) > 0 ? 0 : 1;
+      px(base + wobble, y, '#09131A', strength);
+      if (y % 3 === 0) px(base - 1 + wobble, y, '#0D151C', strength * 0.7);
+    }
+  }
+}
+
+function drawPassingLights(frame, strength = 1, sparse = false) {
+  const count = sparse ? 3 : 7;
+  for (let i = 0; i < count; i++) {
+    const base = 36 - ((frame * 1.1 + i * 8) % 52);
+    const h = 8 + (i % 4) * 3;
+    for (let w = 0; w < 4; w++) {
+      px(base + w, h, P.tungsten, (0.14 + 0.05 * w) * strength);
+      px(base + w, h + 1, P.tungsten2, (0.08 + 0.04 * w) * strength);
+    }
+  }
+}
+
+function drawBottle(ox, oy, flash = 0) {
+  px(ox + 1, oy, P.bottle2, 0.9 + flash * 0.3);
+  px(ox, oy + 1, P.bottle2, 0.8 + flash * 0.2); px(ox + 1, oy + 1, P.bottle, 0.95); px(ox + 2, oy + 1, P.bottle2, 0.8 + flash * 0.2);
+  px(ox, oy + 2, P.bottle, 0.95); px(ox + 1, oy + 2, P.bottle, 0.95); px(ox + 2, oy + 2, P.bottle, 0.95);
+  px(ox, oy + 3, P.bottle, 0.95); px(ox + 1, oy + 3, P.bottle, 0.95); px(ox + 2, oy + 3, P.bottle, 0.95);
+  if (flash > 0) px(ox + 2, oy + 1, P.white, flash * 0.9);
+}
+
+function drawKey(ox, oy, swing = 0, flash = 0) {
+  const sx = Math.round(swing);
+  px(ox + sx, oy, P.key, 0.9);
+  px(ox + 1 + sx, oy, P.key, 0.9);
+  px(ox + 2 + sx, oy, P.key, 0.9 + flash * 0.2);
+  px(ox + 3 + sx, oy, P.key, 0.9);
+  px(ox + 2 + sx, oy + 1, P.key, 0.85);
+  px(ox + 4 + sx, oy + 1, P.key, 0.85);
+}
+
+function drawGhostTail(ox, oy, lift = 0) {
+  px(ox, oy + 6, P.ghost2, 0.9);
+  px(ox + 1, oy + 7 - lift, P.ghost, 0.9);
+  px(ox + 2, oy + 8 - lift, P.ghost, 0.85);
+  px(ox + 3, oy + 8 - lift, P.ghost2, 0.8);
+  px(ox + 4, oy + 7 - lift, P.ghost2, 0.75);
+}
+
+function drawGhost(ox, oy, phase, peak = 0) {
+  // body
+  px(ox + 2, oy + 1, P.ghost, 0.8); px(ox + 3, oy + 1, P.ghost, 0.8); px(ox + 4, oy + 1, P.ghost, 0.8);
+  px(ox + 1, oy + 2, P.ghost, 0.8); px(ox + 2, oy + 2, P.ghost, 0.9); px(ox + 3, oy + 2, P.ghost, 0.9); px(ox + 4, oy + 2, P.ghost, 0.9); px(ox + 5, oy + 2, P.ghost2, 0.75);
+  px(ox + 1, oy + 3, P.ghost, 0.82); px(ox + 2, oy + 3, P.ghost, 0.9); px(ox + 3, oy + 3, P.ghost, 0.9); px(ox + 4, oy + 3, P.ghost, 0.88); px(ox + 5, oy + 3, P.ghost2, 0.75);
+  px(ox + 1, oy + 4, P.ghost2, 0.8); px(ox + 2, oy + 4, P.ghost, 0.88); px(ox + 3, oy + 4, P.ghost, 0.88); px(ox + 4, oy + 4, P.ghost2, 0.75);
+  px(ox + 2, oy + 5, P.ghost2, 0.82); px(ox + 3, oy + 5, P.ghost2, 0.82); px(ox + 4, oy + 5, P.ghost2, 0.74);
+
+  const eyeX = peak > 0.5 ? 4 : 3;
+  px(ox + eyeX, oy + 2, P.white, 0.8);
+  px(ox + eyeX + 1, oy + 2, P.white, 0.35);
+
+  drawGhostTail(ox + 4, oy + 1, phase > 0.45 ? 1 : 0);
+}
+
+function drawReflection(frame, alpha = 0.16) {
+  const rx = 21 + Math.sin(frame * 0.05) * 0.9;
+  px(rx, 13, P.ghost, alpha);
+  px(rx + 1, 14, P.ghost, alpha * 0.75);
+  px(rx, 15, P.moon, alpha * 0.3);
+}
+
+function drawLyricFlash(alpha = 0.2) {
+  const y = 18;
+  const xs = [8,9,10,12,13,14,16,17,18,20,21,22];
+  xs.forEach((x, i) => px(x, y + (i % 2), P.ghost, alpha * (i % 3 === 0 ? 1 : 0.7)));
+}
+
+function getSection(t) {
+  if (t < 0.2) return { name: 'reveal', local: t / 0.2 };
+  if (t < 0.5) return { name: 'passing', local: (t - 0.2) / 0.3 };
+  if (t < 0.8) return { name: 'peak', local: (t - 0.5) / 0.3 };
+  return { name: 'close', local: (t - 0.8) / 0.2 };
+}
+
+function render(frame) {
+  const t = frame / TOTAL;
+  const sec = getSection(t);
+  clearBg();
+  drawCarriageShell();
+  drawWindowFrame();
+  drawSeatArea();
+
+  let sway = Math.sin(t * Math.PI * 10) * 0.5;
+  let ox = 10;
+  let oy = 17 + sway;
+  let keySwing = Math.sin(t * Math.PI * 8) * 1.2;
+  let bottleFlash = 0;
+  let moonAlpha = 0.06;
+  let treeAlpha = 0.12;
+  let lightStrength = 0.35;
+  let peak = 0;
+
+  if (sec.name === 'reveal') {
+    moonAlpha = 0.08 + sec.local * 0.08;
+    treeAlpha = 0.08;
+    lightStrength = 0.2;
+    sway *= 0.7;
+  } else if (sec.name === 'passing') {
+    moonAlpha = 0.12;
+    treeAlpha = 0.14 + sec.local * 0.05;
+    lightStrength = 0.55;
+    keySwing = Math.sin(t * Math.PI * 12) * 1.8;
+  } else if (sec.name === 'peak') {
+    peak = Math.sin(sec.local * Math.PI);
+    moonAlpha = 0.16 + peak * 0.16;
+    treeAlpha = 0.2 + peak * 0.08;
+    lightStrength = 0.95;
+    ox = 11;
+    oy = 16.5 + sway;
+    keySwing = Math.sin(t * Math.PI * 14) * 2.2;
+    bottleFlash = peak;
+  } else {
+    moonAlpha = 0.1;
+    treeAlpha = 0.1;
+    lightStrength = 0.25;
+    keySwing = Math.sin(t * Math.PI * 6) * 0.8;
+  }
+
+  drawMoonWash(moonAlpha);
+  drawTreeShadows(frame, treeAlpha);
+  drawPassingLights(frame, lightStrength, sec.name === 'reveal' || sec.name === 'close');
+  drawReflection(frame, 0.10 + peak * 0.12);
+
+  drawBottle(22, 24, bottleFlash);
+  drawKey(18, 25, keySwing, peak * 0.7);
+  drawGhost(ox, oy, sec.local, peak);
+
+  if (sec.name === 'peak') drawLyricFlash(0.08 + peak * 0.18);
+
+  // private player object near seat edge
+  px(26, 27, P.tungsten2, 0.7);
+  px(27, 27, P.tungsten, 0.42);
+  px(26, 28, P.tungsten2, 0.28);
+}
+
+let start = null;
+function loop(ts) {
+  if (!start) start = ts;
+  const elapsed = (ts - start) / 1000;
+  const loopT = elapsed % DUR;
+  const frame = Math.floor(loopT * FPS);
+  render(frame);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

@@ -3,10 +3,12 @@ import { MuseumScene } from './scene/MuseumScene'
 import { SceneOverlay } from './overlay/SceneOverlay'
 import { BotPrototypesPage } from './prototypes/BotPrototypesPage'
 
-const IS_BOT_MODE = new URLSearchParams(window.location.search).get('mode') === 'bots'
+const DEFAULT_MODE = 'bots'
 
 function App() {
-  if (IS_BOT_MODE) return <BotPrototypesPage />
+  const mode = new URLSearchParams(window.location.search).get('mode') ?? DEFAULT_MODE
+
+  if (mode === 'bots') return <BotPrototypesPage />
 
   return (
     <div style={{ width: '100vw', height: '100vh', position: 'relative', background: '#0d1a1a', overflow: 'hidden' }}>

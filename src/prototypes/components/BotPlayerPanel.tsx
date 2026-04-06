@@ -12,7 +12,6 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
   const playSelectedSong= useMuseumSceneStore((s) => s.playSelectedSong)
   const pausePlayback   = useMuseumSceneStore((s) => s.pausePlayback)
   const playerBusy      = useMuseumSceneStore((s) => s.playerBusy)
-  const playerHint      = useMuseumSceneStore((s) => s.playerHint)
 
   const actualSong   = songs.find((s) => s.id === playback.currentSongId) ?? null
   const isPlaying    = playback.status === 'playing'
@@ -36,12 +35,6 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
   const dur = playback.duration ?? (displaySong?.duration ? displaySong.duration / 1000 : 0)
   const prog = playback.progress ?? 0
   const progressPct = dur > 0 ? Math.min(1, prog / dur) * 100 : 0
-  const actualArtist = actualSong?.artistNames?.join(', ')
-  const statusText =
-    actualSong && playback.status !== 'stopped'
-      ? `${playback.status === 'paused' ? '已暂停' : '实际播放'}：${actualSong.name}${actualArtist ? ` · ${actualArtist}` : ''}`
-      : playerHint
-
   return (
     <div
       style={{
@@ -49,8 +42,8 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
         zIndex: 60,
         display: 'flex',
         alignItems: 'center',
-        gap: 14,
-        padding: '12px 16px 12px 12px',
+        gap: 20,
+        padding: '12px 20px 12px 12px',
         borderRadius: 16,
         background: 'rgba(0,0,0,0.58)',
         border: `1px solid ${isCurrentBot ? accent : 'rgba(255,255,255,0.08)'}`,
@@ -101,7 +94,7 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
       </div>
 
       {/* Info + progress */}
-      <div style={{ minWidth: 0, flex: 1 }}>
+      <div style={{ minWidth: 0, flex: 1, paddingRight: 6 }}>
         <div
           style={{
             fontSize: 14,
@@ -177,28 +170,6 @@ export function BotPlayerPanel({ config }: BotPlayerPanelProps) {
       >
         {isPlaying ? '⏸' : '▶'}
       </button>
-
-      {/* Status hint */}
-      {statusText && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: -22,
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-            fontSize: 10,
-            color: 'rgba(255,255,255,0.3)',
-            fontFamily: 'Courier New, monospace',
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          }}
-        >
-          {statusText}
-        </div>
-      )}
     </div>
   )
 }
